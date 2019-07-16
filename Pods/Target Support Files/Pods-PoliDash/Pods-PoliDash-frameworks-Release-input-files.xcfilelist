@@ -1,0 +1,18 @@
+${PODS_ROOT}/Target Support Files/Pods-PoliDash/Pods-PoliDash-frameworks.sh
+${BUILT_PRODUCTS_DIR}/ADMozaicCollectionViewLayout/ADMozaicCollectionViewLayout.framework
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/Digger/Digger.framework
+${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
+${BUILT_PRODUCTS_DIR}/FormTextField/FormTextField.framework
+${BUILT_PRODUCTS_DIR}/KafkaRefresh/KafkaRefresh.framework
+${BUILT_PRODUCTS_DIR}/MYPassthrough/MYPassthrough.framework
+${BUILT_PRODUCTS_DIR}/Moya/Moya.framework
+${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/Repeat/Repeat.framework
+${BUILT_PRODUCTS_DIR}/Result/Result.framework
+${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
+${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SwiftyCam/SwiftyCam.framework
+${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework
