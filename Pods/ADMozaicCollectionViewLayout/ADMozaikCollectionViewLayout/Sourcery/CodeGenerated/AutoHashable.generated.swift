@@ -3,11 +3,11 @@
 
 // swiftlint:disable file_length
 
-fileprivate func combineHashes(_ hashes: [Int]) -> Int {
+private func combineHashes(_ hashes: [Int]) -> Int {
     return hashes.reduce(0, combineHashValues)
 }
 
-fileprivate func combineHashValues(_ initial: Int, _ other: Int) -> Int {
+private func combineHashValues(_ initial: Int, _ other: Int) -> Int {
     #if arch(x86_64) || arch(arm64)
         let magic: UInt = 0x9e3779b97f4a7c15
     #elseif arch(i386) || arch(arm)

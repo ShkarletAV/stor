@@ -9,31 +9,29 @@
 import UIKit
 import AVKit
 
-
-
 class FPlayerViewController: AVPlayerViewController {
-    typealias CompletionHandler = (_ success:Bool) -> Void
+    typealias CompletionHandler = (_ success: Bool) -> Void
     var videoURL: URL?
-    var root : PlayerViewController?
+    var root: PlayerViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: [])
-        
-        if let vURL = videoURL{
+
+        if let vURL = videoURL {
             self.player = AVPlayer(url: vURL)
             self.player?.volume = 1.0
         }
-        
+
 //        Отключаем кнопки управления
         self.showsPlaybackControls = false
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //player?.play()
     }
-    
+
     @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
         if self.player != nil {
             self.player!.seek(to: kCMTimeZero)
@@ -41,8 +39,7 @@ class FPlayerViewController: AVPlayerViewController {
             self.root?.playBtn.isHidden = false
         }
     }
-    
-    
+
     deinit {
         print("Fplayer is deinit")
     }

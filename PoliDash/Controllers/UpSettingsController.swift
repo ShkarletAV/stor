@@ -10,10 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RoundButton : UIButton {
-    var avaView : UIImageView?
-    var owner : Owners_Model?{
-        didSet{
+class RoundButton: UIButton {
+    var avaView: UIImageView?
+    var owner: OwnersModel? {
+        didSet {
             if owner != nil {
             self.setupAva()
             } else {
@@ -22,8 +22,8 @@ class RoundButton : UIButton {
             }
         }
     }
-    
-    func setupAva(){
+
+    func setupAva() {
         if self.avaView?.superview == nil {
             self.clipsToBounds = true
             self.imageView?.contentMode = .scaleAspectFill
@@ -38,39 +38,39 @@ class RoundButton : UIButton {
     }
 }
 
-class UpsCell : UITableViewCell {
+class UpsCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subLabel: UILabel!
     @IBOutlet weak var avatar: UIImageView!
-    var owner : Owners_Model?{
-        didSet{
+    var owner: OwnersModel? {
+        didSet {
             nameLabel.text = owner?.nickname
-            var url: URL? = nil
+            var url: URL?
             if let picture = owner?.picture {
                 url = URL(string: picture)
             }
-            avatar.sd_setImage(with: url, placeholderImage:#imageLiteral(resourceName: "User_placeholder.png"))
+            avatar.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"))
         }
     }
 }
 
 class UpSettingsController: UIViewController {
-    @IBOutlet weak var tableView : UITableView!
-    @IBOutlet weak var infoLabel : UILabel!
-    @IBOutlet weak var headerLabel : UILabel!
-    @IBOutlet weak var buttonsView : UIStackView!
-    
-    @IBOutlet weak var searchBar : UITextField!
-    @IBOutlet weak var acceptBtn : UIButton!
-    @IBOutlet weak var cancelBtn : UIButton!
-    
-    var selectedOwners = [Int:Owners_Model]()
-    
-    var allOwners = [Owners_Model]()
-    var selectedRound : RoundButton?
-    var selectedOwner : Owners_Model?
-    var owners_User = Variable<[Owners_Model]>([])
-    var msg_Owners = Variable<MessageModel>(MessageModel())
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var buttonsView: UIStackView!
+
+    @IBOutlet weak var searchBar: UITextField!
+    @IBOutlet weak var acceptBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
+
+    var selectedOwners = [Int: OwnersModel]()
+
+    var allOwners = [OwnersModel]()
+    var selectedRound: RoundButton?
+    var selectedOwner: OwnersModel?
+    var ownersUser = Variable<[OwnersModel]>([])
+    var msgOwners = Variable<MessageModel>(MessageModel())
     let delegate =  UIApplication.shared.delegate as! AppDelegate
     var balance = 0
 
@@ -79,7 +79,7 @@ class UpSettingsController: UIViewController {
         self.tableView.tableFooterView = UIView()
         self.infoLabel.isHidden = false
         self.tableView.isHidden = true
-        
+
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         searchBar.leftView = paddingView
         searchBar.leftViewMode = .always
@@ -92,44 +92,44 @@ class UpSettingsController: UIViewController {
         for btn in self.buttonsView.arrangedSubviews {
             btn.isHidden = !(btn.tag < maxCircle)
         }
-        
+
         if maxCircle == 0 {
             self.infoLabel.text = "Недостаточно Ups"
         }
-        
+
         loadCircles()
     }
-    
-    func loadCircles(){
-        Profile_API.requestCircles(delegate: delegate, email: AllUserDefaults.getLoginUD()!) { (_, _, circles) in
+
+    func loadCircles() {
+        ProfileAPI.requestCircles(delegate: delegate, email: AllUserDefaults.getLoginUD()!) { (_, _, circles) in
             print(circles)
             var i = 0
             for owner in circles {
                 self.selectedOwners[i] = owner
                 (self.buttonsView.arrangedSubviews[i] as! RoundButton).owner = owner
-                i = i + 1
+                i += 1
             }
             self.loadOwners()
         }
     }
-    
-    func loadOwners(){
-        Profile_API.requestGetOwners(delegate: delegate, email: AllUserDefaults.getLoginUD()!) { [weak self] (msg, statusCode, ownerModel) in
+
+    func loadOwners() {
+        ProfileAPI.requestGetOwners(delegate: delegate, email: AllUserDefaults.getLoginUD()!) { [weak self] (msg, statusCode, ownerModel) in
             self?.allOwners = ownerModel
-            self?.owners_User.value = [Owners_Model]()
+            self?.ownersUser.value = [OwnersModel]()
             self?.filterOwners()
             let msgOwner = MessageModel()
             msgOwner.msg = msg
             msgOwner.code = statusCode
-            self?.msg_Owners.value = msgOwner
-            if let owners = self?.owners_User.value {
+            self?.msgOwners.value = msgOwner
+            if let owners = self?.ownersUser.value {
                 self?.headerLabel.text = "ПОДПИСКИ \((owners.count))"
             }
         }
     }
-    
-    func filterOwners(){
-        self.owners_User.value.removeAll()
+
+    func filterOwners() {
+        self.ownersUser.value.removeAll()
         for owner in self.allOwners {
             var canAdd = true
             for so in self.selectedOwners.values {
@@ -143,19 +143,19 @@ class UpSettingsController: UIViewController {
                     canAdd = false
                 }
             }
-            
+
             if canAdd == true {
-                self.owners_User.value.append(owner)
+                self.ownersUser.value.append(owner)
             }
         }
         self.tableView.reloadData()
     }
-    
-    @IBAction func backAction(){
+
+    @IBAction func backAction() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    @IBAction func selectRound(sender:RoundButton){
+
+    @IBAction func selectRound(sender: RoundButton) {
         if self.selectedOwners.values.count >= self.balance/40 && sender.owner == nil {
             showAlertView(text: "Недостаточно Ups для выбора пользователя") {
             }
@@ -188,11 +188,11 @@ class UpSettingsController: UIViewController {
         }
         }
     }
-    
-    @IBAction func acceptAction(){
+
+    @IBAction func acceptAction() {
         if self.selectedRound?.owner != nil {
             if let email = self.selectedRound?.owner?.email {
-                Profile_API.requestDeleteCircle(delegate: delegate, owner_email: AllUserDefaults.getLoginUD()!, displayed_email: email) { (msg) in
+                ProfileAPI.requestDeleteCircle(delegate: delegate, ownerEmail: AllUserDefaults.getLoginUD()!, displayiedEmail: email) { (msg) in
                     if msg.code == 200 {
                         self.selectedRound?.owner = nil
                     self.acceptAction()
@@ -205,11 +205,11 @@ class UpSettingsController: UIViewController {
         } else {
             guard let ownerEmail = self.selectedOwner?.email else {
                 self.showAlertView(text: "E-mail выделенного пользователя не определён") {
-                    
+
                 }
                 return
             }
-            Profile_API.requsetPutCircle(delegate: delegate, email: ownerEmail) { (msg) in
+            ProfileAPI.requsetPutCircle(delegate: delegate, email: ownerEmail) { (msg) in
                 if msg.code == 200 {
                     self.selectedRound?.owner = self.selectedOwner
                     self.selectedOwners[(self.selectedRound?.tag)!] = self.selectedOwner
@@ -225,8 +225,8 @@ class UpSettingsController: UIViewController {
             }
         }
     }
-    
-    @IBAction func cancelAction(){
+
+    @IBAction func cancelAction() {
         self.selectedOwner = nil
         self.acceptBtn.isHidden = true
         if self.selectedRound?.owner != nil {
@@ -239,11 +239,11 @@ class UpSettingsController: UIViewController {
             self.cancelBtn.removeTarget(self, action: #selector(cancelAction), for: .touchUpInside)
         }
     }
-    
-    @IBAction func deleteAction(){
+
+    @IBAction func deleteAction() {
         if self.selectedRound?.owner != nil {
             if let email = self.selectedRound?.owner?.email {
-                Profile_API.requestDeleteCircle(delegate: delegate, owner_email: AllUserDefaults.getLoginUD()!, displayed_email: email) { (msg) in
+                ProfileAPI.requestDeleteCircle(delegate: delegate, ownerEmail: AllUserDefaults.getLoginUD()!, displayiedEmail: email) { (msg) in
                     if msg.code == 200 {
                         self.selectedRound?.owner = nil
                         self.selectedOwners.removeValue(forKey: (self.selectedRound?.tag)!)
@@ -260,23 +260,23 @@ class UpSettingsController: UIViewController {
     }
 }
 
-extension UpSettingsController : UITableViewDelegate, UITableViewDataSource {
+extension UpSettingsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.owners_User.value.count
+        return self.ownersUser.value.count
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 68.5
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? UpsCell
-        cell?.owner = owners_User.value[indexPath.row]
+        cell?.owner = ownersUser.value[indexPath.row]
         return cell!
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedOwner = self.owners_User.value[indexPath.row]
+        self.selectedOwner = self.ownersUser.value[indexPath.row]
         self.cancelBtn.isHidden = false
         self.cancelBtn.setTitle("отмена", for: .normal)
         self.acceptBtn.isHidden = false
@@ -285,7 +285,7 @@ extension UpSettingsController : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension UpSettingsController : UITextFieldDelegate {
+extension UpSettingsController: UITextFieldDelegate {
     @objc func textFieldDidChange(_ textField: UITextField) {
         self.filterOwners()
     }

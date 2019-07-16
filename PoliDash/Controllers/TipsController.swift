@@ -9,14 +9,14 @@
 import UIKit
 
 class TipsController: UIViewController {
-    @IBOutlet weak var collection : UICollectionView!
-    @IBOutlet weak var pageControll : UIPageControl!
-    
+    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var pageControll: UIPageControl!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // увеличение стандартного UIPageControl
         self.pageControll.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        
+
         // проверяем, если приложение уже открывалось - отображаем экран авторизации, иначе отображаем туториал
         let opened = AllUserDefaults.getOpenUD()
         if opened == true {
@@ -27,25 +27,25 @@ class TipsController: UIViewController {
             AllUserDefaults.saveOpenUD()
         }
     }
-    
+
     // переход на страницу авторизации
-    @IBAction func authAction(){
+    @IBAction func authAction() {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "login")
         self.navigationController?.pushViewController(controller!, animated: true)
     }
-    
+
     // переход на страницу регистрации
-    @IBAction func regAction(){
+    @IBAction func regAction() {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "reg")
         self.navigationController?.pushViewController(controller!, animated: true)
     }
 }
 
-extension TipsController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension TipsController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.row {
         case 1:
@@ -60,7 +60,6 @@ extension TipsController : UICollectionViewDelegate, UICollectionViewDataSource,
         }
     }
 
-    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -68,14 +67,14 @@ extension TipsController : UICollectionViewDelegate, UICollectionViewDataSource,
         let h = self.collection.frame.size.height
         return CGSize(width: w, height: h)
     }
-    
+
     //3
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
-    
+
     // 4
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -84,10 +83,9 @@ extension TipsController : UICollectionViewDelegate, UICollectionViewDataSource,
     }
 }
 
-extension TipsController : UIScrollViewDelegate {
+extension TipsController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = self.collection.contentOffset.x/UIScreen.main.bounds.size.width
         self.pageControll.currentPage = Int(page)
     }
 }
-

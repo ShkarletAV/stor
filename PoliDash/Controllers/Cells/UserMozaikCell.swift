@@ -8,22 +8,22 @@
 
 import UIKit
 
-class UserSaveStoryCell : UICollectionViewCell {
-    @IBOutlet weak var bgImage : UIImageView!
-    var video : SavedVideo? {
-        didSet{
+class UserSaveStoryCell: UICollectionViewCell {
+    @IBOutlet weak var bgImage: UIImageView!
+    var video: SavedVideo? {
+        didSet {
             bgImage.sd_setImage(with: URL(string: (video?.videos?.first?.preview)!), placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"), options: [], completed: nil)
         }
     }
 }
 
 class UserMozaikCell: UICollectionViewCell {
-    @IBOutlet weak var bgImage : UIImageView!
-    @IBOutlet weak var avatar : UIImageView!
-    @IBOutlet weak var nameLabel : UILabel!
-    var owner : Owners_Model? {
+    @IBOutlet weak var bgImage: UIImageView!
+    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    var owner: OwnersModel? {
         didSet {
-            
+
             guard let owner = owner else {
                 return
             }
@@ -34,7 +34,7 @@ class UserMozaikCell: UICollectionViewCell {
             bgImage.sd_setImage(with: self.storyPreview(),
                                 placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"),
                                 options: [], completed: nil)
-            var ownerUrl: URL? = nil
+            var ownerUrl: URL?
             if let url = URL(string: owner.picture ?? "") {
                 ownerUrl = url
             }
@@ -45,12 +45,12 @@ class UserMozaikCell: UICollectionViewCell {
                                completed: nil)
         }
     }
-    
-    var user : UsersModel? {
+
+    var user: UsersModel? {
         didSet {
             nameLabel.isHidden = false
             avatar.isHidden = false
-            
+
             guard let user = user else {
                 return
             }
@@ -59,8 +59,8 @@ class UserMozaikCell: UICollectionViewCell {
                                 placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"),
                                 options: [],
                                 completed: nil)
-            
-            var userUrl: URL? = nil
+
+            var userUrl: URL?
             if let url = URL(string: user.picture ?? "") {
                 userUrl = url
             }
@@ -68,18 +68,18 @@ class UserMozaikCell: UICollectionViewCell {
                                placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"),
                                options: [],
                                completed: nil)
-            
+
         }
     }
-    
-    var video : SavedVideo? {
-        didSet{
+
+    var video: SavedVideo? {
+        didSet {
             nameLabel.isHidden = true
             avatar.isHidden = true
             bgImage.sd_setImage(with: URL(string: (video?.videos?.first?.preview)!), placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"), options: [], completed: nil)
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         bgImage.layer.cornerRadius = 5.0
@@ -89,22 +89,22 @@ class UserMozaikCell: UICollectionViewCell {
         avatar.layer.borderColor = UIColor.white.cgColor
         avatar.layer.borderWidth = 2
     }
-    
+
     func storyPreview() -> URL? {
-        var urlString : String?
+        var urlString: String?
         guard let owner = owner else {
             return nil
         }
-        if let count = owner.video?.count, count > 0 {
+        if let videos = owner.video, !videos.isEmpty {
             urlString = owner.video?[0].preview
         } else if owner.picture != nil {
             urlString = owner.picture
         }
         return URL(string: urlString ?? "")
     }
-    
+
     func storyUserPreview() -> URL? {
-        var urlString : String?
+        var urlString: String?
 
         guard let user = user else {
             return nil
@@ -116,5 +116,5 @@ class UserMozaikCell: UICollectionViewCell {
         }
         return URL(string: urlString ?? "")
     }
-    
+
 }

@@ -17,7 +17,7 @@ public enum ADMozaikLayoutSectionContentMode: AutoEquatable {
      * Default value
      */
     case fill
-    
+
     /**
      * Keep the order for cells, so even if there is a vacant space somewhere before last cell don't use it
      */

@@ -68,6 +68,7 @@ PODS:
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
+  - SwiftLint (0.33.1)
   - SwiftyCam (2.7.0)
   - Toaster (2.2.0)
 
@@ -87,6 +88,7 @@ DEPENDENCIES:
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
   - SDWebImage
+  - SwiftLint (= 0.33.1)
   - SwiftyCam (from `https://github.com/Awalz/SwiftyCam.git`, branch `Swift4`)
   - Toaster
 
@@ -110,6 +112,7 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - SDWebImage
+    - SwiftLint
     - Toaster
 
 EXTERNAL SOURCES:
@@ -141,9 +144,10 @@ SPEC CHECKSUMS:
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SwiftLint: 9fc1143bbacec37f94994a7d0d2a85b2154b6294
   SwiftyCam: 7c826b73a5b208677aee29390582c771bf748661
   Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
 
-PODFILE CHECKSUM: 1badb948eaa0197c926772ffe9b6639963d58967
+PODFILE CHECKSUM: 9d590ff1e232728c96a63793f674ce7cfeaaa845
 
 COCOAPODS: 1.7.4

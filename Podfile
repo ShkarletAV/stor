@@ -23,4 +23,5 @@ target 'PoliDash' do
   pod 'Crashlytics'
   pod 'FLEX', '~> 2.0', :configurations => ['Debug']
   pod 'MYPassthrough'
+  pod 'SwiftLint', '0.33.1'
 end

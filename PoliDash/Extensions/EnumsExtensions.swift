@@ -9,54 +9,54 @@
 import Foundation
 import AVKit
 
-enum VcStoryboarID: String{
+enum VcStoryboarID: String {
     case mainViewController = "MainVC_ID"
     case camera = "CameraVC_ID"
     case userSetings = "ProfileSetings_ID"
     case playerViewController = "PlayerViewController_ID"
-    case PlayerStorys = "PlayerStorys_ID"
-    case PlayerLikes = "PlayerLikes_ID"
+    case playerStorys = "PlayerStorys_ID"
+    case playerLikes = "PlayerLikes_ID"
     case searchViewController = "Search_ID"
     case cameraPhotoController = "CameraPhotoController_ID"
 }
 
-enum SegueID: String{
+enum SegueID: String {
     case fPlayerViewController = "segueFPlayerViewController"
     case avPlayerStrory = "segueAVPlayerStroryiewController"
     case imagePlayer = "segueImagePlayerViewController"
 }
 
-enum Storyboard_Name: String{
-    case Main_Storyboard = "Main"
-    case VideoPlayer_Stroeyboard = "VideoPlayer"
+enum StoryboardName: String {
+    case mainStoryboard = "Main"
+    case videoPlayerStoryboard = "VideoPlayer"
 }
 
-enum KeysUD: String{
+enum KeysUD: String {
     case keyLogin = "KEY_Login"
     case keyPass = "KEY_Pass"
     case keyOpened = "KEY_Opened"
 }
 
-enum CellID: String{
+enum CellID: String {
     case userCellID = "UsersTableViewCell_ID"
     case storysCellID = "StoryCellID"
     case currentAStorysCellID = "CurrentAStorysCellID"
 }
 
-enum PlayerControl{
+enum PlayerControl {
     case next
     case previous
     case play
     case pause
 }
 
-enum Sympathy{
+enum Sympathy {
     case like
     case unlike
 }
 
-extension Sympathy{
-    var value: String{
+extension Sympathy {
+    var value: String {
         switch self {
         case .like:
             return "like"
@@ -66,14 +66,14 @@ extension Sympathy{
     }
 }
 
-enum QualityAction{
+enum QualityAction {
     case cancel
     case low
     case average
 }
 
-extension QualityAction{
-    var value : String{
+extension QualityAction {
+    var value: String {
         switch self {
         case .average:
             return "Сжатое"
@@ -83,7 +83,7 @@ extension QualityAction{
             return "Отмена"
         }
     }
-    var aVAssetExport : String{
+    var aVAssetExport: String {
         switch self {
         case .average:
             return "AVAssetExportPresetLowQuality"
@@ -95,13 +95,13 @@ extension QualityAction{
     }
 }
 
-enum DurationFlipping{
+enum DurationFlipping {
     case next
     case previews
 }
 
-extension DurationFlipping{
-    var animate : UIViewAnimationOptions{
+extension DurationFlipping {
+    var animate: UIViewAnimationOptions {
         switch self {
         case .next:
             return .transitionFlipFromRight
@@ -111,13 +111,13 @@ extension DurationFlipping{
     }
 }
 
-enum TagView{
+enum TagView {
     case waitView
     case showAlert
 }
 
-extension TagView{
-    var tag : Int {
+extension TagView {
+    var tag: Int {
         switch self {
         case .waitView:
             return 345678
@@ -130,8 +130,8 @@ extension TagView{
 enum MoreAlert {
     case all
     case save
-    
-    var actions: [MoreAction]{
+
+    var actions: [MoreAction] {
         switch self {
         case .all:
             return [.saveHistory, .delete, . download, .cancel]
@@ -139,17 +139,17 @@ enum MoreAlert {
             return [.download, .cancel]
         }
     }
-    
+
 }
 
-enum MoreAction{
+enum MoreAction {
     case saveHistory
     case delete
     case download
     case allLikes
     case cancel
-    
-    var title : String{
+
+    var title: String {
         switch self {
         case .delete:
             return "Удалить"
@@ -163,8 +163,8 @@ enum MoreAction{
             return "Отмена"
         }
     }
-    
-    var style: UIAlertActionStyle{
+
+    var style: UIAlertActionStyle {
         switch self {
         case .delete:
             return .destructive
@@ -178,29 +178,24 @@ enum MoreAction{
     }
 }
 
-enum Owner{
+enum Owner {
     case isOwner
     case isFollower
 }
 
-enum See{
+enum See {
     case see
-    case no_see
+    case noSee
     case none
-    
-    var title: String{
+
+    var title: String {
         switch self {
         case .see:
             return "ОТПИСАТЬСЯ"
-        case .no_see:
+        case .noSee:
             return "+"
         case .none:
             return "+"
         }
     }
 }
-
-
-
-
-

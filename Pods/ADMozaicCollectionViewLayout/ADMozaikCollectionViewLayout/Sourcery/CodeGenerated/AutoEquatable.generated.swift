@@ -2,7 +2,7 @@
 // DO NOT EDIT
 
 // swiftlint:disable file_length
-fileprivate func compareOptionals<T>(lhs: T?, rhs: T?, compare: (_ lhs: T, _ rhs: T) -> Bool) -> Bool {
+private func compareOptionals<T>(lhs: T?, rhs: T?, compare: (_ lhs: T, _ rhs: T) -> Bool) -> Bool {
     switch (lhs, rhs) {
     case let (lValue?, rValue?):
         return compare(lValue, rValue)
@@ -13,7 +13,7 @@ fileprivate func compareOptionals<T>(lhs: T?, rhs: T?, compare: (_ lhs: T, _ rhs
     }
 }
 
-fileprivate func compareArrays<T>(lhs: [T], rhs: [T], compare: (_ lhs: T, _ rhs: T) -> Bool) -> Bool {
+private func compareArrays<T>(lhs: [T], rhs: [T], compare: (_ lhs: T, _ rhs: T) -> Bool) -> Bool {
     guard lhs.count == rhs.count else { return false }
     for (idx, lhsItem) in lhs.enumerated() {
         guard compare(lhsItem, rhs[idx]) else { return false }
@@ -24,13 +24,13 @@ fileprivate func compareArrays<T>(lhs: [T], rhs: [T], compare: (_ lhs: T, _ rhs:
 
 // MARK: - AutoEquatable for classes, protocols, structs
 // MARK: - ADMozaikLayoutColumn AutoEquatable
-extension ADMozaikLayoutColumn: Equatable {} 
+extension ADMozaikLayoutColumn: Equatable {}
 public func == (lhs: ADMozaikLayoutColumn, rhs: ADMozaikLayoutColumn) -> Bool {
     guard lhs.width == rhs.width else { return false }
     return true
 }
 // MARK: - ADMozaikLayoutPosition AutoEquatable
-extension ADMozaikLayoutPosition: Equatable {} 
+extension ADMozaikLayoutPosition: Equatable {}
 public func == (lhs: ADMozaikLayoutPosition, rhs: ADMozaikLayoutPosition) -> Bool {
     guard lhs.column == rhs.column else { return false }
     guard lhs.row == rhs.row else { return false }
@@ -38,7 +38,7 @@ public func == (lhs: ADMozaikLayoutPosition, rhs: ADMozaikLayoutPosition) -> Boo
     return true
 }
 // MARK: - ADMozaikLayoutSectionGeometryInfo AutoEquatable
-extension ADMozaikLayoutSectionGeometryInfo: Equatable {} 
+extension ADMozaikLayoutSectionGeometryInfo: Equatable {}
 public func == (lhs: ADMozaikLayoutSectionGeometryInfo, rhs: ADMozaikLayoutSectionGeometryInfo) -> Bool {
     guard lhs.columns == rhs.columns else { return false }
     guard lhs.rowHeight == rhs.rowHeight else { return false }
@@ -50,7 +50,7 @@ public func == (lhs: ADMozaikLayoutSectionGeometryInfo, rhs: ADMozaikLayoutSecti
     return true
 }
 // MARK: - ADMozaikLayoutSize AutoEquatable
-extension ADMozaikLayoutSize: Equatable {} 
+extension ADMozaikLayoutSize: Equatable {}
 public func == (lhs: ADMozaikLayoutSize, rhs: ADMozaikLayoutSize) -> Bool {
     guard lhs.columns == rhs.columns else { return false }
     guard lhs.rows == rhs.rows else { return false }
@@ -62,10 +62,10 @@ public func == (lhs: ADMozaikLayoutSize, rhs: ADMozaikLayoutSize) -> Bool {
 extension ADMozaikLayoutSectionContentMode: Equatable {}
 public func == (lhs: ADMozaikLayoutSectionContentMode, rhs: ADMozaikLayoutSectionContentMode) -> Bool {
     switch (lhs, rhs) {
-    case (.fill, .fill): 
-         return true 
-    case (.ordered, .ordered): 
-         return true 
+    case (.fill, .fill):
+         return true
+    case (.ordered, .ordered):
+         return true
     default: return false
     }
 }

@@ -10,8 +10,8 @@ import UIKit
 import RxSwift
 
 class MainNavigationViewController: UINavigationController {
-    
-    var profileInfo : Variable<UserInfoModel>!
+
+    var profileInfo: Variable<UserInfoModel>!
     var emailProfile = ""
 
     override func viewDidLoad() {

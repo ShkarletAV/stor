@@ -10,17 +10,17 @@ import Foundation
 import ObjectMapper
 
 class MessageVideoModel: Mappable {
-    var code : Int?
-    var msg : String?
-    var preview : String?
-    var video : String?
-    
-    init(){
+    var code: Int?
+    var msg: String?
+    var preview: String?
+    var video: String?
+
+    init() {
     }
-    
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         code <- map["code"]
         msg <- map["msg"]
@@ -30,15 +30,15 @@ class MessageVideoModel: Mappable {
 }
 
 class MessageVideoProgress: Mappable {
-    var progress : Progress?
-    var msg : String?
-    
-    init(){
+    var progress: Progress?
+    var msg: String?
+
+    init() {
     }
-    
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         progress <- map["progress"]
         msg <- map["msg"]

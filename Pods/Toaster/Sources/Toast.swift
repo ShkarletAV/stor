@@ -41,11 +41,9 @@ open class Toast: Operation {
     }
   }
 
-
   // MARK: UI
 
   public var view: ToastView = ToastView()
-
 
   // MARK: Initializing
 
@@ -55,7 +53,6 @@ open class Toast: Operation {
     super.init()
     self.text = text
   }
-
 
   // MARK: Factory (Deprecated)
 
@@ -74,13 +71,11 @@ open class Toast: Operation {
     return Toast(text: text, delay: delay, duration: duration)
   }
 
-
   // MARK: Showing
 
   public func show() {
     ToastCenter.default.add(self)
   }
-
 
   // MARK: Cancelling
 
@@ -89,7 +84,6 @@ open class Toast: Operation {
     self.finish()
     self.view.removeFromSuperview()
   }
-
 
   // MARK: Operation Subclassing
 
@@ -133,7 +127,7 @@ open class Toast: Operation {
                 animations: {
                   self.view.alpha = 0
                 },
-                completion: { completed in
+                completion: { _ in
                   self.view.removeFromSuperview()
                 }
               )

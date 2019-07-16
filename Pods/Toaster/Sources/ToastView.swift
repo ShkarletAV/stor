@@ -9,7 +9,6 @@ open class ToastView: UIView {
     set { self.textLabel.text = newValue }
   }
 
-
   // MARK: Appearance
 
   /// The background view's color.
@@ -61,7 +60,6 @@ open class ToastView: UIView {
     }
   }()
 
-
   // MARK: UI
 
   private let backgroundView: UIView = {
@@ -89,7 +87,6 @@ open class ToastView: UIView {
     return self
   }()
 
-
   // MARK: Initializing
 
   public init() {
@@ -102,7 +99,6 @@ open class ToastView: UIView {
   required convenience public init?(coder aDecoder: NSCoder) {
     self.init()
   }
-
 
   // MARK: Layout
 

@@ -9,86 +9,84 @@
 import UIKit
 import ObjectMapper
 
-class FollowersNotificationMessage: Mappable{
-    var msg: [Owners_Model]?
-    var code : Int?
-    
+class FollowersNotificationMessage: Mappable {
+    var msg: [OwnersModel]?
+    var code: Int?
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         msg <- map["msg"]
         code <- map["code"]
     }
-    
-    init(){
-        
+
+    init() {
+
     }
-    
+
 }
 
-
-class LikesNotificationMessage: Mappable{
+class LikesNotificationMessage: Mappable {
     var msg: [HistoryVideo]?
-    var code : Int?
-    
+    var code: Int?
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         msg <- map["msg"]
         code <- map["code"]
     }
-    
-    init(){
-        
+
+    init() {
+
     }
-    
+
 }
 
+class LikesNotification: Mappable {
+    var email: String?
+    var followersAmount: Int?
+    var nickname: String?
+    var notificationHash: String?
+    var picture: String?
+    var sympathy: LikeSympathy?
 
-class LikesNotification: Mappable{
-    var email : String?
-    var followers_amount : Int?
-    var nickname : String?
-    var notification_hash : String?
-    var picture : String?
-    var sympathy : LikeSympathy?
-    
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         email <- map["email"]
-        followers_amount <- map["followers_amount"]
+        followersAmount <- map["followers_amount"]
         nickname <- map["nickname"]
         picture <- map["picture"]
-        notification_hash <- map["notification_hash"]
+        notificationHash <- map["notification_hash"]
         sympathy <- map["sympathy"]
     }
-    
-    init(){
-        
+
+    init() {
+
     }
-    
+
 }
 
-class LikeSympathy: Mappable{
-    var cx : String?
-    var cy : String?
-    var picture : String?
-    
+class LikeSympathy: Mappable {
+    var cx: String?
+    var cy: String?
+    var picture: String?
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         cx <- map["cx"]
         cy <- map["cy"]
         picture <- map["picture"]
     }
-    
-    init(){
-        
+
+    init() {
+
     }
-    
+
 }

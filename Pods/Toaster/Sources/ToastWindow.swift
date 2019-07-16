@@ -144,5 +144,5 @@ open class ToastWindow: UIWindow {
     default: return 0
     }
   }
-  
+
 }

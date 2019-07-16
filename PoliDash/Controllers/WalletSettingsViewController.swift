@@ -40,36 +40,39 @@ class WalletSettingsViewController: UIViewController {
             self.addressTextField.returnKeyType = .done
         }
     }
-    
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+
     @IBAction func cancelWalletRelation(_ sender: UIButton) {
 
     }
-    
+
     @IBAction func goToBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
 
     @IBAction func createWalletRelation(_ sender: UIButton) {
         dismissKeyboard()
-        Profile_API.requsetAddWallet(delegate: delegate, email: AllUserDefaults.getLoginUD()!,
-                                     address: self.addressTextField.text!) { (message) in
+        ProfileAPI.requsetAddWallet(delegate: delegate, email: AllUserDefaults.getLoginUD()!,
+                                     address: self.addressTextField.text!) { (_) in
                                         self.showAlertView(text: "Запрос выполнен", callback: {
-                                            
+
                                     })
         }
     }
-    
+
     @IBAction func showQRRecognizer(_ sender: UIButton) {
         let vc = ScannerViewController()
         self.navigationController?.pushViewController(vc, animated: true)
-        
+
         vc.completion = { [weak self] result in
             self?.addressTextField.text = result
             self?.addWalletButton.isHidden = false
@@ -92,29 +95,28 @@ extension WalletSettingsViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
-    //MARK: - Настройка дейстий с клавиатурой
-    func settingsKeyboard(){
+
+    // MARK: - Настройка дейстий с клавиатурой
+    func settingsKeyboard() {
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                  action: #selector(WalletSettingsViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }
-    
+
     @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == self.addressTextField {
             // проверка, если введенных символов один и больше, то появляеться кнопка "Показать пароль"
             let hiddenButton = textField.text?.count == 0
             self.addWalletButton.isHidden = hiddenButton
             self.cancelButton.isHidden = true
-
         }
     }
-    
+
     @objc func dismissKeyboard() {
         view.resignFirstResponder() //прячем клавиатуру
         view.endEditing(true)

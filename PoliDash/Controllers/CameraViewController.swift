@@ -11,34 +11,34 @@ import SwiftyCam
 import Photos
 import MobileCoreServices
 
-class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate{
+class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
 
-    @IBOutlet weak var circle_Button: SwiftyRecordButton!
+    @IBOutlet weak var circleButton: SwiftyRecordButton!
     @IBOutlet weak var flashButton: UIButton!
-    @IBOutlet weak var flipCamera_Button: UIButton!
-    @IBOutlet weak var back_Button: UIButton!
+    @IBOutlet weak var flipCameraButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var libraryButton: UIButton!
     @IBOutlet weak var whiteCircle: UIView!
     @IBOutlet weak var tutorialView: UIImageView!
-    @IBOutlet weak var buttonsView : UIStackView!
+    @IBOutlet weak var buttonsView: UIStackView!
     var circleView = LayerCircle()
-    var focusPoint : CGPoint?
+    var focusPoint: CGPoint?
     var imagePicker = UIImagePickerController()
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        circle_Button.delegate = self
+        circleButton.delegate = self
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         showTutorialIfNeed()
         self.loadCircles()
     }
-    
-    func loadCircles(){
-        Profile_API.requestCircles(delegate: ((UIApplication.shared.delegate as? AppDelegate)!), email: AllUserDefaults.getLoginUD()!) { (_, _, circles) in
+
+    func loadCircles() {
+        ProfileAPI.requestCircles(delegate: ((UIApplication.shared.delegate as? AppDelegate)!), email: AllUserDefaults.getLoginUD()!) { (_, _, circles) in
             for btn in self.buttonsView.arrangedSubviews {
                 btn.isHidden = true
             }
@@ -46,15 +46,15 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
             for owner in circles {
                 (self.buttonsView.arrangedSubviews[i] as! RoundButton).owner = owner
                 (self.buttonsView.arrangedSubviews[i] as! RoundButton).isHidden = false
-                i = i + 1
+                i += 1
             }
         }
     }
-    
-    @IBAction func selectRound(sender:RoundButton){
+
+    @IBAction func selectRound(sender: RoundButton) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "MainVC_ID") as! MainViewController
-        if let email = sender.owner?.email{
+        if let email = sender.owner?.email {
             vc.emailProfile = email
             vc.isSaveVideo = false
             vc.hashVideo = ""
@@ -62,12 +62,12 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
             nav?.pushViewController(vc, animated: true)
         }
     }
-    
+
     override func viewDidLoad() {
         self.whiteCircle.alpha = 0.0
-        circle_Button.addTarget(self, action: #selector(multipleTap(_:event:)), for: UIControlEvents.touchDownRepeat)
-        circle_Button.addTarget(self, action: #selector(oneTap(_:event:)), for: UIControlEvents.touchDown)
-        circle_Button.buttonEnabled = false
+        circleButton.addTarget(self, action: #selector(multipleTap(_:event:)), for: UIControlEvents.touchDownRepeat)
+        circleButton.addTarget(self, action: #selector(oneTap(_:event:)), for: UIControlEvents.touchDown)
+        circleButton.buttonEnabled = false
         videoGravity = .resizeAspectFill
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
@@ -82,8 +82,8 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         self.doubleTapCameraSwitch = true
         self.addLongPressGesture()
     }
-    
-    func showTutorialIfNeed(){
+
+    func showTutorialIfNeed() {
         let videoTutorial = UserDefaults.standard.bool(forKey: "videoTutorialShow")
         let photoTutorial = UserDefaults.standard.bool(forKey: "photoTutorialShow")
         if videoTutorial != true {
@@ -96,13 +96,13 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
             tutorialView.isHidden = true
         }
     }
-    
-    func addLongPressGesture(){
+
+    func addLongPressGesture() {
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gesture:)))
         longPress.minimumPressDuration = 0.3
-        circle_Button.addGestureRecognizer(longPress)
+        circleButton.addGestureRecognizer(longPress)
     }
-    
+
     @objc func longPress(gesture: UILongPressGestureRecognizer) {
         if gesture.state == UIGestureRecognizerState.began {
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(focusAction), object: nil)
@@ -115,7 +115,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         }
     }
 
-    
     @objc func multipleTap(_ sender: UIButton, event: UIEvent) {
         let touch: UITouch = event.allTouches!.first!
         if (touch.tapCount == 2) {
@@ -125,29 +124,29 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
             UserDefaults.standard.synchronize()
         }
     }
-    
+
     @objc func oneTap(_ sender: UIButton, event: UIEvent) {
         let touch: UITouch = event.allTouches!.first!
         if (touch.tapCount == 1) {
-            self.focusPoint = touch.location(in: circle_Button)
+            self.focusPoint = touch.location(in: circleButton)
             perform(#selector(focusAction), with: nil, afterDelay: 0.33)
         }
     }
-    
+
     @objc func focusAction() {
         self.swiftyCam(self, didFocusAtPoint: focusPoint!)
         focusPoint = nil
     }
-    
+
     func fetchPhotos () {
         // Sort the images by descending creation date and fetch the first 3
         let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         fetchOptions.fetchLimit = 1
-        
+
         // Fetch the image assets
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
-        
+
         // If the fetch result isn't empty,
         // proceed with the image request
         if fetchResult.count > 0 {
@@ -155,18 +154,18 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
             fetchPhotoAtIndex(0, totalImageCountNeeded, fetchResult)
         }
     }
-    
+
     // Repeatedly call the following method while incrementing
     // the index until all the photos are fetched
-    func fetchPhotoAtIndex(_ index:Int, _ totalImageCountNeeded: Int, _ fetchResult: PHFetchResult<PHAsset>) {
-        
+    func fetchPhotoAtIndex(_ index: Int, _ totalImageCountNeeded: Int, _ fetchResult: PHFetchResult<PHAsset>) {
+
         // Note that if the request is not set to synchronous
         // the requestImageForAsset will return both the image
         // and thumbnail; by setting synchronous to true it
         // will return just the thumbnail
         let requestOptions = PHImageRequestOptions()
         requestOptions.isSynchronous = true
-        
+
         // Perform the image request
         PHImageManager.default().requestImage(for: fetchResult.object(at: index) as PHAsset, targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
             if let image = image {
@@ -181,7 +180,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         })
     }
 
-    
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFocusAtPoint point: CGPoint) {
 //       установка внешнего вида фокуса
         let focusView = UIImageView(image: #imageLiteral(resourceName: "focus"))
@@ -189,52 +187,52 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         focusView.center = point
         focusView.alpha = 0.0
         view.addSubview(focusView)
-        
+
 //        анимация для отображения и скрытия фокуса
         UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseInOut, animations: {
             focusView.alpha = 1.0
             focusView.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
-        }, completion: { (success) in
+        }, completion: { (_) in
             UIView.animate(withDuration: 0.15, delay: 0.5, options: .curveEaseInOut, animations: {
                 focusView.alpha = 0.0
                 focusView.transform = CGAffineTransform(translationX: 0.6, y: 0.6)
-            }, completion: { (success) in
+            }, completion: { (_) in
                 focusView.removeFromSuperview()
             })
         })
     }
-    
-    @IBAction func openGallery(){
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+
+    @IBAction func openGallery() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             self.imagePicker.delegate = self
-            self.imagePicker.sourceType = .savedPhotosAlbum;
-            self.imagePicker.mediaTypes = [kUTTypeMovie,kUTTypeImage] as [String]
+            self.imagePicker.sourceType = .savedPhotosAlbum
+            self.imagePicker.mediaTypes = [kUTTypeMovie, kUTTypeImage] as [String]
             self.imagePicker.allowsEditing = false
             self.present(self.imagePicker, animated: true, completion: nil)
         }
     }
-    
-    //MARK:-    Отображаем полученый снимок в кнтроллере CameraPhotoViewController
+
+    // MARK: - Отображаем полученый снимок в кнтроллере CameraPhotoViewController
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
-        let storyboard = UIStoryboard(name: Storyboard_Name.Main_Storyboard.rawValue, bundle: nil)
+        let storyboard = UIStoryboard(name: StoryboardName.mainStoryboard.rawValue, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: VcStoryboarID.cameraPhotoController.rawValue) as! CameraPhotoViewController
         vc.img = photo
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
 //    Запись видео
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
         addCircleView()
 //        Анимация записи видео
         UIView.animate(withDuration: 0.25, animations: {
             self.flashButton.alpha = 0.0
-            self.flipCamera_Button.alpha = 0.0
-            self.back_Button.alpha = 0.0
+            self.flipCameraButton.alpha = 0.0
+            self.backButton.alpha = 0.0
             self.whiteCircle.alpha = 1.0
         })
         print("isVideoRecord")
     }
-    
+
 //    Окончание записи
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
         print("Did finish Recording")
@@ -243,12 +241,12 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 //        Анимация окончания записи
         UIView.animate(withDuration: 0.25, animations: {
             self.flashButton.alpha = 1.0
-            self.flipCamera_Button.alpha = 1.0
-            self.back_Button.alpha = 1.0
+            self.flipCameraButton.alpha = 1.0
+            self.backButton.alpha = 1.0
             self.whiteCircle.alpha = 0.0
         })
     }
-    
+
 //    Окончание записи и получения url video
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -256,11 +254,10 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         vc.videoURL = url
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
+
 //    Настройка кружка вокруг кнопки
     func addCircleView() {
-        
+
         let circleBorder = CALayer()
         circleBorder.backgroundColor = UIColor.clear.cgColor
         circleBorder.borderWidth = 2.0
@@ -269,7 +266,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         circleBorder.position = CGPoint(x: whiteCircle.bounds.midX, y: whiteCircle.bounds.midY)
         circleBorder.cornerRadius = whiteCircle.frame.size.width / 2
         whiteCircle.layer.insertSublayer(circleBorder, at: 0)
-        
+
         let circleWidth = CGFloat(64)
         let circleHeight = circleWidth
         // Create a new CircleView
@@ -278,13 +275,13 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         // Animate the drawing of the circle over the course of 1 second
         circleView.animateCircle(duration: 10.0)
     }
-    
-    //MARK:- Actions
+
+    // MARK: - Actions
 //    изменить текущую камеру
     @IBAction func cameraSwitchTapped(_ sender: Any) {
         switchCamera()
     }
-    
+
 //    включить вспышку камеры
     @IBAction func toggleFlashTapped(_ sender: Any) {
         flashEnabled = !flashEnabled
@@ -298,19 +295,18 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     @IBAction func back_Action(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
+
     deinit {
         print("deinit CameraViewController")
     }
 }
 
-extension CameraViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         guard info[UIImagePickerControllerMediaType] != nil else { return }
         let mediaType = info[UIImagePickerControllerMediaType] as! CFString
         switch mediaType {
@@ -325,7 +321,7 @@ extension CameraViewController : UIImagePickerControllerDelegate, UINavigationCo
         default:
             break
         }
-        
-        picker.dismiss(animated: true, completion: nil);
+
+        picker.dismiss(animated: true, completion: nil)
     }
 }

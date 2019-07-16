@@ -9,7 +9,7 @@
 import UIKit
 
 class PassthroughController: UIViewController, CAAnimationDelegate {
-    
+
     private var mask = CAShapeLayer()
     private var frameInset: CGFloat {
         return -max(view.frame.width, view.frame.height)
@@ -20,7 +20,7 @@ class PassthroughController: UIViewController, CAAnimationDelegate {
         fullFrame.append(cutFrame)
         return fullFrame
     }
-    
+
     var emptyPath: UIBezierPath {
         return UIBezierPath(rect: view.frame.insetBy(dx: frameInset, dy: frameInset))
     }
@@ -37,9 +37,9 @@ class PassthroughController: UIViewController, CAAnimationDelegate {
     }
     private var tapGestureRecognizer: UITapGestureRecognizer!
     private var lastOrientation: PassthroughOrientation?
-    
+
     // MARK: - Events
-    
+
     var didTapAction:(() -> Void)?
     var didCancelAction:(() -> Void)?
     var didOrientationChange:(() -> Void)?
@@ -55,19 +55,19 @@ class PassthroughController: UIViewController, CAAnimationDelegate {
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PassthroughController.tapAction))
         view.addGestureRecognizer(tapGestureRecognizer)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         didChangeState?(.demonstration)
     }
-    
+
     func setupInitialMask(withColor color: UIColor) {
         mask.fillRule = .evenOdd
         mask.fillColor = color.cgColor
         view.layer.addSublayer(mask)
         mask.path = initialPath.cgPath
     }
-    
+
     func prepareToDemonstration() {
         lastOrientation = PassthroughOrientation(UIDevice.current.orientation)
         tapGestureRecognizer.isEnabled = true
@@ -87,14 +87,14 @@ class PassthroughController: UIViewController, CAAnimationDelegate {
         } else {
             mask.removeAnimation(forKey: "path")
         }
-        
+
         mask.path = overlayPath.cgPath
     }
-    
+
     func clean() {
         demonastrationView.subviews.forEach { $0.removeFromSuperview() }
     }
-    
+
     func finishDemonstration() {
         tapGestureRecognizer.isEnabled = false
         clean()
@@ -105,7 +105,7 @@ class PassthroughController: UIViewController, CAAnimationDelegate {
     }
 
     // MARK: - Private
-    
+
     private func configDemonastrationView() {
         let demonastrationView = UIView(frame: view.bounds)
         demonastrationView.backgroundColor = UIColor.clear
@@ -113,7 +113,7 @@ class PassthroughController: UIViewController, CAAnimationDelegate {
         view.addSubview(demonastrationView)
         self.demonastrationView = demonastrationView
     }
-    
+
     private func configCloseButton() {
         closeButton.alpha = 0.0
         view.addSubview(closeButton)
@@ -122,9 +122,9 @@ class PassthroughController: UIViewController, CAAnimationDelegate {
             self?.didCancelAction?()
         }
     }
-    
+
     // MARK: - Orientation
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { [unowned self] _ in
             self.clean()
@@ -133,13 +133,13 @@ class PassthroughController: UIViewController, CAAnimationDelegate {
             self.orientationDidChange()
         }
     }
-    
+
     // MARK: - Action
-    
+
     @objc func tapAction() {
         didTapAction?()
     }
-    
+
     func orientationDidChange() {
         guard let currentOrientation = PassthroughOrientation(UIDevice.current.orientation) else { return }
         guard lastOrientation != currentOrientation else { return }
@@ -148,7 +148,7 @@ class PassthroughController: UIViewController, CAAnimationDelegate {
     }
 
     // MARK: - CAAnimationDelegate
-    
+
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag {
            didFinishedAnimation?()

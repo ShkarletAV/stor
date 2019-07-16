@@ -9,23 +9,23 @@
 import Foundation
 import ObjectMapper
 
-class AllHistoryesVideo{
+class AllHistoryesVideo {
     var allHistoryes = [HistorysVideoModel]()
 }
 
-class HistorysVideoModel: Mappable{
-  
-    var statusCode : Int?
-    var error : String?
-    
+class HistorysVideoModel: Mappable {
+
+    var statusCode: Int?
+    var error: String?
+
     var historys: [HistoryVideo]?
     var saved: [SavedVideo]?
-    init(){
-        
+    init() {
+
     }
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         historys <- map["history"]
         saved <- map["saved"]
@@ -33,17 +33,17 @@ class HistorysVideoModel: Mappable{
 }
 
 class HistoryVideo: Mappable {
-    var hash : String?
-    var preview : String?
-    var video : String?
+    var hash: String?
+    var preview: String?
+    var video: String?
     var duration: Int?
-    var date : String?
-    init(){
-        
+    var date: String?
+    init() {
+
     }
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         duration <- map["duration"]
         hash <- map["hash"]
@@ -53,20 +53,19 @@ class HistoryVideo: Mappable {
     }
 }
 
-class SavedVideo: Mappable{
-    var id : Int?
-    var videos : [HistoryVideo]?
-  
-    init(){
+class SavedVideo: Mappable {
+    var id: Int?
+    var videos: [HistoryVideo]?
+
+    init() {
     }
-    
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         id <- map["id"]
         videos <- map["videos"]
     }
-    
-    
+
 }

@@ -10,17 +10,11 @@ import UIKit
 
 public let digger = "Digger"
 
-
-
 /// start download with url
 
 @discardableResult
-public func download(_ url: DiggerURL) -> DiggerSeed{
-    
+public func download(_ url: DiggerURL) -> DiggerSeed {
+
     return DiggerManager.shared.download(with: url)
-    
+
 }
-
-
-
-

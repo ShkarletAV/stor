@@ -16,38 +16,38 @@ enum ADMozaikLayoutAttributesError: Error {
 }
 
 class ADMozaikLayoutAttributes {
-    
+
     /// Array of `UICollectionViewLayoutAttributes`
     fileprivate(set) var layoutAttributesArray: [UICollectionViewLayoutAttributes] = []
-    
+
     /// Array of unified rects of each 20 layout attributes
     fileprivate(set) var unionRectsArray: [CGRect] = []
-    
+
     /// Default number of attributes in one union
     fileprivate let ADMozaikLayoutUnionSize: Int = 20
-    
+
     /// ADMozaikLayout cache reference
     fileprivate let layoutCache: ADMozaikLayoutCache
-    
+
     init(layoutCache: ADMozaikLayoutCache, layoutMatrixes: [ADMozaikLayoutSectionMatrix], layoutGeometries: [ADMozaikLayoutSectionGeometry]) throws {
         self.layoutCache = layoutCache
         self.layoutAttributesArray = try self.buildLayoutAttributesForLayoutGeometries(layoutGeometries, withLayoutMatrixes: layoutMatrixes)
         self.unionRectsArray = self.buildUnionRectsFromLayoutAttributes(self.layoutAttributesArray)
     }
-    
-    //MARK: - Interface
-    
+
+    // MARK: - Interface
+
     func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attribute = self.layoutAttributesArray[indexPath.item]
         return attribute
     }
-    
+
     func layoutAttributesForElementsInRect(_ rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var resultAttributes: [UICollectionViewLayoutAttributes] = []
         let unionRectsCount = self.unionRectsArray.count
         var begin = 0
         var end = unionRectsCount
-        
+
         for unionRectIndex in (0..<unionRectsCount) {
             if !rect.intersects(self.unionRectsArray[unionRectIndex]) {
                 continue
@@ -55,7 +55,7 @@ class ADMozaikLayoutAttributes {
             begin = unionRectIndex * ADMozaikLayoutUnionSize
             break
         }
-        
+
         for unionRectIndex in (0..<unionRectsCount).reversed() {
             if !rect.intersects(self.unionRectsArray[unionRectIndex]) {
                 continue
@@ -63,19 +63,19 @@ class ADMozaikLayoutAttributes {
             end = min((unionRectIndex + 1) * ADMozaikLayoutUnionSize, self.layoutAttributesArray.count)
             break
         }
-        
+
         for i in begin..<end {
             let attributes = self.layoutAttributesArray[i]
             if rect.intersects(attributes.frame) {
                 resultAttributes.append(attributes)
             }
         }
-        
+
         return resultAttributes
     }
-    
-    //MARK: - Helper
-    
+
+    // MARK: - Helper
+
     fileprivate func buildLayoutAttributesForLayoutGeometries(_ layoutGeometries: [ADMozaikLayoutSectionGeometry], withLayoutMatrixes layoutMatrixes: [ADMozaikLayoutSectionMatrix]) throws -> [UICollectionViewLayoutAttributes] {
         let numberOfSections = layoutCache.numberOfSections()
         guard layoutGeometries.count == numberOfSections && layoutMatrixes.count == numberOfSections else {
@@ -87,31 +87,30 @@ class ADMozaikLayoutAttributes {
             let itemsCount = layoutCache.numberOfItemsInSection(section)
             let layoutGeometry = layoutGeometries[section]
             let layoutMatrix = layoutMatrixes[section]
-            
+
             if let attributes = buildLayoutAttributesForSupplementaryView(of: UICollectionView.elementKindSectionHeader, in: section, geometry: layoutGeometry, additionalOffsetY: layoutSectionGeometryOffsetY) {
                 allAttributes.append(attributes)
             }
-            
+
             for item in 0..<itemsCount {
                 let indexPath = IndexPath(item: item, section: section)
                 do {
                     let attributes = try buildLayoutAttributesForItem(at: indexPath, geometry: layoutGeometry, matrix: layoutMatrix, additionalOffsetY: layoutSectionGeometryOffsetY)
                     allAttributes.append(attributes)
-                }
-                catch let error as CustomStringConvertible {
+                } catch let error as CustomStringConvertible {
                     fatalError(error.description)
                 }
             }
-            
+
             if let attributes = buildLayoutAttributesForSupplementaryView(of: UICollectionView.elementKindSectionFooter, in: section, geometry: layoutGeometry, additionalOffsetY: layoutSectionGeometryOffsetY) {
                 allAttributes.append(attributes)
             }
-            
+
             layoutSectionGeometryOffsetY += layoutGeometry.contentHeight
         }
         return allAttributes
     }
-    
+
     fileprivate func buildLayoutAttributesForSupplementaryView(of kind: String, in section: ADMozaikLayoutSection, geometry: ADMozaikLayoutSectionGeometry, additionalOffsetY: CGFloat) -> UICollectionViewLayoutAttributes? {
         guard let frame = geometry.frameForSupplementaryView(of: kind) else {
             return nil
@@ -122,7 +121,7 @@ class ADMozaikLayoutAttributes {
         geometry.registerElement(with: frame)
         return attributes
     }
-    
+
     fileprivate func buildLayoutAttributesForItem(at indexPath: IndexPath, geometry: ADMozaikLayoutSectionGeometry, matrix: ADMozaikLayoutSectionMatrix, additionalOffsetY: CGFloat) throws -> UICollectionViewLayoutAttributes {
         let itemSize = layoutCache.mozaikSizeForItem(atIndexPath: indexPath)
         let itemPosition = try matrix.positionForItem(of: itemSize)
@@ -132,9 +131,9 @@ class ADMozaikLayoutAttributes {
         geometry.registerElement(with: itemGeometryFrame)
         try matrix.addItem(of: itemSize, at: itemPosition)
         return attributes
-        
+
     }
-    
+
     fileprivate func buildUnionRectsFromLayoutAttributes(_ attributes: [UICollectionViewLayoutAttributes]) -> [CGRect] {
         var index = 0
         var unionRectsArray: [CGRect] = []
@@ -148,5 +147,5 @@ class ADMozaikLayoutAttributes {
         }
         return unionRectsArray
     }
-    
+
 }

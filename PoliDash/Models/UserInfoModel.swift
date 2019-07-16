@@ -9,18 +9,18 @@
 import Foundation
 import ObjectMapper
 
-class Balance: Mappable{
+class Balance: Mappable {
     var balance = 0
-    var code : Int?
-    
-    init(){
-        
+    var code: Int?
+
+    init() {
+
     }
-    
+
     required init?(map: Map) {
         mapping(map: map)
     }
-    
+
     func mapping(map: Map) {
         code <- map["code"]
         balance <- map["balance"]
@@ -29,21 +29,21 @@ class Balance: Mappable{
 
 class UserInfoModel: Mappable {
     var code: Int?
-    var email : String?
-    var nickname : String?
-    var id : Int?
-    var picture : String?
+    var email: String?
+    var nickname: String?
+    var id: Int?
+    var picture: String?
     var msg: String?
     var notify: Notify?
-    
-    init(){
-        
+
+    init() {
+
     }
-    
+
     required init?(map: Map) {
         mapping(map: map)
     }
-    
+
     func mapping(map: Map) {
         code <- map["code"]
         email <- map["email"]

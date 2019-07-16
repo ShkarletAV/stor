@@ -11,17 +11,17 @@ import RxSwift
 
 class UsersTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var userPhoto_Image: RoundedUIImageView!
-    @IBOutlet weak var moon_Image: UIImageView!
-    @IBOutlet weak var titleName_Label: UILabel!
+    @IBOutlet weak var userPhotoImage: RoundedUIImageView!
+    @IBOutlet weak var moonImage: UIImageView!
+    @IBOutlet weak var titleNameLabel: UILabel!
     @IBOutlet weak var collectionViewStorys: UICollectionView!
-    @IBOutlet weak var user_Button: UIButton!
-    @IBOutlet weak var lastTime_Label: UILabel!
+    @IBOutlet weak var userButton: UIButton!
+    @IBOutlet weak var lastTimeLabel: UILabel!
     @IBOutlet weak var dotView: UIImageView!
-    
+
     private(set) var disposeBagCell = DisposeBag()
     var tableRow = 0
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -30,10 +30,10 @@ class UsersTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBagCell = DisposeBag()        
+        disposeBagCell = DisposeBag()
     }
 
 }

@@ -10,6 +10,6 @@ import UIKit
 
 class CurrentAStorysCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: RoundedUIImageView!
-    @IBOutlet weak var add_Button: UIButton! // default is hidden
-    
+    @IBOutlet weak var addButton: UIButton! // default is hidden
+
 }

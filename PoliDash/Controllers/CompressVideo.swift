@@ -9,32 +9,32 @@
 import Foundation
 import AVKit
 
-func convertVideoToLowQuailtyWithInputURL(inputURL: NSURL, outputURL: NSURL, onDone: @escaping () -> ()) {
+func convertVideoToLowQuailtyWithInputURL(inputURL: NSURL, outputURL: NSURL, onDone: @escaping () -> Void) {
     //setup video writer
     let videoAsset = AVURLAsset(url: inputURL as URL, options: nil)
     let videoTrack = videoAsset.tracks(withMediaType: AVMediaType.video)[0]
     let videoSize = videoTrack.naturalSize
     let videoWriterCompressionSettings = [
-        AVVideoAverageBitRateKey : Int(125000)
+        AVVideoAverageBitRateKey: Int(125000)
     ]
-    
-    let videoWriterSettings:[String : AnyObject] = [
-        AVVideoCodecKey : AVVideoCodecH264 as AnyObject,
-        AVVideoCompressionPropertiesKey : videoWriterCompressionSettings as AnyObject,
-        AVVideoWidthKey : Int(videoSize.width) as AnyObject,
-        AVVideoHeightKey : Int(videoSize.height) as AnyObject
+
+    let videoWriterSettings: [String: AnyObject] = [
+        AVVideoCodecKey: AVVideoCodecH264 as AnyObject,
+        AVVideoCompressionPropertiesKey: videoWriterCompressionSettings as AnyObject,
+        AVVideoWidthKey: Int(videoSize.width) as AnyObject,
+        AVVideoHeightKey: Int(videoSize.height) as AnyObject
     ]
-    
+
     let videoWriterInput = AVAssetWriterInput(mediaType: AVMediaType.video, outputSettings: videoWriterSettings)
     videoWriterInput.expectsMediaDataInRealTime = true
     videoWriterInput.transform = videoTrack.preferredTransform
     let videoWriter = try! AVAssetWriter(outputURL: outputURL as URL, fileType: AVFileType.mp4)
     videoWriter.add(videoWriterInput)
     //setup video reader
-    let videoReaderSettings:[String : AnyObject] = [
+    let videoReaderSettings: [String: AnyObject] = [
         kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) as AnyObject
     ]
-    
+
     let videoReaderOutput = AVAssetReaderTrackOutput(track: videoTrack, outputSettings: videoReaderSettings)
     let videoReader = try! AVAssetReader(asset: videoAsset)
     videoReader.add(videoReaderOutput)
@@ -48,22 +48,17 @@ func convertVideoToLowQuailtyWithInputURL(inputURL: NSURL, outputURL: NSURL, onD
     let audioReader = try! AVAssetReader(asset: videoAsset)
     audioReader.add(audioReaderOutput)
     videoWriter.startWriting()
-    
-    
-    
-    
-    
+
     //start writing from video reader
     videoReader.startReading()
     videoWriter.startSession(atSourceTime: kCMTimeZero)
     let processingQueue = DispatchQueue(label: "processingQueue1")
     videoWriterInput.requestMediaDataWhenReady(on: processingQueue, using: {() -> Void in
         while videoWriterInput.isReadyForMoreMediaData {
-            let sampleBuffer:CMSampleBuffer? = videoReaderOutput.copyNextSampleBuffer();
+            let sampleBuffer: CMSampleBuffer? = videoReaderOutput.copyNextSampleBuffer()
             if videoReader.status == .reading && sampleBuffer != nil {
                 videoWriterInput.append(sampleBuffer!)
-            }
-            else {
+            } else {
                 videoWriterInput.markAsFinished()
                 if videoReader.status == .completed {
                     //start writing from audio reader
@@ -72,15 +67,14 @@ func convertVideoToLowQuailtyWithInputURL(inputURL: NSURL, outputURL: NSURL, onD
                     let processingQueue = DispatchQueue(label: "processingQueue2")
                     audioWriterInput.requestMediaDataWhenReady(on: processingQueue, using: {() -> Void in
                         while audioWriterInput.isReadyForMoreMediaData {
-                            let sampleBuffer:CMSampleBuffer? = audioReaderOutput.copyNextSampleBuffer()
+                            let sampleBuffer: CMSampleBuffer? = audioReaderOutput.copyNextSampleBuffer()
                             if audioReader.status == .reading && sampleBuffer != nil {
                                 audioWriterInput.append(sampleBuffer!)
-                            }
-                            else {
+                            } else {
                                 audioWriterInput.markAsFinished()
                                 if audioReader.status == .completed {
                                     videoWriter.finishWriting(completionHandler: {() -> Void in
-                                        onDone();
+                                        onDone()
                                     })
                                 }
                             }

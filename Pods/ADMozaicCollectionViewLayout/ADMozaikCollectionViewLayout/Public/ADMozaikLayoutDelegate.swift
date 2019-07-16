@@ -10,7 +10,7 @@ import Foundation
 
 /// The `ADMozaikLayoutDelegate` defines the protocol that let you implement a mozaik layout for `UICollectionView`
 public protocol ADMozaikLayoutDelegate: UICollectionViewDelegateFlowLayout {
-    
+
     /// Method should return `ADMozaikLayoutSize` for specific indexPath
     ///
     /// - Parameter collectionView: collection view is using layout
@@ -19,7 +19,7 @@ public protocol ADMozaikLayoutDelegate: UICollectionViewDelegateFlowLayout {
     ///
     /// - Returns: `ADMozaikLayoutSize` struct object describes the size
     func collectionView(_ collectionView: UICollectionView, mozaik layout: ADMozaikLayout, mozaikSizeForItemAt indexPath: IndexPath) -> ADMozaikLayoutSize
-    
+
     /// Method should return `ADMozaikLayoutSectionGeometryInfo` to describe specific section's geometry
     ///
     /// - Parameters:
@@ -29,7 +29,7 @@ public protocol ADMozaikLayoutDelegate: UICollectionViewDelegateFlowLayout {
     ///
     /// - Returns: `ADMozaikLayoutSectionGeometryInfo` struct object describes the section's geometry
     func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, geometryInfoFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionGeometryInfo
-    
+
     /// Method should return `ADMozaikLayoutSectionContentMode` to describe specific section's geometry
     ///
     /// - Parameters:
@@ -42,8 +42,8 @@ public protocol ADMozaikLayoutDelegate: UICollectionViewDelegateFlowLayout {
 }
 
 public extension ADMozaikLayoutDelegate {
-    
+
     func collectonView(_ collectionView: UICollectionView, mozaik layoyt: ADMozaikLayout, contentModeFor section: ADMozaikLayoutSection) -> ADMozaikLayoutSectionContentMode {
-        return ADMozaikLayoutSectionContentMode.fill;
+        return ADMozaikLayoutSectionContentMode.fill
     }
 }

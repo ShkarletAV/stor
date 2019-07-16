@@ -24,7 +24,7 @@ public struct ADMozaikLayoutPosition: AutoHashable, AutoEquatable {
     let row: ADMozaikLayoutPositionRow
     /// Section number of the item's
     let section: ADMozaikLayoutSection
-    
+
     ///
     /// Designated initializer for structure
     ///
@@ -47,7 +47,7 @@ public struct ADMozaikLayoutSize: AutoHashable, AutoEquatable {
     let columns: Int
     /// Rows number that item requires
     let rows: Int
-    
+
     ///
     /// Designated initializer for structure
     ///
@@ -59,7 +59,7 @@ public struct ADMozaikLayoutSize: AutoHashable, AutoEquatable {
         self.columns = columns
         self.rows = rows
     }
-    
+
     ///
     /// Calculates number of total cells in mozaik layout that item fills
     ///
@@ -75,7 +75,7 @@ public struct ADMozaikLayoutSize: AutoHashable, AutoEquatable {
 public struct ADMozaikLayoutColumn: AutoEquatable {
     /// Width of the column in points
     let width: CGFloat
-    
+
     ///
     /// Designated initializer for structure
     ///
@@ -93,27 +93,27 @@ public struct ADMozaikLayoutColumn: AutoEquatable {
 public struct ADMozaikLayoutSectionGeometryInfo: AutoEquatable {
     /// array of `ADMozaikLayoutColumn` for the layout
     let columns: [ADMozaikLayoutColumn]
-    
+
     /// height for each row in points
     let rowHeight: CGFloat
-    
+
     /// minimum space between items
     let minimumInteritemSpacing: CGFloat
-    
+
     /// minimum space between each row
     let minimumLineSpacing: CGFloat
-    
+
     /// Insets for the section from top, left, right, bottom
     let sectionInset: UIEdgeInsets
-    
+
     /// Height for header in section
     /// Width is currently limited to the collection view width
     let headerHeight: CGFloat
-    
+
     /// Height for footer in section
     /// Width is currently limited to the collection view width
     let footerHeight: CGFloat
-    
+
     ///
     /// Designated initializer for structure
     ///
@@ -132,7 +132,7 @@ public struct ADMozaikLayoutSectionGeometryInfo: AutoEquatable {
         self.headerHeight = headerHeight
         self.footerHeight = footerHeight
     }
-    
+
     ///
     /// Checks whether the geometry info is valid
     ///

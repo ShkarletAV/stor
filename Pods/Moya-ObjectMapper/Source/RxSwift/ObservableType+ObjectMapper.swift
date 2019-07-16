@@ -30,7 +30,7 @@ public extension ObservableType where E == Response {
 			return Observable.just(try response.mapArray(type, context: context))
     }
   }
-  
+
   /// Maps data received from the signal into an object
   /// which implements the Mappable protocol and returns the result back
   /// If the conversion fails, the signal errors.
@@ -49,7 +49,6 @@ public extension ObservableType where E == Response {
     }
   }
 }
-
 
 // MARK: - ImmutableMappable
 public extension ObservableType where E == Response {
@@ -71,7 +70,7 @@ public extension ObservableType where E == Response {
 			return Observable.just(try response.mapArray(type, context: context))
     }
   }
-  
+
   /// Maps data received from the signal into an object
   /// which implements the ImmutableMappable protocol and returns the result back
   /// If the conversion fails, the signal errors.

@@ -9,42 +9,42 @@
 import UIKit
 
 open class DropDownCell: UITableViewCell {
-		
+
 	//UI
 	@IBOutlet open weak var optionLabel: UILabel!
-	
+
 	var selectedBackgroundColor: UIColor?
     var highlightTextColor: UIColor?
     var normalTextColor: UIColor?
 
 }
 
-//MARK: - UI
+// MARK: - UI
 
 extension DropDownCell {
-	
+
 	override open func awakeFromNib() {
 		super.awakeFromNib()
-		
+
 		backgroundColor = .clear
 	}
-	
+
 	override open var isSelected: Bool {
 		willSet {
 			setSelected(newValue, animated: false)
 		}
 	}
-	
+
 	override open var isHighlighted: Bool {
 		willSet {
 			setSelected(newValue, animated: false)
 		}
 	}
-	
+
 	override open func setHighlighted(_ highlighted: Bool, animated: Bool) {
 		setSelected(highlighted, animated: animated)
 	}
-	
+
 	override open func setSelected(_ selected: Bool, animated: Bool) {
 		let executeSelection: () -> Void = { [weak self] in
 			guard let `self` = self else { return }
@@ -59,7 +59,7 @@ extension DropDownCell {
 				}
 			}
 		}
-		
+
 		if animated {
 			UIView.animate(withDuration: 0.3, animations: {
 				executeSelection()
@@ -70,5 +70,5 @@ extension DropDownCell {
 
 		accessibilityTraits = selected ? .selected : .none
 	}
-	
+
 }

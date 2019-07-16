@@ -9,13 +9,13 @@
 import Foundation
 
 extension DispatchQueue {
-    
+
     static let barrier  = DispatchQueue(label: "com.github.cornerAnt.diggerThread.Barrier", attributes: .concurrent)
-    static let cancel   = DispatchQueue(label: "com.github.cornerAnt.diggerThread.cancel",  attributes: .concurrent)
-    static let download = DispatchQueue(label: "com.github.cornerAnt.downloadSession.download",attributes: .concurrent)
-    static let forFun   = DispatchQueue(label: "com.github.cornerAnt.diggerThread.forFun",  attributes: .concurrent)
-    
-    func safeAsync(_ block: @escaping ()->()) {
+    static let cancel   = DispatchQueue(label: "com.github.cornerAnt.diggerThread.cancel", attributes: .concurrent)
+    static let download = DispatchQueue(label: "com.github.cornerAnt.downloadSession.download", attributes: .concurrent)
+    static let forFun   = DispatchQueue(label: "com.github.cornerAnt.diggerThread.forFun", attributes: .concurrent)
+
+    func safeAsync(_ block: @escaping ()->Void) {
         if self === DispatchQueue.main && Thread.isMainThread {
             block()
         } else {
@@ -24,15 +24,13 @@ extension DispatchQueue {
     }
 }
 extension OperationQueue {
-    
-    static var downloadDelegateOperationQueue : OperationQueue {
-        
+
+    static var downloadDelegateOperationQueue: OperationQueue {
+
         let downloadDelegateOperationQueue = OperationQueue()
         downloadDelegateOperationQueue.name = "com.github.cornerAnt.diggerThread.downloadDelegateOperationQueue"
         return downloadDelegateOperationQueue
-        
-    }
-    
-    
-}
 
+    }
+
+}

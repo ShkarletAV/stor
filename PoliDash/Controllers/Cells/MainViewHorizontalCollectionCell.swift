@@ -8,35 +8,34 @@
 
 import UIKit
 
-
 class MainViewHorizontalCollectionCell: UITableViewCell {
-     @IBOutlet weak var collection : UICollectionView!
-    weak var delegate : MainViewController?
+     @IBOutlet weak var collection: UICollectionView!
+    weak var delegate: MainViewController?
     var itemsCount = 0
     var cellsCount = 0
     var isActuals = false
-    var isSaveVideo = false{
-        didSet{
+    var isSaveVideo = false {
+        didSet {
             cellsCount = itemsCount / 9 + (itemsCount % 9 == 0 ? 0 : 1)
             if isSaveVideo == true && isActuals {
-                itemsCount = itemsCount + 1
+                itemsCount += 1
                 cellsCount = itemsCount / 9 + (itemsCount % 9 == 0 ? 0 : 1)
                 collection.reloadData()
             }
         }
     }
-    
-    var users : [Owners_Model]?{
-        didSet{
+
+    var users: [OwnersModel]? {
+        didSet {
             isActuals = false
             itemsCount = (self.users?.count)!
             cellsCount = (self.users?.count)! / 9 + ((users?.count)! % 9 == 0 ? 0 : 1)
             self.collection.reloadData()
         }
     }
-    
-    var videos : [SavedVideo]?{
-        didSet{
+
+    var videos: [SavedVideo]? {
+        didSet {
             isActuals = true
             itemsCount = (self.videos?.count)!
             cellsCount = (self.videos?.count)! / 9 + ((videos?.count)! % 9 == 0 ? 0 : 1)
@@ -57,11 +56,11 @@ class MainViewHorizontalCollectionCell: UITableViewCell {
 
 }
 
-extension MainViewHorizontalCollectionCell : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension MainViewHorizontalCollectionCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellsCount
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MozaikCell
         cell.indexCell = indexPath.row
@@ -75,8 +74,8 @@ extension MainViewHorizontalCollectionCell : UICollectionViewDelegate, UICollect
         cell.loadDelegate()
         return cell
     }
-    
-    func ownersForCell(index:Int) -> [Owners_Model]{
+
+    func ownersForCell(index: Int) -> [OwnersModel] {
         let min = index * 9
         let max = (index + 1) * 9
         if (self.users?.count)! > max {
@@ -87,8 +86,8 @@ extension MainViewHorizontalCollectionCell : UICollectionViewDelegate, UICollect
             return Array(arraySlice!)
         }
     }
-    
-    func videosForCell(index:Int) -> [SavedVideo]{
+
+    func videosForCell(index: Int) -> [SavedVideo] {
         let min = index * 9
         let max = (index + 1) * 9
         if (self.videos?.count)! > max {
@@ -99,7 +98,7 @@ extension MainViewHorizontalCollectionCell : UICollectionViewDelegate, UICollect
             return Array(arraySlice!)
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -121,21 +120,19 @@ extension MainViewHorizontalCollectionCell : UICollectionViewDelegate, UICollect
             }
         }
     }
-    
+
     //3
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
-    
+
     // 4
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1.0
     }
-    
-    
-}
 
+}

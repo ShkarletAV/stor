@@ -10,19 +10,19 @@ import Foundation
 import UIKit
 import SwiftyCam
 class SwiftyRecordButton: SwiftyCamButton {
-    
+
     private var circleBorder: CALayer!
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         drawButton()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         drawButton()
     }
-    
+
     private func drawButton() {
         self.backgroundColor = UIColor.clear
     }

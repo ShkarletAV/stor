@@ -10,11 +10,11 @@
 		0F9CBE2922D71D3E000E5BCF /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9CBE2822D71D3E000E5BCF /* ScannerViewController.swift */; };
 		0FBD054D22D53E7B00B78190 /* WalletSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD054C22D53E7B00B78190 /* WalletSettingsViewController.swift */; };
 		31C306F5BB5E75D3538E83F4 /* Pods_PoliDash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E6C99AE4671050428236C4 /* Pods_PoliDash.framework */; };
-		360EFA4B2109013C00EB176C /* Video_ServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360EFA4A2109013C00EB176C /* Video_ServerAPI.swift */; };
-		360EFA4D2109040E00EB176C /* Video_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360EFA4C2109040E00EB176C /* Video_API.swift */; };
+		360EFA4B2109013C00EB176C /* VideoServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360EFA4A2109013C00EB176C /* VideoServerAPI.swift */; };
+		360EFA4D2109040E00EB176C /* VideoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360EFA4C2109040E00EB176C /* VideoAPI.swift */; };
 		360EFA4F2109C04000EB176C /* MessageVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360EFA4E2109C03F00EB176C /* MessageVideoModel.swift */; };
 		360EFA512109D87A00EB176C /* HistoryVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360EFA502109D87A00EB176C /* HistoryVideoModel.swift */; };
-		361024D92110A66F006CB348 /* Owners_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361024D82110A66F006CB348 /* Owners_Model.swift */; };
+		361024D92110A66F006CB348 /* OwnersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361024D82110A66F006CB348 /* OwnersModel.swift */; };
 		3614550D2105EC82004C6717 /* ProfileSetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614550C2105EC82004C6717 /* ProfileSetingsViewController.swift */; };
 		3614550F2105F04F004C6717 /* EnumsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614550E2105F04F004C6717 /* EnumsExtensions.swift */; };
 		361455112105F331004C6717 /* AllUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361455102105F331004C6717 /* AllUserDefaults.swift */; };
@@ -22,7 +22,7 @@
 		36145517210631B4004C6717 /* SwiftyRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36145516210631B4004C6717 /* SwiftyRecordButton.swift */; };
 		36145519210638DD004C6717 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36145518210638DD004C6717 /* PlayerViewController.swift */; };
 		3614551B2107520A004C6717 /* ExtensionComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614551A2107520A004C6717 /* ExtensionComponents.swift */; };
-		363296E521162307006F9717 /* Sympathy_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363296E421162307006F9717 /* Sympathy_Model.swift */; };
+		363296E521162307006F9717 /* SympathyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363296E421162307006F9717 /* SympathyModel.swift */; };
 		3642DDE8211356940098CDAE /* ImagePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642DDE7211356940098CDAE /* ImagePlayerViewController.swift */; };
 		3642DDEA2114F45F0098CDAE /* CameraPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642DDE92114F45F0098CDAE /* CameraPhotoViewController.swift */; };
 		364C617321008F2D00AA7AB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C617221008F2D00AA7AB3 /* AppDelegate.swift */; };
@@ -31,11 +31,11 @@
 		364C617D21008F3200AA7AB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364C617B21008F3200AA7AB3 /* LaunchScreen.storyboard */; };
 		364C618521009F4700AA7AB3 /* IBDesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C618421009F4700AA7AB3 /* IBDesignableButton.swift */; };
 		364C61872100AA5700AA7AB3 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C61862100AA5700AA7AB3 /* AuthorizationViewController.swift */; };
-		364C61892100E93400AA7AB3 /* Profile_ServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C61882100E93400AA7AB3 /* Profile_ServerAPI.swift */; };
-		364C618B2100EBA800AA7AB3 /* Profile_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C618A2100EBA800AA7AB3 /* Profile_API.swift */; };
+		364C61892100E93400AA7AB3 /* ProfileServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C61882100E93400AA7AB3 /* ProfileServerAPI.swift */; };
+		364C618B2100EBA800AA7AB3 /* ProfileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C618A2100EBA800AA7AB3 /* ProfileAPI.swift */; };
 		364C618D2100FDB200AA7AB3 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364C618C2100FDB200AA7AB3 /* MessageModel.swift */; };
 		365BACA8211F268D0022933F /* SDAVAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 365BACA7211F268D0022933F /* SDAVAssetExportSession.m */; };
-		36943B2B211790130015DD8A /* Auxiliary_PoliDash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36943B2A211790130015DD8A /* Auxiliary_PoliDash.swift */; };
+		36943B2B211790130015DD8A /* AuxiliaryPoliDash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36943B2A211790130015DD8A /* AuxiliaryPoliDash.swift */; };
 		36A2225221106A8D00509EF8 /* CurrentAStorysCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A2225121106A8D00509EF8 /* CurrentAStorysCollectionViewCell.swift */; };
 		36ACB4682109F07800F073D9 /* FPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ACB4672109F07800F073D9 /* FPlayerViewController.swift */; };
 		36ACB46A210B478800F073D9 /* VideoPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36ACB469210B478700F073D9 /* VideoPlayer.storyboard */; };
@@ -70,11 +70,11 @@
 		0F9CBE2822D71D3E000E5BCF /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		0FBD054C22D53E7B00B78190 /* WalletSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSettingsViewController.swift; sourceTree = "<group>"; };
 		26E6C99AE4671050428236C4 /* Pods_PoliDash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PoliDash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		360EFA4A2109013C00EB176C /* Video_ServerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video_ServerAPI.swift; sourceTree = "<group>"; };
-		360EFA4C2109040E00EB176C /* Video_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video_API.swift; sourceTree = "<group>"; };
+		360EFA4A2109013C00EB176C /* VideoServerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoServerAPI.swift; sourceTree = "<group>"; };
+		360EFA4C2109040E00EB176C /* VideoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAPI.swift; sourceTree = "<group>"; };
 		360EFA4E2109C03F00EB176C /* MessageVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVideoModel.swift; sourceTree = "<group>"; };
 		360EFA502109D87A00EB176C /* HistoryVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVideoModel.swift; sourceTree = "<group>"; };
-		361024D82110A66F006CB348 /* Owners_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owners_Model.swift; sourceTree = "<group>"; };
+		361024D82110A66F006CB348 /* OwnersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnersModel.swift; sourceTree = "<group>"; };
 		3614550C2105EC82004C6717 /* ProfileSetingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetingsViewController.swift; sourceTree = "<group>"; };
 		3614550E2105F04F004C6717 /* EnumsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumsExtensions.swift; sourceTree = "<group>"; };
 		361455102105F331004C6717 /* AllUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUserDefaults.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		36145516210631B4004C6717 /* SwiftyRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyRecordButton.swift; sourceTree = "<group>"; };
 		36145518210638DD004C6717 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		3614551A2107520A004C6717 /* ExtensionComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionComponents.swift; sourceTree = "<group>"; };
-		363296E421162307006F9717 /* Sympathy_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sympathy_Model.swift; sourceTree = "<group>"; };
+		363296E421162307006F9717 /* SympathyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SympathyModel.swift; sourceTree = "<group>"; };
 		3642DDE7211356940098CDAE /* ImagePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePlayerViewController.swift; sourceTree = "<group>"; };
 		3642DDE92114F45F0098CDAE /* CameraPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPhotoViewController.swift; sourceTree = "<group>"; };
 		364C616F21008F2D00AA7AB3 /* PoliDash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoliDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,13 +93,13 @@
 		364C617E21008F3200AA7AB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364C618421009F4700AA7AB3 /* IBDesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableButton.swift; sourceTree = "<group>"; };
 		364C61862100AA5700AA7AB3 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
-		364C61882100E93400AA7AB3 /* Profile_ServerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile_ServerAPI.swift; sourceTree = "<group>"; };
-		364C618A2100EBA800AA7AB3 /* Profile_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile_API.swift; sourceTree = "<group>"; };
+		364C61882100E93400AA7AB3 /* ProfileServerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServerAPI.swift; sourceTree = "<group>"; };
+		364C618A2100EBA800AA7AB3 /* ProfileAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAPI.swift; sourceTree = "<group>"; };
 		364C618C2100FDB200AA7AB3 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		365BACA5211F268B0022933F /* PoliDash-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PoliDash-Bridging-Header.h"; sourceTree = "<group>"; };
 		365BACA6211F268C0022933F /* SDAVAssetExportSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAVAssetExportSession.h; sourceTree = "<group>"; };
 		365BACA7211F268D0022933F /* SDAVAssetExportSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAVAssetExportSession.m; sourceTree = "<group>"; };
-		36943B2A211790130015DD8A /* Auxiliary_PoliDash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auxiliary_PoliDash.swift; sourceTree = "<group>"; };
+		36943B2A211790130015DD8A /* AuxiliaryPoliDash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxiliaryPoliDash.swift; sourceTree = "<group>"; };
 		36A2225121106A8D00509EF8 /* CurrentAStorysCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAStorysCollectionViewCell.swift; sourceTree = "<group>"; };
 		36ACB4672109F07800F073D9 /* FPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPlayerViewController.swift; sourceTree = "<group>"; };
 		36ACB469210B478700F073D9 /* VideoPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayer.storyboard; sourceTree = "<group>"; };
@@ -224,10 +224,10 @@
 		364C61902101E01500AA7AB3 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				364C61882100E93400AA7AB3 /* Profile_ServerAPI.swift */,
-				364C618A2100EBA800AA7AB3 /* Profile_API.swift */,
-				360EFA4A2109013C00EB176C /* Video_ServerAPI.swift */,
-				360EFA4C2109040E00EB176C /* Video_API.swift */,
+				364C61882100E93400AA7AB3 /* ProfileServerAPI.swift */,
+				364C618A2100EBA800AA7AB3 /* ProfileAPI.swift */,
+				360EFA4A2109013C00EB176C /* VideoServerAPI.swift */,
+				360EFA4C2109040E00EB176C /* VideoAPI.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -248,10 +248,10 @@
 				364C618C2100FDB200AA7AB3 /* MessageModel.swift */,
 				36EEFBCD2101F5A200E02872 /* UserInfoModel.swift */,
 				360EFA4E2109C03F00EB176C /* MessageVideoModel.swift */,
-				361024D82110A66F006CB348 /* Owners_Model.swift */,
+				361024D82110A66F006CB348 /* OwnersModel.swift */,
 				360EFA502109D87A00EB176C /* HistoryVideoModel.swift */,
 				36ACB46F210C8A7C00F073D9 /* Users_Model.swift */,
-				363296E421162307006F9717 /* Sympathy_Model.swift */,
+				363296E421162307006F9717 /* SympathyModel.swift */,
 				784432B02248CD4B008357E7 /* LikesNotification.swift */,
 			);
 			path = Models;
@@ -266,7 +266,7 @@
 				361455102105F331004C6717 /* AllUserDefaults.swift */,
 				3614550E2105F04F004C6717 /* EnumsExtensions.swift */,
 				3614551A2107520A004C6717 /* ExtensionComponents.swift */,
-				36943B2A211790130015DD8A /* Auxiliary_PoliDash.swift */,
+				36943B2A211790130015DD8A /* AuxiliaryPoliDash.swift */,
 				78582CD522365CAD0010C210 /* TextFieldValidator.swift */,
 			);
 			path = Extensions;
@@ -347,7 +347,8 @@
 				364C616C21008F2D00AA7AB3 /* Frameworks */,
 				364C616D21008F2D00AA7AB3 /* Resources */,
 				20969973B29084A72A3837D9 /* [CP] Embed Pods Frameworks */,
-				0F614EF322CB312E00D980B7 /* Run Script */,
+				0F614EF322CB312E00D980B7 /* Fabric Run Script */,
+				445F594822DE51DC001AA146 /* SwiftLint Run Script */,
 			);
 			buildRules = (
 			);
@@ -407,7 +408,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0F614EF322CB312E00D980B7 /* Run Script */ = {
+		0F614EF322CB312E00D980B7 /* Fabric Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -416,7 +417,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Fabric Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -460,6 +461,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		445F594822DE51DC001AA146 /* SwiftLint Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -472,18 +491,18 @@
 				36ACB476210F5B3800F073D9 /* SearchViewController.swift in Sources */,
 				3614550F2105F04F004C6717 /* EnumsExtensions.swift in Sources */,
 				78A93501222024BA002F4822 /* SimpleCollectionCell.swift in Sources */,
-				364C618B2100EBA800AA7AB3 /* Profile_API.swift in Sources */,
+				364C618B2100EBA800AA7AB3 /* ProfileAPI.swift in Sources */,
 				78A93505222024F0002F4822 /* MainViewHorizontalCollectionCell.swift in Sources */,
-				36943B2B211790130015DD8A /* Auxiliary_PoliDash.swift in Sources */,
+				36943B2B211790130015DD8A /* AuxiliaryPoliDash.swift in Sources */,
 				78A7336722291451006B80B4 /* RegController.swift in Sources */,
-				361024D92110A66F006CB348 /* Owners_Model.swift in Sources */,
+				361024D92110A66F006CB348 /* OwnersModel.swift in Sources */,
 				360EFA512109D87A00EB176C /* HistoryVideoModel.swift in Sources */,
-				363296E521162307006F9717 /* Sympathy_Model.swift in Sources */,
+				363296E521162307006F9717 /* SympathyModel.swift in Sources */,
 				364C61872100AA5700AA7AB3 /* AuthorizationViewController.swift in Sources */,
 				3642DDE8211356940098CDAE /* ImagePlayerViewController.swift in Sources */,
 				360EFA4F2109C04000EB176C /* MessageVideoModel.swift in Sources */,
-				360EFA4D2109040E00EB176C /* Video_API.swift in Sources */,
-				360EFA4B2109013C00EB176C /* Video_ServerAPI.swift in Sources */,
+				360EFA4D2109040E00EB176C /* VideoAPI.swift in Sources */,
+				360EFA4B2109013C00EB176C /* VideoServerAPI.swift in Sources */,
 				0FBD054D22D53E7B00B78190 /* WalletSettingsViewController.swift in Sources */,
 				36EEFBC52101E4AF00E02872 /* RoundedImage.swift in Sources */,
 				789043A3222EC60400447B5A /* UserMozaikCell.swift in Sources */,
@@ -503,7 +522,7 @@
 				361455112105F331004C6717 /* AllUserDefaults.swift in Sources */,
 				36145517210631B4004C6717 /* SwiftyRecordButton.swift in Sources */,
 				36ACB4682109F07800F073D9 /* FPlayerViewController.swift in Sources */,
-				364C61892100E93400AA7AB3 /* Profile_ServerAPI.swift in Sources */,
+				364C61892100E93400AA7AB3 /* ProfileServerAPI.swift in Sources */,
 				36145515210626EA004C6717 /* LayerCircle.swift in Sources */,
 				364C617321008F2D00AA7AB3 /* AppDelegate.swift in Sources */,
 				3614550D2105EC82004C6717 /* ProfileSetingsViewController.swift in Sources */,
@@ -665,7 +684,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34227CZYNA;
 				INFOPLIST_FILE = PoliDash/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -676,7 +695,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.msf.PoliDash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "PoliDash Develop Provision";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PoliDash/Extensions/Compress/PoliDash-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -691,7 +710,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34227CZYNA;
 				INFOPLIST_FILE = PoliDash/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -702,7 +721,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.msf.PoliDash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "PoliDash Develop Provision";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PoliDash/Extensions/Compress/PoliDash-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

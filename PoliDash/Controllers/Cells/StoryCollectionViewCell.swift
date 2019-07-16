@@ -9,5 +9,5 @@
 import UIKit
 
 class StoryCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var imagePreview_Image: UIImageView!
+    @IBOutlet weak var imagePreviewImage: UIImageView!
 }

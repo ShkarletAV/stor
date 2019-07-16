@@ -50,7 +50,6 @@ public extension PrimitiveSequence where TraitType == SingleTrait, ElementType =
     }
 }
 
-
 // MARK: - ImmutableMappable
 public extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Response {
 

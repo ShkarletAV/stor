@@ -8,24 +8,23 @@
 
 import UIKit
 
-class SearchBar : UISearchBar {
-    var searchButton : UIButton?
+class SearchBar: UISearchBar {
+    var searchButton: UIButton?
 }
 
 class MainViewHeaderCell: UITableViewCell {
-    @IBOutlet weak var label : UILabel!
-    @IBOutlet weak var searchBar : SearchBar?
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var searchBar: SearchBar?
     @IBOutlet weak var searchButton: UIButton?
-    weak var delegate : MainViewController?
-    
-    @IBAction func searchAction(){
+    weak var delegate: MainViewController?
+
+    @IBAction func searchAction() {
         self.searchButton!.isHidden = true
         self.searchBar?.searchButton = self.searchButton
         self.searchBar?.delegate = self.delegate
         self.searchBar?.isHidden = false
         self.searchBar?.becomeFirstResponder()
     }
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uvA-mp-uhA">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uvA-mp-uhA">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,27 +16,27 @@
             <objects>
                 <viewController storyboardIdentifier="PlayerStorys_ID" id="uvA-mp-uhA" customClass="PlayerStorysViewController" customModule="PoliDash" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IDQ-8q-Mhq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvD-Cm-eDJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <segue destination="RdB-ML-rzf" kind="embed" identifier="segueAVPlayerStroryiewController" id="xOu-cF-DTF"/>
                                 </connections>
                             </containerView>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3A6-Ja-TQk">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <segue destination="cxb-wL-b27" kind="embed" identifier="segueImagePlayerViewController" id="8wb-wi-AYj"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3k4-cT-4TY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mhC-CE-bzK">
-                                <rect key="frame" x="169" y="325" width="37" height="37"/>
+                                <rect key="frame" x="281.5" y="291.5" width="37" height="37"/>
                             </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="6pd-u7-GN7" customClass="RoundedUIImageView" customModule="PoliDash" customModuleProvider="target">
                                 <rect key="frame" x="16" y="45" width="34" height="34"/>
@@ -143,7 +139,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ik-fe-DdX">
-                                <rect key="frame" x="337" y="45" width="22" height="22"/>
+                                <rect key="frame" x="562" y="45" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="HEL-Ph-Tms"/>
                                     <constraint firstAttribute="height" constant="22" id="we8-li-LZE"/>
@@ -165,7 +161,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ifg-9x-sHH">
-                                <rect key="frame" x="251.5" y="624" width="15" height="37"/>
+                                <rect key="frame" x="488.5" y="557" width="16" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="kVC-mx-Qy3"/>
                                 </constraints>
@@ -185,10 +181,10 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_white" translatesAutoresizingMaskIntoConstraints="NO" id="N6z-Zo-ZS7">
-                                <rect key="frame" x="277.5" y="629.5" width="29" height="26"/>
+                                <rect key="frame" x="515.5" y="567.5" width="16" height="16"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vgq-YT-t9z">
-                                <rect key="frame" x="316.5" y="620.5" width="44" height="44"/>
+                                <rect key="frame" x="541.5" y="553.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="mf9-ZV-QsI"/>
                                     <constraint firstAttribute="width" constant="44" id="ydV-8f-o5c"/>
@@ -201,22 +197,22 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="kt9-PT-JBW">
-                                <rect key="frame" x="16" y="30" width="343" height="2"/>
+                                <rect key="frame" x="20" y="30" width="560" height="2"/>
                                 <subviews>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XW0-xu-FJQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="2"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="2"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </progressView>
                                 </subviews>
                             </stackView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LS8-P6-KaR">
-                                <rect key="frame" x="16" y="87" width="343" height="38.5"/>
+                                <rect key="frame" x="16" y="87" width="568" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2p-kI-lvK" customClass="CustomView" customModule="PoliDash" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="75" width="375" height="541"/>
+                                <rect key="frame" x="0.0" y="75" width="600" height="474"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8b-a3-EU7">
@@ -275,18 +271,18 @@
                     </view>
                     <connections>
                         <outlet property="buttonsView" destination="0oe-SV-a8N" id="cC4-Y3-AjU"/>
-                        <outlet property="close_btn" destination="0Ik-fe-DdX" id="5mx-qF-T9P"/>
+                        <outlet property="closeBtn" destination="0Ik-fe-DdX" id="5mx-qF-T9P"/>
                         <outlet property="containerView" destination="SvD-Cm-eDJ" id="Vg1-WM-hjQ"/>
                         <outlet property="countHeart" destination="LS8-P6-KaR" id="9OF-3j-cKX"/>
-                        <outlet property="countLike_Label" destination="Ifg-9x-sHH" id="TBG-hI-qhp"/>
-                        <outlet property="heart_btn" destination="N6z-Zo-ZS7" id="kUG-6k-PRw"/>
-                        <outlet property="image_ContainerView" destination="3A6-Ja-TQk" id="Oxf-Bh-xvc"/>
+                        <outlet property="countLikeLabel" destination="Ifg-9x-sHH" id="TBG-hI-qhp"/>
+                        <outlet property="heartBtn" destination="N6z-Zo-ZS7" id="kUG-6k-PRw"/>
+                        <outlet property="imageContainerView" destination="3A6-Ja-TQk" id="Oxf-Bh-xvc"/>
                         <outlet property="indicator" destination="mhC-CE-bzK" id="Qtf-wB-Jih"/>
-                        <outlet property="likes_View" destination="3k4-cT-4TY" id="rSd-Au-Ngm"/>
-                        <outlet property="more_Button" destination="Vgq-YT-t9z" id="BPF-KS-Bkw"/>
-                        <outlet property="name_Label" destination="IDu-wl-KAY" id="r65-v9-Qme"/>
+                        <outlet property="likesView" destination="3k4-cT-4TY" id="rSd-Au-Ngm"/>
+                        <outlet property="moreButton" destination="Vgq-YT-t9z" id="BPF-KS-Bkw"/>
+                        <outlet property="nameLabel" destination="IDu-wl-KAY" id="r65-v9-Qme"/>
                         <outlet property="overlayView" destination="Z2p-kI-lvK" id="T1w-dM-3qw"/>
-                        <outlet property="photoUser_Image" destination="6pd-u7-GN7" id="84a-5m-VH7"/>
+                        <outlet property="photoUserImage" destination="6pd-u7-GN7" id="84a-5m-VH7"/>
                         <outlet property="progressStack" destination="kt9-PT-JBW" id="Ll4-CB-rey"/>
                         <outlet property="progressView" destination="XW0-xu-FJQ" id="vGV-UR-X2K"/>
                     </connections>
@@ -300,27 +296,27 @@
             <objects>
                 <viewController storyboardIdentifier="PlayerLikes_ID" id="TGd-Vy-IIV" customClass="PlayerNewLikesViewController" customModule="PoliDash" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T1N-fn-Tre">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EyC-ew-7Wd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <segue destination="RdB-ML-rzf" kind="embed" identifier="segueAVPlayerStroryiewController" id="pE9-Fe-CWn"/>
                                 </connections>
                             </containerView>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbc-FN-cu3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <segue destination="cxb-wL-b27" kind="embed" identifier="segueImagePlayerViewController" id="Hmg-aC-Pfk"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJ7-p0-iLo">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uYc-NR-Xmn">
-                                <rect key="frame" x="169" y="325" width="37" height="37"/>
+                                <rect key="frame" x="281.5" y="291.5" width="37" height="37"/>
                             </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="yhk-k2-a7j" customClass="RoundedUIImageView" customModule="PoliDash" customModuleProvider="target">
                                 <rect key="frame" x="16" y="48" width="34" height="34"/>
@@ -413,7 +409,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWb-XL-nrV">
-                                <rect key="frame" x="337" y="45" width="22" height="22"/>
+                                <rect key="frame" x="562" y="45" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="5eh-0f-ueI"/>
                                     <constraint firstAttribute="height" constant="22" id="XDa-Nx-xhm"/>
@@ -435,7 +431,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PW8-zR-foW">
-                                <rect key="frame" x="251.5" y="624" width="15" height="37"/>
+                                <rect key="frame" x="488.5" y="557" width="16" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="kXV-h6-Yl8"/>
                                 </constraints>
@@ -455,7 +451,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_white" translatesAutoresizingMaskIntoConstraints="NO" id="kHl-2F-eUl">
-                                <rect key="frame" x="277.5" y="629.5" width="29" height="26"/>
+                                <rect key="frame" x="515.5" y="567.5" width="16" height="16"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
                                         <integer key="value" value="5"/>
@@ -469,7 +465,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPm-oW-6tE">
-                                <rect key="frame" x="316.5" y="620.5" width="44" height="44"/>
+                                <rect key="frame" x="541.5" y="553.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="uzv-Bi-Imd"/>
                                     <constraint firstAttribute="width" constant="44" id="w7y-CE-6wM"/>
@@ -493,22 +489,22 @@
                                 </connections>
                             </button>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="pM9-SB-MnI">
-                                <rect key="frame" x="16" y="30" width="343" height="2"/>
+                                <rect key="frame" x="16" y="30" width="568" height="2"/>
                                 <subviews>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tcu-3I-wsI">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="2"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="568" height="2"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </progressView>
                                 </subviews>
                             </stackView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKp-hg-3oL">
-                                <rect key="frame" x="16" y="90" width="343" height="38.5"/>
+                                <rect key="frame" x="16" y="90" width="568" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhz-aW-jMO" customClass="CustomView" customModule="PoliDash" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="52" width="375" height="564"/>
+                                <rect key="frame" x="0.0" y="-15" width="600" height="564"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDI-za-TvO">
@@ -568,17 +564,17 @@
                     </view>
                     <connections>
                         <outlet property="buttonsView" destination="fAi-GQ-rOj" id="KtB-RA-2ex"/>
-                        <outlet property="close_btn" destination="BWb-XL-nrV" id="BMK-Ni-1H1"/>
+                        <outlet property="closeButton" destination="BWb-XL-nrV" id="BMK-Ni-1H1"/>
                         <outlet property="containerView" destination="EyC-ew-7Wd" id="cB5-3y-4rj"/>
                         <outlet property="countHeart" destination="yKp-hg-3oL" id="F8S-oU-A5U"/>
-                        <outlet property="countLike_Label" destination="PW8-zR-foW" id="w6b-xC-XYD"/>
-                        <outlet property="image_ContainerView" destination="gbc-FN-cu3" id="EPT-xv-JGR"/>
+                        <outlet property="countLikeLabel" destination="PW8-zR-foW" id="w6b-xC-XYD"/>
+                        <outlet property="imageContainerView" destination="gbc-FN-cu3" id="EPT-xv-JGR"/>
                         <outlet property="indicator" destination="uYc-NR-Xmn" id="Ac0-MB-YaB"/>
-                        <outlet property="likes_View" destination="aJ7-p0-iLo" id="CYL-nh-vVb"/>
-                        <outlet property="more_Button" destination="CPm-oW-6tE" id="EK1-aK-GrJ"/>
-                        <outlet property="name_Label" destination="SWg-Om-SFQ" id="iy1-D8-40w"/>
+                        <outlet property="likesView" destination="aJ7-p0-iLo" id="CYL-nh-vVb"/>
+                        <outlet property="moreButton" destination="CPm-oW-6tE" id="EK1-aK-GrJ"/>
+                        <outlet property="nameLabel" destination="SWg-Om-SFQ" id="iy1-D8-40w"/>
                         <outlet property="overlayView" destination="Lhz-aW-jMO" id="IDw-R3-vA4"/>
-                        <outlet property="photoUser_Image" destination="yhk-k2-a7j" id="vOh-bV-8zf"/>
+                        <outlet property="photoUserImage" destination="yhk-k2-a7j" id="vOh-bV-8zf"/>
                         <outlet property="progressStack" destination="pM9-SB-MnI" id="QBa-gD-RuM"/>
                         <outlet property="progressView" destination="Tcu-3I-wsI" id="cNG-tl-7K2"/>
                     </connections>

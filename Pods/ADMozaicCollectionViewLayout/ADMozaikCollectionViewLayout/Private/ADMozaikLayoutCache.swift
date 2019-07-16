@@ -10,22 +10,22 @@ import Foundation
 
 /// The `ADMozaikLayoutCache` defines the class with the purpose to reuse information from collection view and layout delegate
 class ADMozaikLayoutCache {
-    
+
     /// Stores number of sections in collection view
     fileprivate var cachedNumberOfSections: Int?
-    
+
     /// Stores number of items in specific section
     fileprivate var cachedNumberOfItemsInSectionDictionary: [Int: Int]
-    
+
     /// Stores number size of item at specific indexPath
     fileprivate var cachedSizeOfItemAtIndexPathDictionary: [IndexPath: ADMozaikLayoutSize]
-    
+
     /// Reference to collectionView
     fileprivate let collectionView: UICollectionView
-    
+
     /// Reference to mozaik layout delegate
     fileprivate weak var mozaikLayoutDelegate: ADMozaikLayoutDelegate?
-    
+
     ///
     /// Designated initializer for the `ADMozaikLayoutCache`
     ///
@@ -39,9 +39,9 @@ class ADMozaikLayoutCache {
         self.cachedNumberOfItemsInSectionDictionary = [:]
         self.cachedSizeOfItemAtIndexPathDictionary = [:]
     }
-    
-    //MARK: - Interface
-    
+
+    // MARK: - Interface
+
     ///
     /// Returns number of items in the given section
     /// It either uses the cached value or the value from collectionView and caches it
@@ -55,7 +55,7 @@ class ADMozaikLayoutCache {
         }
         return self.cachedNumberOfItemsInSectionDictionary[section]!
     }
-    
+
     ///
     /// Returns number of sections in attached collectionView
     /// It either uses the cached value or the value from collectionView and caches it
@@ -67,7 +67,7 @@ class ADMozaikLayoutCache {
         }
         return self.cachedNumberOfSections!
     }
-    
+
     ///
     /// Returns size for an item at the given indexPath
     /// It either uses the cached value or the value from collectionView and caches it

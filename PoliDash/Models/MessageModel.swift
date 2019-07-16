@@ -9,43 +9,42 @@
 import Foundation
 import ObjectMapper
 
-class MessageModel: Mappable{
+class MessageModel: Mappable {
     var msg: String?
-    var code : Int?
+    var code: Int?
 //    var error : String?
-    init(){
-        
+    init() {
+
     }
-    
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         msg <- map["msg"]
         code <- map["code"]
     }
-    
+
 }
 
-
-class NotificationModel: Mappable{
+class NotificationModel: Mappable {
     var msg: Bool?
-    var code : Int?
-    var followers : Int?
-    var likes : Int?
+    var code: Int?
+    var followers: Int?
+    var likes: Int?
     //    var error : String?
-    init(){
-        
+    init() {
+
     }
-    
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         msg <- map["msg"]
         code <- map["code"]
         followers <- map["followers"]
         likes <- map["likes"]
     }
-    
+
 }
