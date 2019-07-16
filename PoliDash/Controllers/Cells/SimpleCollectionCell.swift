@@ -12,7 +12,7 @@ import Alamofire
 class SCCell: UICollectionViewCell {
     @IBOutlet weak var preview: UIImageView!
     @IBOutlet weak var avatar: UIImageView?
-    var circleView: LayerCircle?
+    var circleView: DowloadPreviewView?
     var circleBorder: CALayer?
 
     override func awakeFromNib() {
@@ -23,44 +23,24 @@ class SCCell: UICollectionViewCell {
     }
 
     func addCircleView() {
-        let circleSize = CGSize(width: 50.0,
-                                height: 50.0)
         if circleView != nil {
             return
         }
 
-        let imgLayer = CALayer()
-        imgLayer.frame = preview.frame
-        imgLayer.backgroundColor = #colorLiteral(red: 0.7881655693, green: 0.7882800698, blue: 0.7881404757, alpha: 0.78)
-        self.preview.layer.addSublayer(imgLayer)
+        circleView = DowloadPreviewView.init(frame: self.preview.frame)
+        guard let circleView = circleView else { return }
+        self.preview.addSubview(circleView)
 
-        circleBorder = CALayer()
-        circleBorder?.backgroundColor = UIColor.clear.cgColor
-        circleBorder?.borderWidth = 2.0
-        circleBorder?.borderColor = UIColor.white.cgColor
-        circleBorder?.bounds = CGRect(x: 0.0, y: 0.0, width: circleSize.width + 1.0, height: circleSize.width+1)
-        circleBorder?.position = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
-        circleBorder?.cornerRadius = circleSize.width/2
-        self.preview.layer.insertSublayer(circleBorder!, at: 0)
-
-        // Create a new CircleView
-        circleView = LayerCircle(frame: CGRect(x: 1,
-                                               y: 1,
-                                               width: circleSize.width,
-                                               height: circleSize.height))
-        circleView?.center = (circleBorder?.position)!
-        self.preview.addSubview(circleView!)
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateProgress(notification:)),
-                                               name: NSNotification.Name("UPLOADING_PROGRESS_DID_CHANGE"),
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateProgress(notification:)),
+            name: NSNotification.Name("UPLOADING_PROGRESS_DID_CHANGE"),
+            object: nil)
     }
 
     @objc func updateProgress(notification: Notification) {
-        if let dict = notification.userInfo as? [String: Double] {
-            let progress = dict["progress"]
-            circleView?.changeProgress(progress: progress!)
+        if let dict = notification.userInfo as? [String: Double], let progress = dict["progress"] {
+            circleView?.changeProgress(progress: progress)
         }
     }
 }
@@ -168,8 +148,6 @@ extension SimpleCollectionCell: UICollectionViewDelegate, UICollectionViewDataSo
                 if cell.circleView?.superview != nil {
                     cell.circleView?.removeFromSuperview()
                     cell.circleView = nil
-                    cell.circleBorder?.removeFromSuperlayer()
-                    cell.circleBorder = nil
                 }
             cell.preview.sd_setImage(with: URL(string: history.preview!), placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"), options: [], completed: nil)
             }

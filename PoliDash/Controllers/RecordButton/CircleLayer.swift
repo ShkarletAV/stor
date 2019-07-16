@@ -1,5 +1,5 @@
 //
-//  LayerCircle.swift
+//  CircleLayer.swift
 //  PoliDash
 //
 //  Created by David Minasyan on 23.07.2018.
@@ -9,16 +9,23 @@
 import Foundation
 import UIKit
 
-class LayerCircle: UIView {
+class CircleLayer: UIView {
 
     var circleLayer: CAShapeLayer!
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
 
         // Use UIBezierPath as an easy way to create the CGPath for the layer.
         // The path should be the entire circle.
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0), radius: frame.size.width/2, startAngle: (.pi) * 3 / 2.0, endAngle: (.pi) * 3 / 2.0 + .pi*2.0, clockwise: true)
+        let circlePath = UIBezierPath(
+            arcCenter: CGPoint(x: frame.size.width / 2.0,
+                               y: frame.size.height / 2.0),
+            radius: frame.size.width/2,
+            startAngle: (.pi) * 3 / 2.0,
+            endAngle: (.pi) * 3 / 2.0 + .pi*2.0,
+            clockwise: true)
 
         // Setup the CAShapeLayer with the path, colors, and line width
         circleLayer = CAShapeLayer()

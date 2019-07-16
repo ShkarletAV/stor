@@ -11,15 +11,21 @@ import UIKit
 
 class AuxiliaryPoliDash {
     static func showAlertQuality(callback: @escaping (QualityAction) -> Void) -> UIAlertController {
-        let alert = UIAlertController(title: "", message: "Выберите качество", preferredStyle: UIAlertControllerStyle.actionSheet)
-        let lowAction = UIAlertAction(title: QualityAction.average.value, style: .default) { (_) in
-            callback(.average)
+        let alert = UIAlertController(title: "",
+                                      message: "Выберите качество",
+                                      preferredStyle: .actionSheet)
+        let lowAction = UIAlertAction(title: QualityAction.average.value,
+                                      style: .default) { (_) in
+                                        callback(.average)
         }
-        let averageAction = UIAlertAction(title: QualityAction.low.value, style: .default, handler: { (_) in
-            callback(.low)
+        let averageAction = UIAlertAction(title: QualityAction.low.value,
+                                          style: .default,
+                                          handler: { (_) in
+                                            callback(.low)
         })
-        let cancelAction = UIAlertAction(title: QualityAction.cancel.value, style: .cancel) { (_) in
-            callback(.cancel)
+        let cancelAction = UIAlertAction(title: QualityAction.cancel.value,
+                                         style: .cancel) { (_) in
+                                            callback(.cancel)
         }
         alert.addAction(lowAction)
         alert.addAction(averageAction)
@@ -29,9 +35,12 @@ class AuxiliaryPoliDash {
     }
 
     static func showAlertMore(moreAlert: MoreAlert, callback: @escaping (MoreAction) -> Void) -> UIAlertController {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alert = UIAlertController(title: nil,
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
         for item in moreAlert.actions {
-            let action = UIAlertAction(title: item.title, style: item.style) { (_) in
+            let action = UIAlertAction(title: item.title,
+                                       style: item.style) { (_) in
                 callback(item)
             }
             alert.addAction(action)
@@ -39,7 +48,11 @@ class AuxiliaryPoliDash {
         return alert
     }
 
-    static func showMessage(vc: UIViewController, msg: String?, tittle t: String, actionBtn: String, callback: @escaping() -> Void) -> UIAlertController? {
+    static func showMessage(vc: UIViewController,
+                            msg: String?,
+                            tittle t: String,
+                            actionBtn: String,
+                            callback: @escaping() -> Void) -> UIAlertController? {
         vc.view.window?.isUserInteractionEnabled = true
         vc.showWaitView(isWait: false)
         if let m = msg {

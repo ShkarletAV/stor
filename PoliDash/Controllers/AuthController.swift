@@ -82,8 +82,8 @@ class AuthController: UIViewController {
     func transitionVC(infoUser: Variable<UserInfoModel>) {
         self.showWaitView(isWait: false)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let nav = storyboard.instantiateViewController(withIdentifier: "MainNavigationID") as! MainNavigationViewController
-
+        let nav = storyboard.instantiateViewController(
+            withIdentifier: "MainNavigationID") as! MainNavigationViewController
         (nav.viewControllers.first as! MainViewController).emailProfile = AllUserDefaults.getLoginUD() ?? ""
         (nav.viewControllers.first as! MainViewController).profileInfo = infoUser
 
@@ -104,7 +104,9 @@ class AuthController: UIViewController {
 
     // MARK: - Запрос на получения профиля пользователя после успешной авотризации
     func requiredRequests() {
-        ProfileAPI.requestProfileInfo(delegate: delegate, email: AllUserDefaults.getLoginUD() ?? "", callback: {[weak self] callback in
+        ProfileAPI.requestProfileInfo(delegate: delegate,
+                                      email: AllUserDefaults.getLoginUD() ?? "",
+                                      callback: {[weak self] callback in
             if let ss = self {
                 ss.showWaitView(isWait: true)
             }

@@ -21,7 +21,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     @IBOutlet weak var whiteCircle: UIView!
     @IBOutlet weak var tutorialView: UIImageView!
     @IBOutlet weak var buttonsView: UIStackView!
-    var circleView = LayerCircle()
+    var circleView = CircleLayer()
     var focusPoint: CGPoint?
     var imagePicker = UIImagePickerController()
 
@@ -38,7 +38,9 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
     func loadCircles() {
-        ProfileAPI.requestCircles(delegate: ((UIApplication.shared.delegate as? AppDelegate)!), email: AllUserDefaults.getLoginUD()!) { (_, _, circles) in
+        ProfileAPI.requestCircles(
+            delegate: ((UIApplication.shared.delegate as? AppDelegate)!),
+            email: AllUserDefaults.getLoginUD()!) { (_, _, circles) in
             for btn in self.buttonsView.arrangedSubviews {
                 btn.isHidden = true
             }
@@ -58,8 +60,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
             vc.emailProfile = email
             vc.isSaveVideo = false
             vc.hashVideo = ""
-            let nav = self.navigationController
-            nav?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 
@@ -167,16 +168,21 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         requestOptions.isSynchronous = true
 
         // Perform the image request
-        PHImageManager.default().requestImage(for: fetchResult.object(at: index) as PHAsset, targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
-            if let image = image {
-                // Add the returned image to your array
-                self.libraryButton.setImage(image, for: .normal)
-                self.libraryButton.layer.cornerRadius = 13.0
-                self.libraryButton.layer.borderWidth = 2.0
-                self.libraryButton.layer.borderColor = UIColor.white.cgColor
-                self.libraryButton.imageView?.contentMode = .scaleAspectFill
-                self.libraryButton.clipsToBounds = true
-            }
+        PHImageManager.default().requestImage(
+            for: fetchResult.object(at: index) as PHAsset,
+            targetSize: view.frame.size,
+            contentMode: PHImageContentMode.aspectFill,
+            options: requestOptions,
+            resultHandler: { (image, _) in
+                if let image = image {
+                    // Add the returned image to your array
+                    self.libraryButton.setImage(image, for: .normal)
+                    self.libraryButton.layer.cornerRadius = 13.0
+                    self.libraryButton.layer.borderWidth = 2.0
+                    self.libraryButton.layer.borderColor = UIColor.white.cgColor
+                    self.libraryButton.imageView?.contentMode = .scaleAspectFill
+                    self.libraryButton.clipsToBounds = true
+                }
         })
     }
 
@@ -221,7 +227,8 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
 //    Запись видео
-    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController,
+                   didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
         addCircleView()
 //        Анимация записи видео
         UIView.animate(withDuration: 0.25, animations: {
@@ -234,7 +241,8 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
 //    Окончание записи
-    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController,
+                   didFinishRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
         print("Did finish Recording")
         circleView.circleLayer.strokeEnd = 0
         circleView.circleLayer.timeOffset = 10
@@ -248,7 +256,8 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     }
 
 //    Окончание записи и получения url video
-    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController,
+                   didFinishProcessVideoAt url: URL) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: VcStoryboarID.playerViewController.rawValue) as! PlayerViewController
         vc.videoURL = url
@@ -270,7 +279,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         let circleWidth = CGFloat(64)
         let circleHeight = circleWidth
         // Create a new CircleView
-        circleView = LayerCircle(frame: CGRect(x: 1, y: 1, width: circleWidth, height: circleHeight))
+        circleView = CircleLayer(frame: CGRect(x: 1, y: 1, width: circleWidth, height: circleHeight))
         whiteCircle.addSubview(circleView)
         // Animate the drawing of the circle over the course of 1 second
         circleView.animateCircle(duration: 10.0)

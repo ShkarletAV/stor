@@ -196,14 +196,19 @@ extension RegController: UITextFieldDelegate {
         registerForKeyboardNotification()
 
         //dissmis keyboard
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AuthorizationViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(AuthorizationViewController.dismissKeyboard))
 
         //event свернуть клавиатуру если был тап в пустую область
         view.addGestureRecognizer(tap)
     }
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        self.updateErrorLabel(error: nil, textField: textField)
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        self.updateErrorLabel(error: nil,
+                              textField: textField)
         if textField == nameTField && string == " " {
             return false
         }
@@ -211,7 +216,8 @@ extension RegController: UITextFieldDelegate {
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
-        self.updateErrorLabel(error: nil, textField: textField)
+        self.updateErrorLabel(error: nil,
+                              textField: textField)
         if textField == self.passwordTField {
               // проверка, если введенных символов один и больше, то появляеться кнопка "Показать пароль"
             self.seeBtn.isHidden =  textField.text?.count == 0

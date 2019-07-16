@@ -18,7 +18,7 @@
 		3614550D2105EC82004C6717 /* ProfileSetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614550C2105EC82004C6717 /* ProfileSetingsViewController.swift */; };
 		3614550F2105F04F004C6717 /* EnumsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614550E2105F04F004C6717 /* EnumsExtensions.swift */; };
 		361455112105F331004C6717 /* AllUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361455102105F331004C6717 /* AllUserDefaults.swift */; };
-		36145515210626EA004C6717 /* LayerCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36145514210626EA004C6717 /* LayerCircle.swift */; };
+		36145515210626EA004C6717 /* CircleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36145514210626EA004C6717 /* CircleLayer.swift */; };
 		36145517210631B4004C6717 /* SwiftyRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36145516210631B4004C6717 /* SwiftyRecordButton.swift */; };
 		36145519210638DD004C6717 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36145518210638DD004C6717 /* PlayerViewController.swift */; };
 		3614551B2107520A004C6717 /* ExtensionComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614551A2107520A004C6717 /* ExtensionComponents.swift */; };
@@ -50,6 +50,7 @@
 		36EEFBCC2101E84900E02872 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EEFBCB2101E84900E02872 /* MainViewController.swift */; };
 		36EEFBCE2101F5A200E02872 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EEFBCD2101F5A200E02872 /* UserInfoModel.swift */; };
 		36EEFBD021020AD900E02872 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EEFBCF21020AD900E02872 /* CameraViewController.swift */; };
+		44DDDBAD22DE7A3C009DF691 /* DowloadPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DDDBAC22DE7A3C009DF691 /* DowloadPreviewView.swift */; };
 		78010C33224EBB93000983D9 /* PlayerNewLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78010C32224EBB93000983D9 /* PlayerNewLikesViewController.swift */; };
 		784432B12248CD4B008357E7 /* LikesNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784432B02248CD4B008357E7 /* LikesNotification.swift */; };
 		78582CD622365CAD0010C210 /* TextFieldValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78582CD522365CAD0010C210 /* TextFieldValidator.swift */; };
@@ -78,7 +79,7 @@
 		3614550C2105EC82004C6717 /* ProfileSetingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetingsViewController.swift; sourceTree = "<group>"; };
 		3614550E2105F04F004C6717 /* EnumsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumsExtensions.swift; sourceTree = "<group>"; };
 		361455102105F331004C6717 /* AllUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUserDefaults.swift; sourceTree = "<group>"; };
-		36145514210626EA004C6717 /* LayerCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerCircle.swift; sourceTree = "<group>"; };
+		36145514210626EA004C6717 /* CircleLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleLayer.swift; sourceTree = "<group>"; };
 		36145516210631B4004C6717 /* SwiftyRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyRecordButton.swift; sourceTree = "<group>"; };
 		36145518210638DD004C6717 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		3614551A2107520A004C6717 /* ExtensionComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionComponents.swift; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 		36EEFBCB2101E84900E02872 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		36EEFBCD2101F5A200E02872 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		36EEFBCF21020AD900E02872 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		44DDDBAC22DE7A3C009DF691 /* DowloadPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DowloadPreviewView.swift; sourceTree = "<group>"; };
 		78010C32224EBB93000983D9 /* PlayerNewLikesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNewLikesViewController.swift; sourceTree = "<group>"; };
 		784432B02248CD4B008357E7 /* LikesNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesNotification.swift; sourceTree = "<group>"; };
 		78582CD522365CAD0010C210 /* TextFieldValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldValidator.swift; sourceTree = "<group>"; };
@@ -153,7 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				36145516210631B4004C6717 /* SwiftyRecordButton.swift */,
-				36145514210626EA004C6717 /* LayerCircle.swift */,
+				36145514210626EA004C6717 /* CircleLayer.swift */,
+				44DDDBAC22DE7A3C009DF691 /* DowloadPreviewView.swift */,
 			);
 			path = RecordButton;
 			sourceTree = "<group>";
@@ -523,7 +526,7 @@
 				36145517210631B4004C6717 /* SwiftyRecordButton.swift in Sources */,
 				36ACB4682109F07800F073D9 /* FPlayerViewController.swift in Sources */,
 				364C61892100E93400AA7AB3 /* ProfileServerAPI.swift in Sources */,
-				36145515210626EA004C6717 /* LayerCircle.swift in Sources */,
+				36145515210626EA004C6717 /* CircleLayer.swift in Sources */,
 				364C617321008F2D00AA7AB3 /* AppDelegate.swift in Sources */,
 				3614550D2105EC82004C6717 /* ProfileSetingsViewController.swift in Sources */,
 				78A9350C22203DD9002F4822 /* MozaikCell.swift in Sources */,
@@ -535,6 +538,7 @@
 				36ACB46C210B486400F073D9 /* PlayerStorysViewController.swift in Sources */,
 				78010C33224EBB93000983D9 /* PlayerNewLikesViewController.swift in Sources */,
 				786EC67922281DED00454D37 /* TipsController.swift in Sources */,
+				44DDDBAD22DE7A3C009DF691 /* DowloadPreviewView.swift in Sources */,
 				36EEFBCC2101E84900E02872 /* MainViewController.swift in Sources */,
 				3614551B2107520A004C6717 /* ExtensionComponents.swift in Sources */,
 				78A73365222899A6006B80B4 /* AuthController.swift in Sources */,

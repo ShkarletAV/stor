@@ -595,7 +595,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
 
     func loadUserHistory() {
-        VideoAPI.requestHistory(delegate: delegate, email: emailProfile, callback: {
+        VideoAPI.requestHistory(delegate: delegate, email: emailProfile) {
             [weak self] callback in
             self?.historys.value = callback
 
@@ -606,7 +606,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
             }
 
             self?.tableView.reloadData()
-        })
+        }
     }
 
 }
