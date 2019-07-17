@@ -14,7 +14,7 @@ import ObjectMapper
 import Alamofire
 
 class ProfileAPI {
-
+    
     // MARK: - Регистрация нового аккаунта
     static func requestSignUp(delegate: AppDelegate, regemail: String,
                               nickname: String,
@@ -23,7 +23,7 @@ class ProfileAPI {
             nickname: nickname,
             password: pass,
             regemail: regemail)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
-
+                
                 if responce.code != nil {
                     callback(responce)
                     return
@@ -50,37 +50,44 @@ class ProfileAPI {
                 print("onDisposed requestSignUp")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Авторизация
-    static func requestLogin(delegate: AppDelegate, email: String, password: String, callback  : @escaping (MessageModel) -> Void) {
-        delegate.providerProfile.rx.request(.profileLogin(email: email, password: password)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
-            if responce.code != nil {
-                callback(responce)
-                return
-            } else {
+    static func requestLogin(delegate: AppDelegate,
+                             email: String,
+                             password: String,
+                             callback  : @escaping (MessageModel) -> Void) {
+        delegate.providerProfile.rx.request(.profileLogin(email: email,
+                                                          password: password))
+            .mapObject(MessageModel.self)
+            .asObservable()
+            .subscribe(onNext: { (responce) in
+                if responce.code != nil {
+                    callback(responce)
+                    return
+                } else {
+                    let msg = MessageModel()
+                    msg.msg = "Неизвестная ошибка"
+                    msg.code = 500
+                    callback(msg)
+                    return
+                }
+            }, onError: { (error) in
                 let msg = MessageModel()
-                msg.msg = "Неизвестная ошибка"
                 msg.code = 500
+                if let e = error as? MoyaError {
+                    msg.msg = e.localizedDescription
+                } else {
+                    msg.msg = error.localizedDescription
+                }
                 callback(msg)
                 return
-            }
-        }, onError: { (error) in
-            let msg = MessageModel()
-            msg.code = 500
-            if let e = error as? MoyaError {
-                msg.msg = e.localizedDescription
-            } else {
-                msg.msg = error.localizedDescription
-            }
-            callback(msg)
-            return
-        }, onCompleted: {
-            print("onCompleted requestLogin")
-        }) {
-            print("onDisposed requestLogin")
+            }, onCompleted: {
+                print("onCompleted requestLogin")
+            }) {
+                print("onDisposed requestLogin")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Получить информацию профиля
     static func requestProfileInfo(delegate: AppDelegate, email: String, callback: @escaping(UserInfoModel) -> Void) {
         delegate.providerProfile.rx.request(.profileInfo(email: email)).mapObject(UserInfoModel.self).asObservable().subscribe(onNext: { (responce) in
@@ -110,7 +117,7 @@ class ProfileAPI {
             print("onDisposed requestProfileInfo")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Запросить выход из аккаунта
     static func requestLogout(delegate: AppDelegate, callback: @escaping (MessageModel) -> Void) {
         delegate.providerProfile.rx.request(.profileLogout).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
@@ -140,7 +147,7 @@ class ProfileAPI {
             print("onDisposed requestLogout")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Установить фото профиля
     static func requestSetImageProfile(delegate: AppDelegate, data: Data, callback: @escaping (MessageModel) -> Void) {
         delegate.providerProfile.rx.request(.profilePhoto(photo: data)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
@@ -170,7 +177,7 @@ class ProfileAPI {
             print("onDisposed SetImageProfile")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Получить Url фото профиля
     static func requestGetUrlPhotoProfile(delegate: AppDelegate, email: String, callback: @escaping(MessageModel) -> Void) {
         delegate.providerProfile.rx.request(.profileGetUrlPhoto(email: email)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
@@ -200,7 +207,7 @@ class ProfileAPI {
             print("onDisposed requestGetUrlPhotoProfile")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Изменить Имя Фамилия
     static func requsetChangeUserName(delegate: AppDelegate, nickname: String, pass: String, callback: @escaping(MessageModel) -> Void) {
         delegate.providerProfile.rx.request(.profileChangeUserName(nickname: nickname, pwd: pass)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
@@ -230,7 +237,7 @@ class ProfileAPI {
             print("onDisposed requsetChangeUserName")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Изменить пароль
     static func requestChangePassword(delegate: AppDelegate, newPwd: String, oldPwd: String, callback: @escaping (MessageModel) -> Void) {
         delegate.providerProfile.rx.request(.profileChangePassword(pwd: oldPwd, newPwd: newPwd)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
@@ -260,7 +267,7 @@ class ProfileAPI {
             print("onDisposed requestChangePassword")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Восстановить пароль
     static func requestResorePassword(delegate: AppDelegate, email: String, callback: @escaping (MessageModel) -> Void) {
         delegate.providerProfile.rx.request(.profileRestorePassword(email: email)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
@@ -290,7 +297,7 @@ class ProfileAPI {
             print("onDisposed requestResorePassword")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Search Users
     static func requestSearchUsers(delegate: AppDelegate, nickName: String, callback  : @escaping (String?, Int, [UsersModel]) -> Void ) {
         delegate.providerProfile.rx.request(.profileSearchUsers(nickname: nickName)).asObservable().subscribe(onNext: { (responce) in
@@ -322,7 +329,7 @@ class ProfileAPI {
             print("onDisposed requestSerchUsers")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Request Famous
     static func requestFamous(delegate: AppDelegate, callback: @escaping (String?, Int, [UsersModel]) -> Void) {
         delegate.providerProfile.rx.request(.profileFamous).asObservable().subscribe(onNext: { (responce) in
@@ -354,7 +361,7 @@ class ProfileAPI {
             print("onDisposed requestFamous")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Request Follow-UP
     static func requestFollowUp(delegate: AppDelegate, email: String, callback: @escaping (MessageModel) -> Void) {
         delegate.providerProfile.rx.request(.profileFollowUp(email: email)).asObservable().mapObject(MessageModel.self).subscribe(onNext: { (responce) in
@@ -384,7 +391,7 @@ class ProfileAPI {
             print("onDisposed requestFollowUp")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Поличить список подписок пользователя
     static func requestGetOwners(delegate: AppDelegate, email: String, callback: @escaping (String?, Int, [OwnersModel]) -> Void) {
         delegate.providerProfile.rx.request(.profileGetOwners(email: email)).asObservable().subscribe(onNext: { (responce) in
@@ -416,7 +423,7 @@ class ProfileAPI {
             print("onDisposed requestGetOwners")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Получить подписчиков пользователя
     static func requestGetFollowers(delegate: AppDelegate, email: String, callback: @escaping (String?, Int, [OwnersModel]) -> Void) {
         delegate.providerProfile.rx.request(.profileGetFollowers(email: email)).asObservable().subscribe(onNext: { (responce) in
@@ -448,7 +455,7 @@ class ProfileAPI {
             print("onDisposed requestGetFollowers")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Получить новых подписчиков пользователя
     static func requestNewFollowers(delegate: AppDelegate, email: String, callback: @escaping (String?, Int, [OwnersModel]) -> Void) {
         delegate.providerProfile.rx.request(.profileNewFollowers).asObservable().subscribe(onNext: { (responce) in
@@ -480,7 +487,7 @@ class ProfileAPI {
             print("onDisposed requestNewFollowers")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Получить новые лайки пользователя
     static func requestNewLikes(delegate: AppDelegate, email: String, callback: @escaping (String?, Int, [HistoryVideo]) -> Void) {
         delegate.providerProfile.rx.request(.profileNewLikes).asObservable().subscribe(onNext: { (responce) in
@@ -513,7 +520,7 @@ class ProfileAPI {
             print("onDisposed requestNewLikes")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Получить баланс пользователя
     static func requestBalance(delegate: AppDelegate, callback: @escaping (Balance) -> Void) {
         delegate.providerProfile.rx.request(.profileBalance).asObservable().subscribe(onNext: { (responce) in
@@ -541,7 +548,7 @@ class ProfileAPI {
             print("onDisposed requestNewLikes")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Получить актуальные видео
     static func requestActuals(delegate: AppDelegate, email: String, callback: @escaping (String?, Int, [OwnersModel]) -> Void) {
         delegate.providerProfile.rx.request(.profileGetFollowers(email: email)).asObservable().subscribe(onNext: { (responce) in
@@ -573,7 +580,7 @@ class ProfileAPI {
             print("onDisposed requestGetFollowers")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Отписаться от пользователя
     static func requestSetUnFollow(delegate: AppDelegate, email: String, callback: @escaping (MessageModel) -> Void) {
         delegate.providerProfile.rx.request(.profileSetUnfollow(email: email)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
@@ -603,7 +610,7 @@ class ProfileAPI {
             print("onDisposed requestSetUnFollow")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     //
     static func requsetNotificationStatus(delegate: AppDelegate, callback: @escaping (NotificationModel) -> Void) {
         delegate.providerProfile.rx.request(ProfileServerAPI.profileNotify).mapObject(NotificationModel.self).asObservable().subscribe(onNext: { (model) in
@@ -629,7 +636,7 @@ class ProfileAPI {
             print("onDisposed requestSetUnFollow")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Получить пользователей в кружках
     static func requestCircles(delegate: AppDelegate, email: String, callback: @escaping (String?, Int, [OwnersModel]) -> Void) {
         delegate.providerProfile.rx.request(.profileCircles(email: email)).asObservable().subscribe(onNext: { (responce) in
@@ -669,7 +676,7 @@ class ProfileAPI {
             print("onDisposed requestNewFollowers")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Сохранить пользователя в кругу
     static func requsetPutCircle(delegate: AppDelegate, email: String, callback: @escaping(MessageModel) -> Void) {
         delegate.providerProfile.rx.request(.profilePutCircle(email: email)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
@@ -699,7 +706,7 @@ class ProfileAPI {
             print("onDisposed requsetChangeUserName")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
     // MARK: - Удалить пользователя с круга
     static func requestDeleteCircle(delegate: AppDelegate,
                                     ownerEmail: String,
@@ -738,14 +745,14 @@ class ProfileAPI {
                 print("onDisposed requsetChangeUserName")
             }.disposed(by: delegate.disposeBag)
     }
-
-    static func requsetAddWallet(delegate: AppDelegate,
-                                 email: String,
-                                 address: String,
-                                 callback: @escaping(MessageModel) -> Void) {
+    
+    static func bindingWallet(delegate: AppDelegate,
+                              email: String,
+                              address: String,
+                              callback: @escaping(MessageModel) -> Void) {
         delegate.providerProfile.rx.request(
-            .acceptWallet(email: email,
-                          address: address))
+            .bindingWallet(email: email,
+                           address: address))
             .mapObject(MessageModel.self)
             .asObservable()
             .subscribe(onNext: { (responce) in
@@ -770,10 +777,81 @@ class ProfileAPI {
                 callback(msg)
                 return
             }, onCompleted: {
-                print("onCompleted requsetChangeUserName")
+                print("onCompleted bindingWallet")
             }) {
-                print("onDisposed requsetChangeUserName")
+                print("onDisposed bindingWallet")
             }.disposed(by: delegate.disposeBag)
     }
-
+    
+    static func cancelBindingWallet(delegate: AppDelegate,
+                                    email: String,
+                                    address: String,
+                                    callback: @escaping(MessageModel) -> Void) {
+        delegate.providerProfile.rx.request(
+            .bindingWallet(email: email,
+                           address: address))
+            .mapObject(MessageModel.self)
+            .asObservable()
+            .subscribe(onNext: { (responce) in
+                if responce.code != nil {
+                    callback(responce)
+                    return
+                } else {
+                    let msg = MessageModel()
+                    msg.msg = "Неизвестная ошибка"
+                    msg.code = 400
+                    callback(msg)
+                    return
+                }
+            }, onError: { (error) in
+                let msg = MessageModel()
+                msg.code = 400
+                if let e = error as? MoyaError {
+                    msg.msg = e.localizedDescription
+                } else {
+                    msg.msg = error.localizedDescription
+                }
+                callback(msg)
+                return
+            }, onCompleted: {
+                print("onCompleted cancelBindingWallet")
+            }) {
+                print("onDisposed cancelBindingWallet")
+            }.disposed(by: delegate.disposeBag)
+    }
+    
+    static func requestBindingWallet(delegate: AppDelegate,
+                                     address: String,
+                                     callback: @escaping(MessageModel) -> Void) {
+        delegate.providerProfile.rx.request(
+            .requestBindingWallet(address: address))
+            .mapObject(MessageModel.self)
+            .asObservable()
+            .subscribe(onNext: { (responce) in
+                if responce.code != nil {
+                    callback(responce)
+                    return
+                } else {
+                    let msg = MessageModel()
+                    msg.msg = "Неизвестная ошибка"
+                    msg.code = 400
+                    callback(msg)
+                    return
+                }
+            }, onError: { (error) in
+                let msg = MessageModel()
+                msg.code = 400
+                if let e = error as? MoyaError {
+                    msg.msg = e.localizedDescription
+                } else {
+                    msg.msg = error.localizedDescription
+                }
+                callback(msg)
+                return
+            }, onCompleted: {
+                print("onCompleted requestBindingWallet")
+            }) {
+                print("onDisposed requestBindingWallet")
+            }.disposed(by: delegate.disposeBag)
+    }
 }

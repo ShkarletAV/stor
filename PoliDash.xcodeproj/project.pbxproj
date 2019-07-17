@@ -50,6 +50,7 @@
 		36EEFBCC2101E84900E02872 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EEFBCB2101E84900E02872 /* MainViewController.swift */; };
 		36EEFBCE2101F5A200E02872 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EEFBCD2101F5A200E02872 /* UserInfoModel.swift */; };
 		36EEFBD021020AD900E02872 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EEFBCF21020AD900E02872 /* CameraViewController.swift */; };
+		44850A9322DEF26400971302 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44850A9222DEF26400971302 /* InfoView.swift */; };
 		44DDDBAD22DE7A3C009DF691 /* DowloadPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DDDBAC22DE7A3C009DF691 /* DowloadPreviewView.swift */; };
 		78010C33224EBB93000983D9 /* PlayerNewLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78010C32224EBB93000983D9 /* PlayerNewLikesViewController.swift */; };
 		784432B12248CD4B008357E7 /* LikesNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784432B02248CD4B008357E7 /* LikesNotification.swift */; };
@@ -115,6 +116,7 @@
 		36EEFBCB2101E84900E02872 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		36EEFBCD2101F5A200E02872 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		36EEFBCF21020AD900E02872 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		44850A9222DEF26400971302 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		44DDDBAC22DE7A3C009DF691 /* DowloadPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DowloadPreviewView.swift; sourceTree = "<group>"; };
 		78010C32224EBB93000983D9 /* PlayerNewLikesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNewLikesViewController.swift; sourceTree = "<group>"; };
 		784432B02248CD4B008357E7 /* LikesNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesNotification.swift; sourceTree = "<group>"; };
@@ -155,8 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				36145516210631B4004C6717 /* SwiftyRecordButton.swift */,
-				36145514210626EA004C6717 /* CircleLayer.swift */,
-				44DDDBAC22DE7A3C009DF691 /* DowloadPreviewView.swift */,
 			);
 			path = RecordButton;
 			sourceTree = "<group>";
@@ -185,6 +185,7 @@
 				364C617221008F2D00AA7AB3 /* AppDelegate.swift */,
 				364C617E21008F3200AA7AB3 /* Info.plist */,
 				36EEFBC22101E0BB00E02872 /* Resource */,
+				44DDDBAE22DEEF8A009DF691 /* Components */,
 				36EEFBC32101E0CF00E02872 /* Storyboards */,
 				364C618F2101DFEF00AA7AB3 /* Controllers */,
 				36EEFBC12101E09900E02872 /* Extensions */,
@@ -197,29 +198,19 @@
 		364C618F2101DFEF00AA7AB3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3627CB49211A1A2600A87D5C /* RecordButton */,
-				36EEFBC62101E79400E02872 /* Cells */,
+				44850A9522DF094800971302 /* Camera */,
+				44850A9422DF093500971302 /* Settings */,
 				786EC67822281DED00454D37 /* TipsController.swift */,
 				78A73364222899A5006B80B4 /* AuthController.swift */,
 				78A7336622291451006B80B4 /* RegController.swift */,
 				364C61862100AA5700AA7AB3 /* AuthorizationViewController.swift */,
 				36ACB473210F34EA00F073D9 /* MainNavigationViewController.swift */,
 				36EEFBCB2101E84900E02872 /* MainViewController.swift */,
-				3614550C2105EC82004C6717 /* ProfileSetingsViewController.swift */,
 				787D3BCB223E1B92003EE797 /* UpSettingsController.swift */,
 				787D3BCD223E4FBA003EE797 /* UpsBalanceController.swift */,
-				36EEFBCF21020AD900E02872 /* CameraViewController.swift */,
-				3642DDE92114F45F0098CDAE /* CameraPhotoViewController.swift */,
-				36145518210638DD004C6717 /* PlayerViewController.swift */,
-				36ACB4672109F07800F073D9 /* FPlayerViewController.swift */,
 				36ACB475210F5B3800F073D9 /* SearchViewController.swift */,
-				36ACB46B210B486400F073D9 /* PlayerStorysViewController.swift */,
-				78010C32224EBB93000983D9 /* PlayerNewLikesViewController.swift */,
-				36ACB46D210B48BB00F073D9 /* AVPlayerStroryViewController.swift */,
 				3642DDE7211356940098CDAE /* ImagePlayerViewController.swift */,
 				787D3BCA223E1B3D003EE797 /* Fonts */,
-				0FBD054C22D53E7B00B78190 /* WalletSettingsViewController.swift */,
-				0F9CBE2822D71D3E000E5BCF /* ScannerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -307,6 +298,58 @@
 				789043A2222EC60400447B5A /* UserMozaikCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		44850A9022DEEFD800971302 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				3627CB49211A1A2600A87D5C /* RecordButton */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		44850A9122DEEFE700971302 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44DDDBAC22DE7A3C009DF691 /* DowloadPreviewView.swift */,
+				36145514210626EA004C6717 /* CircleLayer.swift */,
+				44850A9222DEF26400971302 /* InfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		44850A9422DF093500971302 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0FBD054C22D53E7B00B78190 /* WalletSettingsViewController.swift */,
+				3614550C2105EC82004C6717 /* ProfileSetingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		44850A9522DF094800971302 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				3642DDE92114F45F0098CDAE /* CameraPhotoViewController.swift */,
+				36EEFBCF21020AD900E02872 /* CameraViewController.swift */,
+				0F9CBE2822D71D3E000E5BCF /* ScannerViewController.swift */,
+				36ACB46D210B48BB00F073D9 /* AVPlayerStroryViewController.swift */,
+				36ACB46B210B486400F073D9 /* PlayerStorysViewController.swift */,
+				78010C32224EBB93000983D9 /* PlayerNewLikesViewController.swift */,
+				36145518210638DD004C6717 /* PlayerViewController.swift */,
+				36ACB4672109F07800F073D9 /* FPlayerViewController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		44DDDBAE22DEEF8A009DF691 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				44850A9122DEEFE700971302 /* View */,
+				44850A9022DEEFD800971302 /* Button */,
+				36EEFBC62101E79400E02872 /* Cells */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		6CEF47FB75DD661169A0C643 /* Frameworks */ = {
@@ -523,6 +566,7 @@
 				787D3BCC223E1B92003EE797 /* UpSettingsController.swift in Sources */,
 				364C618D2100FDB200AA7AB3 /* MessageModel.swift in Sources */,
 				361455112105F331004C6717 /* AllUserDefaults.swift in Sources */,
+				44850A9322DEF26400971302 /* InfoView.swift in Sources */,
 				36145517210631B4004C6717 /* SwiftyRecordButton.swift in Sources */,
 				36ACB4682109F07800F073D9 /* FPlayerViewController.swift in Sources */,
 				364C61892100E93400AA7AB3 /* ProfileServerAPI.swift in Sources */,

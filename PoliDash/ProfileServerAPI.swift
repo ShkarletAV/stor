@@ -36,8 +36,9 @@ enum ProfileServerAPI {
     case profileDeleteCircle(ownerEmail: String, displayedEmail: String)
 
     //wallet requests
-    case acceptWallet(email: String, address: String)
-
+    case bindingWallet(email: String, address: String)
+    case сancelBindingWallet(email: String, address: String)
+    case requestBindingWallet(address: String)
 }
 
 extension ProfileServerAPI: TargetType {
@@ -93,8 +94,12 @@ extension ProfileServerAPI: TargetType {
             return "/profile/circles"
         case .profileDeleteCircle(ownerEmail: _, displayedEmail: _):
             return "/circles/delete"
-        case .acceptWallet(email: _, let address):
-            return "/request_binding/\(address)"
+        case .bindingWallet(email: _, address: _):
+            return "wallet/binding"
+        case .сancelBindingWallet(email: _, address: _):
+            return "wallet/cancel"
+        case .requestBindingWallet(address: _):
+            return "wallet/request_binding"
         }
     }
     var method: Moya.Method {
@@ -145,7 +150,11 @@ extension ProfileServerAPI: TargetType {
             return .put
         case .profileDeleteCircle(ownerEmail: _, displayedEmail: _):
             return .delete
-        case .acceptWallet(let email, let address):
+        case .bindingWallet(email: _, address: _):
+            return .get
+        case .сancelBindingWallet(email: _, address: _):
+            return .get
+        case .requestBindingWallet:
             return .get
         }
     }
@@ -212,8 +221,17 @@ extension ProfileServerAPI: TargetType {
             return .requestParameters(parameters: ["owner_email": ownerEmail,
                                                    "displayed_email": displayedEmail],
                                       encoding: URLEncoding.queryString)
-        case .acceptWallet(let email, let address):
-            return .requestPlain
+        case .bindingWallet(let email, let address):
+            return .requestParameters(parameters: ["email": email,
+                                                   "address": address],
+                                      encoding: URLEncoding.queryString)
+        case .сancelBindingWallet(let email, let address):
+            return .requestParameters(parameters: ["email": email,
+                                                   "address": address],
+                                      encoding: URLEncoding.queryString)
+        case .requestBindingWallet(let address):
+            return .requestParameters(parameters: ["address": address],
+                                      encoding: URLEncoding.queryString)
         }
     }
 

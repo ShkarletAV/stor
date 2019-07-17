@@ -248,21 +248,21 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         //запрос на получения уведомлений
         ProfileAPI.requsetNotificationStatus(delegate: delegate) { [weak self] (message) in
             self?.msgGetNotificationProfile.value = message
-            self?.notifLikesView.isHidden = message.likes == 0
+            self?.notifLikesView.isHidden = (message.likes == nil || message.likes == 0)
             if let likes = message.likes {
                 self?.notifLikesLabel.text = "\(likes)"
             }
-            self?.notifFollowView.isHidden = message.followers == 0
+            self?.notifFollowView.isHidden = (message.followers == nil || message.followers == 0)
 
             if let followers = message.followers {
                 self?.notifFollowLabel.text = "\(followers)"
             }
-
         }
     }
 
     func requestNewFollowers() {
-        ProfileAPI.requestNewFollowers(delegate: delegate, email: emailProfile) { [weak self] (_, _, ownerModel) in
+        ProfileAPI.requestNewFollowers(delegate: delegate,
+                                       email: emailProfile) { [weak self] (_, _, ownerModel) in
             print(ownerModel)
             self!.newFollowers = ownerModel
             self?.tableView.reloadData()
@@ -270,7 +270,9 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
 
     //Универсальный метод для отображения нужного контроллера
-    private func transitionVC(identifier: VcStoryboarID, nameStoryboard: StoryboardName, str: String?) {
+    private func transitionVC(identifier: VcStoryboarID,
+                              nameStoryboard: StoryboardName,
+                              str: String?) {
         dismissKeyboard()
         let storyboard = UIStoryboard(name: nameStoryboard.rawValue, bundle: nil)
         var vc = UIViewController()
