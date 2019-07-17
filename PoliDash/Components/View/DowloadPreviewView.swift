@@ -23,7 +23,7 @@ class DowloadPreviewView: UIView {
         button.addTarget(self, action: #selector(cancelDowloadStories), for: .touchUpInside)
         return button
     }()
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -57,7 +57,7 @@ class DowloadPreviewView: UIView {
             width: circleSize.width,
             height: circleSize.height))
         circleView?.center = circleBorder.position
-        
+
         self.addSubview(cancelButton)
         cancelButton.frame.size = CGSize(
             width: buttonSize.width,
@@ -69,8 +69,8 @@ class DowloadPreviewView: UIView {
         guard let circleView = circleView else { return }
         circleView.changeProgress(progress: progress)
     }
-    
+
     @objc func cancelDowloadStories() {
-        
+
     }
 }

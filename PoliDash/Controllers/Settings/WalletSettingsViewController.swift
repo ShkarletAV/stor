@@ -45,15 +45,14 @@ class WalletSettingsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        checkWalletStatus()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         requestBalance()
+        checkWalletStatus()
     }
-    
+
     func requestBalance() {
         guard let delegate = delegate else { return }
 
@@ -89,7 +88,7 @@ class WalletSettingsViewController: UIViewController {
     }
 
     func showErrorView() {
-        let _ = InfoView(title: "Ой, ваш адрес не найден",
+        _ = InfoView(title: "Ой, ваш адрес не найден",
                          subtitle: "Попробуйте проверить номер или связаться с нами",
                          image: UIImage(named: "Heart"))
     }
