@@ -395,6 +395,7 @@
 				20969973B29084A72A3837D9 /* [CP] Embed Pods Frameworks */,
 				0F614EF322CB312E00D980B7 /* Fabric Run Script */,
 				445F594822DE51DC001AA146 /* SwiftLint Run Script */,
+				0F4C777322DF1A3600447F6C /* Add Build Number Run Script */,
 			);
 			buildRules = (
 			);
@@ -454,6 +455,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0F4C777322DF1A3600447F6C /* Add Build Number Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Add Build Number Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
 		0F614EF322CB312E00D980B7 /* Fabric Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
