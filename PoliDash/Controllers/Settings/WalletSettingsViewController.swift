@@ -53,6 +53,10 @@ class WalletSettingsViewController: UIViewController {
         checkWalletStatus()
     }
 
+    @IBAction func goToBack(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     func requestBalance() {
         guard let delegate = delegate else { return }
 
@@ -61,10 +65,7 @@ class WalletSettingsViewController: UIViewController {
         }
     }
 
-    @IBAction func goToBack(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-
+    //отмена привязки кошелька
     @IBAction func cancelBindingWallet(_ sender: UIButton) {
         dismissKeyboard()
         guard let address = self.addressTextField.text,
@@ -74,50 +75,61 @@ class WalletSettingsViewController: UIViewController {
             delegate: delegate,
             email: email,
             address: address) { (response) in
-                switch response.code {
-                case 400:
-                    self.showErrorView()
-                case 500: break
-                case 200: break
-                default: break
-                    //показать подтверждение
-                }
-                self.showAlertView(text: "Запрос выполнен", callback: {
+                self.showAlertView(text: response.msg, callback: {
                 })
+                switch response.code {
+                case 400: break
+                case 200:
+                    self.setTextFieldEditable(true)
+                    self.addressTextField.text = ""
+                    self.cancelButton.isHidden = true
+                    self.addWalletButton.isHidden = false
+                default: break
+                }
         }
-    }
-
-    func showErrorView() {
-        _ = InfoView(title: "Ой, ваш адрес не найден",
-                         subtitle: "Попробуйте проверить номер или связаться с нами",
-                         image: UIImage(named: "Heart"))
-    }
-
-    func showConfirmView() {
-
     }
 
     func checkWalletStatus() {
         guard let address = self.addressTextField.text,
             let email = AllUserDefaults.getLoginUD(),
             let delegate = delegate else { return }
-        ProfileAPI.bindingWallet(
+        ProfileAPI.checkBindingWallet(
             delegate: delegate,
             email: email,
             address: address) { [weak self] (response) in
-                switch response.code {
-                case 400: break
-                    //self?.showAlertView(text: "Ой, ваш адрес не найден", callback: {})
-                case 500: break
-                case 200: break
-                    //self?.showConfirmView()
-                default: break
+                if let status = response as? WalletStatusResponseModel {
+                    if status.status == 1 {
+                        self?.setTextFieldEditable(false)
+                        self?.addWalletButton.setTitle("заменить",
+                                                       for: .normal)
+                        self?.cancelButton.isHidden = true
+                        self?.addWalletButton.isHidden = false
+                    } else {
+                        self?.cancelButton.isHidden = false
+                        self?.addWalletButton.isHidden = true
+
+                    }
+                    self?.addressTextField.text = status.address
                 }
-        }
+                if let message = response as? MessageModel {
+                    self?.showAlertView(text: message.msg, callback: {})
+                }
+            }
+    }
+
+    func setTextFieldEditable(_ state: Bool) {
+        self.addressTextField.isEnabled = state
+        self.qrButton.isEnabled = state
+        let imgName = state ? "qrcode": "accepted"
+
+        self.qrButton.setImage(UIImage(named: imgName), for: .normal)
     }
 
     @IBAction func getBingingWallet(_ sender: UIButton) {
         dismissKeyboard()
+
+        //0x4e83362442b8d1bec281594cea3050c8eb01311c
+        //self.addressTextField.text = "0x4e83362442b8d1bec281594cea3050c8eb01311c"
 
         guard let address = self.addressTextField.text,
             let delegate = delegate else { return }
@@ -125,15 +137,27 @@ class WalletSettingsViewController: UIViewController {
         ProfileAPI.requestBindingWallet(
             delegate: delegate,
             address: address) { [weak self] (response) in
+
+                self?.showAlertView(text: response.msg, callback: {
+                })
                 switch response.code {
-                case 400:
-                    self?.showAlertView(text: response.msg, callback: {})
-                case 500: break
+                case 400: break
                 case 200:
-                    self?.showConfirmView()
+                    self?.cancelButton.isHidden = false
+                    self?.addWalletButton.isHidden = true
                 default: break
                 }
         }
+    }
+
+    func showErrorView() {
+        _ = InfoView(title: "Ой, ваш адрес не найден",
+                     subtitle: "Попробуйте проверить номер или связаться с нами",
+                     image: UIImage(named: "Heart"))
+    }
+
+    func showConfirmView() {
+
     }
 
     @IBAction func showQRRecognizer(_ sender: UIButton) {

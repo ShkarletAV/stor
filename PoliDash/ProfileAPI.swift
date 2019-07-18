@@ -746,14 +746,14 @@ class ProfileAPI {
             }.disposed(by: delegate.disposeBag)
     }
 
-    static func bindingWallet(delegate: AppDelegate,
+    static func checkBindingWallet(delegate: AppDelegate,
                               email: String,
                               address: String,
-                              callback: @escaping(MessageModel) -> Void) {
+                              callback: @escaping(Mappable) -> Void) {
         delegate.providerProfile.rx.request(
             .bindingWallet(email: email,
                            address: address))
-            .mapObject(MessageModel.self)
+            .mapObject(WalletStatusResponseModel.self)
             .asObservable()
             .subscribe(onNext: { (responce) in
                 if responce.code != nil {
@@ -788,8 +788,8 @@ class ProfileAPI {
                                     address: String,
                                     callback: @escaping(MessageModel) -> Void) {
         delegate.providerProfile.rx.request(
-            .bindingWallet(email: email,
-                           address: address))
+            .сancelBindingWallet(email: email,
+                                  address: address))
             .mapObject(MessageModel.self)
             .asObservable()
             .subscribe(onNext: { (responce) in
