@@ -310,9 +310,6 @@ class PlayerStorysViewController: UIViewController {
             VideoAPI.requestLikesVideo(delegate: delegate, hash: hashVideo) { (_) in
 
             }
-            VideoAPI.setLikesVideo(delegate: delegate, hash: hashVideo) { (_) in
-
-            }
         }
     }
 
@@ -638,7 +635,7 @@ class PlayerStorysViewController: UIViewController {
 
 //    при долгом нажатии ставим видео на паузу
     @objc func longPress (rec: UILongPressGestureRecognizer) {
-        print("long Press")
+        //print("long Press")
         if (rec.state == .began) {
 //            ставим на паузу если видео
             stateControl = .pause

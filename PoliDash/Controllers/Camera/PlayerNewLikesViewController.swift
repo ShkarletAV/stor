@@ -575,7 +575,7 @@ class PlayerNewLikesViewController: UIViewController {
 
 //    при долгом нажатии ставим видео на паузу
     @objc func longPress (rec: UILongPressGestureRecognizer) {
-        print("long Press")
+        //print("long Press")
         if (rec.state == .began) {
 //            ставим на паузу если видео
             stateControl = .pause

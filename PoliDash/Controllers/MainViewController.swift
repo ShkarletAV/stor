@@ -367,7 +367,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
 
     // переход к камере
-    @IBAction func camera_Action(_ sender: UIButton) {
+    @IBAction func cameraAction(_ sender: UIButton) {
         transitionVC(identifier: .camera, nameStoryboard: .mainStoryboard, str: nil)
     }
 
@@ -375,18 +375,32 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         //изменить фото профиля
         //если текущим отображается собственный профиль пользователя иначе включаем подписку на пользователя или отписку от него
         if emailProfile == AllUserDefaults.getLoginUD() ?? "" && emailProfile != ""{
-            let alert = UIAlertController(title: "PoliDash", message: "Источник картинки", preferredStyle: UIAlertControllerStyle.actionSheet)
-            alert.addAction(UIAlertAction(title: "Камера", style: UIAlertActionStyle.default, handler: { [weak self] (_) in
-                    if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                        self?.imagePicker.delegate = self
-                        self?.imagePicker.sourceType = .camera
-                        self?.imagePicker.allowsEditing = true
-                        if let picker = self?.imagePicker {
-                            self?.present(picker, animated: true, completion: nil)
-                        }
+            self.showPhotoActionAlert()
+        }
+    }
+    
+    func showPhotoActionAlert() {
+        let alert = UIAlertController(
+            title: "PoliDash",
+            message: "Источник картинки",
+            preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(
+            title: "Камера",
+            style: .default,
+            handler: { [weak self] (_) in
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    self?.imagePicker.delegate = self
+                    self?.imagePicker.sourceType = .camera
+                    self?.imagePicker.allowsEditing = true
+                    if let picker = self?.imagePicker {
+                        self?.present(picker, animated: true, completion: nil)
                     }
-                }))
-            alert.addAction(UIAlertAction(title: "Фотоальбом", style: UIAlertActionStyle.default, handler: {[weak self]  (_) in
+                }
+        }))
+        alert.addAction(UIAlertAction(
+            title: "Фотоальбом",
+            style: .default,
+            handler: { [weak self] _ in
                 if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
                     self?.imagePicker.delegate = self
                     self?.imagePicker.sourceType = .savedPhotosAlbum
@@ -395,10 +409,11 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
                         self?.present(picker, animated: true, completion: nil)
                     }
                 }
-            }))
-            self.present(alert, animated: true, completion: nil)
-
-        }
+        }))
+        alert.addAction(UIAlertAction(
+            title: "Отмена",
+            style: .cancel))
+        self.present(alert, animated: true, completion: nil)
     }
 
     func checkIfSubscribed() -> See {

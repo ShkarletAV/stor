@@ -206,7 +206,7 @@ class VideoAPI {
 
 // MARK: - отправить координаты лайка на сервер
     static func requestPutSympathy(delegate: AppDelegate, hash: String, action: Sympathy, cx: String, cy: String, callback: @escaping (MessageModel) -> Void) {
-        delegate.providerVideo.rx.request(.putSympathy(action: action.value, cx: cx, cy: cy, hash: hash)).asObservable().mapObject(MessageModel.self).subscribe(onNext: { (responce) in
+        delegate.providerVideo.rx.request(.putLike(action: action.value, coordX: cx, coordY: cy, hash: hash)).asObservable().mapObject(MessageModel.self).subscribe(onNext: { (responce) in
             if responce.code != nil {
                 callback(responce)
                 return
@@ -267,26 +267,6 @@ class VideoAPI {
     // MARK: - добавить скрытые лайки
     static func requestLikesVideo(delegate: AppDelegate, hash: String, callback: @escaping (MessageModel) -> Void) {
         delegate.providerVideo.rx.request(.hearts(hash: hash)).asObservable().subscribe(onNext: { (_) in
-
-        }, onError: { (error) in
-            let msg = MessageModel()
-            msg.code = 400
-            if let e = error as? MoyaError {
-                msg.msg = e.localizedDescription
-            } else {
-                msg.msg = error.localizedDescription
-            }
-            callback(msg)
-            return
-        }, onCompleted: {
-            print("onCompleted requestDeleteVideo")
-        }) {
-            print("onDisposed requestDeleteVideo")
-            }.disposed(by: delegate.disposeBag)
-    }
-
-    static func setLikesVideo(delegate: AppDelegate, hash: String, callback: @escaping (MessageModel) -> Void) {
-        delegate.providerVideo.rx.request(.sympathyPut(hash: hash)).asObservable().subscribe(onNext: { (_) in
 
         }, onError: { (error) in
             let msg = MessageModel()

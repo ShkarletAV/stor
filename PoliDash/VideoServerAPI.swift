@@ -16,9 +16,8 @@ enum VideoServerAPI {
     case confirmToSave(hash: String, circle: String)
     case getSympathy(hash: String)
     case getNewLikes(hash: String)
-    case putSympathy(action: String, cx: String, cy: String, hash: String)
+    case putLike(action: String, coordX: String, coordY: String, hash: String)
     case deleteVideo(hash: String)
-    case sympathyPut(hash: String)
     case hearts(hash: String)
 }
 
@@ -39,12 +38,10 @@ extension VideoServerAPI: TargetType {
             return "/video/sympathyget"
         case .getNewLikes(hash: _):
             return "/video/hearts"
-        case .putSympathy(action: _, cx: _, cy: _, hash: _):
-            return "/video/sympathy"
+        case .putLike(action: _, coordX: _, coordY: _, hash: _):
+            return "/video/putLike"
         case .deleteVideo(hash: _):
             return "/video/confirm-to-delete"
-        case .sympathyPut(hash: _):
-            return "/video/sympathyput"
         case .hearts(hash: _):
             return "/video/hearts"
         }
@@ -62,12 +59,10 @@ extension VideoServerAPI: TargetType {
             return .get
         case .getNewLikes(hash: _):
             return .get
-        case .putSympathy(action: _, cx: _, cy: _, hash: _):
-            return .put
+        case .putLike(action: _, coordX: _, coordY: _, hash: _):
+            return .get
         case .deleteVideo(hash: _):
             return .delete
-        case .sympathyPut(hash: _):
-            return .get
         case .hearts(hash: _):
             return .get
         }
@@ -95,12 +90,10 @@ extension VideoServerAPI: TargetType {
             return .requestParameters(parameters: ["hash": hash], encoding: URLEncoding.default)
         case .getNewLikes(let hash):
             return .requestParameters(parameters: ["hash": hash], encoding: URLEncoding.default)
-        case .putSympathy(let action, let cx, let cy, let hash):
-            return .requestParameters(parameters: ["action": action, "cx": cx, "cy": cy, "hash": hash], encoding: JSONEncoding.default)
+        case .putLike(let action, let coordX, let coordY, let hash):
+            return .requestParameters(parameters: ["action": action, "cx": coordX, "cy": coordY, "hash": hash], encoding: URLEncoding.default)
         case .deleteVideo(let hash):
             return .requestParameters(parameters: ["hash": hash], encoding: URLEncoding.default)
-        case .sympathyPut(let hash):
-            return .requestParameters(parameters: ["hash": hash], encoding: URLEncoding.queryString)
         case .hearts(let hash):
             return .requestParameters(parameters: ["hash": hash], encoding: URLEncoding.queryString)
         }

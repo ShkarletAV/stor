@@ -123,11 +123,14 @@ extension SimpleCollectionCell: UICollectionViewDelegate, UICollectionViewDataSo
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! SCCell
             if cellID == "cell"{
                 let follower = self.followers![indexPath.row-1] as! OwnersModel
-                if (follower.video?.count)! > 0 {
-                    if let video = follower.video?[0] {
-                        cell.preview.sd_setImage(with: URL(string: video.preview!), placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"), options: [], completed: nil)
-                    } else {
-                        cell.preview?.sd_setImage(with: URL(string: follower.picture!), placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"), options: [], completed: nil)
+                if let videos = follower.video, videos.isEmpty == false {
+                    if let video = videos.first, let preview = video.preview {
+                        cell.preview.sd_setImage(with: URL(string: preview),
+                                                 placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"),
+                                                 options: [])
+                    } else if let picture = follower.picture {
+                        cell.preview?.sd_setImage(with: URL(string: picture),
+                                                  placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"), options: [])
                     }
                 } else {
                     cell.preview?.sd_setImage(with: URL(string: follower.picture!), placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"), options: [], completed: nil)
