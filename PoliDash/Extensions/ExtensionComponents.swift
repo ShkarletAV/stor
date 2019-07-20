@@ -143,7 +143,7 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func showAlertView(text: String?, callback: @escaping () -> Void) {
+    func showAlertView(text: String?, callback: (() -> Void)? = nil) {
         DispatchQueue.main.async {
             var alertView: UIView?
             if !(self.checkView(tag: .showAlert)) {
@@ -161,7 +161,7 @@ extension UIViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         UIView.animate(withDuration: 0.7) {
                             alert.alpha = 0.0
-                            callback()
+                            callback?()
                         }
                     }
                 }

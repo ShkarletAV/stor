@@ -561,8 +561,7 @@ class PlayerStorysViewController: UIViewController {
 //                        отправляем лайк на сервер
                         VideoAPI.requestPutSympathy(delegate: delegate, hash: hashImage, action: Sympathy.like, cx: xPercentage, cy: yPercentage) { [weak self] (message) in
 
-                            self?.showAlertView(text: message.msg, callback: {
-                            })
+                            self?.showAlertView(text: message.msg)
 
 //                            при успешной отправки запрашиваем заново все лайки с сервера
                             VideoAPI.requestGetSympathy(delegate: (self?.delegate)!, hash: hashImage, callback: { [weak self] (sympathy) in

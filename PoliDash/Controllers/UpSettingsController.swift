@@ -204,9 +204,7 @@ class UpSettingsController: UIViewController {
             }
         } else {
             guard let ownerEmail = self.selectedOwner?.email else {
-                self.showAlertView(text: "E-mail выделенного пользователя не определён") {
-
-                }
+                self.showAlertView(text: "E-mail выделенного пользователя не определён")
                 return
             }
             ProfileAPI.requsetPutCircle(delegate: delegate, email: ownerEmail) { (msg) in
@@ -219,8 +217,7 @@ class UpSettingsController: UIViewController {
                     self.cancelBtn.addTarget(self, action: #selector(self.deleteAction), for: .touchUpInside)
                     self.loadOwners()
                 } else {
-                    self.showAlertView(text: msg.msg, callback: {
-                    })
+                    self.showAlertView(text: msg.msg, callback: nil)
                 }
             }
         }
@@ -251,8 +248,7 @@ class UpSettingsController: UIViewController {
                         self.cancelBtn.removeTarget(self, action: #selector(self.deleteAction), for: .touchUpInside)
                         self.loadOwners()
                     } else {
-                        self.showAlertView(text: msg.msg, callback: {
-                        })
+                        self.showAlertView(text: msg.msg)
                     }
                 }
             }
