@@ -35,7 +35,7 @@ extension VideoServerAPI: TargetType {
         case .confirmToSave:
             return "/video/confirm-to-save"//?hash=\(hash)&circle=\(circle)
         case .getSympathy(hash: _):
-            return "/video/sympathyget"
+            return "/video/sympathyput"
         case .getNewLikes(hash: _):
             return "/video/hearts"
         case .putLike(action: _, coordX: _, coordY: _, hash: _):

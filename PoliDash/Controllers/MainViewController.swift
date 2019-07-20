@@ -378,7 +378,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
             self.showPhotoActionAlert()
         }
     }
-    
+
     func showPhotoActionAlert() {
         let alert = UIAlertController(
             title: "PoliDash",

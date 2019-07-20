@@ -13,7 +13,7 @@ class WalletStatusResponseModel: Mappable {
     var code: Int?
     var status: Int?
     var address: String?
-    var orderId: Int?
+    var orderId: Int = 0
     //    var error : String?
     init() {
 
