@@ -143,8 +143,8 @@ class VideoAPI {
     }
 
     // MARK: - Получить координаты лайков
-    static func requestGetSympathy(delegate: AppDelegate, hash: String, callback: @escaping (SympathyModel) -> Void) {
-        delegate.providerVideo.rx.request(.getSympathy(hash: hash)).asObservable().subscribe(onNext: {  (responce) in
+    static func requestGetLikes(delegate: AppDelegate, hash: String, callback: @escaping (SympathyModel) -> Void) {
+        delegate.providerVideo.rx.request(.getLikes(hash: hash)).asObservable().subscribe(onNext: {  (responce) in
             if responce.statusCode >= 200 && responce.statusCode < 300 {
                 let dataResoponse = responce.data
                 if let strData = String(data: dataResoponse, encoding: String.Encoding.utf8) {

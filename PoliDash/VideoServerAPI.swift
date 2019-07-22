@@ -14,11 +14,12 @@ enum VideoServerAPI {
     case downloadVideo(upvideo: Data?, upimage: Data)
     case historyVideo(email: String)
     case confirmToSave(hash: String, circle: String)
-    case getSympathy(hash: String)
+    case getLikes(hash: String)
     case getNewLikes(hash: String)
     case putLike(action: String, coordX: String, coordY: String, hash: String)
     case deleteVideo(hash: String)
     case hearts(hash: String)
+    case circleLike(circle: VideoCircleModel)
 }
 
 extension VideoServerAPI: TargetType {
@@ -34,8 +35,8 @@ extension VideoServerAPI: TargetType {
             return "/video/history"
         case .confirmToSave:
             return "/video/confirm-to-save"//?hash=\(hash)&circle=\(circle)
-        case .getSympathy(hash: _):
-            return "/video/sympathyput"
+        case .getLikes(hash: _):
+            return "/video/getLikes"
         case .getNewLikes(hash: _):
             return "/video/hearts"
         case .putLike(action: _, coordX: _, coordY: _, hash: _):
@@ -44,6 +45,8 @@ extension VideoServerAPI: TargetType {
             return "/video/confirm-to-delete"
         case .hearts(hash: _):
             return "/video/hearts"
+        case .circleLike(circle: _):
+            return "/video/circleLike"
         }
     }
 
@@ -55,7 +58,7 @@ extension VideoServerAPI: TargetType {
             return .get
         case .confirmToSave(hash: _, circle: _):
             return .put
-        case .getSympathy(hash: _):
+        case .getLikes(hash: _):
             return .get
         case .getNewLikes(hash: _):
             return .get
@@ -65,6 +68,8 @@ extension VideoServerAPI: TargetType {
             return .delete
         case .hearts(hash: _):
             return .get
+        case .circleLike(let circle):
+            return .post
         }
     }
 
@@ -86,7 +91,7 @@ extension VideoServerAPI: TargetType {
             return .requestParameters(parameters: ["email": email], encoding: URLEncoding.default)
         case .confirmToSave(let hash, let circle):
             return .requestParameters(parameters: ["hash": hash, "circle": circle], encoding: URLEncoding.queryString)
-        case .getSympathy(let hash):
+        case .getLikes(let hash):
             return .requestParameters(parameters: ["hash": hash], encoding: URLEncoding.default)
         case .getNewLikes(let hash):
             return .requestParameters(parameters: ["hash": hash], encoding: URLEncoding.default)
@@ -96,6 +101,8 @@ extension VideoServerAPI: TargetType {
             return .requestParameters(parameters: ["hash": hash], encoding: URLEncoding.default)
         case .hearts(let hash):
             return .requestParameters(parameters: ["hash": hash], encoding: URLEncoding.queryString)
+        case .circleLike(let circle):
+            return .requestParameters(parameters: ["circle": circle], encoding: JSONEncoding.default)
         }
     }
 

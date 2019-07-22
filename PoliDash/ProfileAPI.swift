@@ -89,8 +89,14 @@ class ProfileAPI {
     }
 
     // MARK: - Получить информацию профиля
-    static func requestProfileInfo(delegate: AppDelegate, email: String, callback: @escaping(UserInfoModel) -> Void) {
-        delegate.providerProfile.rx.request(.profileInfo(email: email)).mapObject(UserInfoModel.self).asObservable().subscribe(onNext: { (responce) in
+    static func requestProfileInfo(delegate: AppDelegate,
+                                   email: String,
+                                   callback: @escaping(UserInfoModel) -> Void) {
+        delegate.providerProfile.rx.request(
+            .profileInfo(email: email))
+            .mapObject(UserInfoModel.self)
+            .asObservable()
+            .subscribe(onNext: { (responce) in
             if responce.code != nil {
                 callback(responce)
                 return
@@ -120,7 +126,9 @@ class ProfileAPI {
 
     // MARK: - Запросить выход из аккаунта
     static func requestLogout(delegate: AppDelegate, callback: @escaping (MessageModel) -> Void) {
-        delegate.providerProfile.rx.request(.profileLogout).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
+        delegate.providerProfile.rx.request(.profileLogout).mapObject(MessageModel.self)
+            .asObservable()
+            .subscribe(onNext: { (responce) in
             if responce.code != nil {
                 callback(responce)
                 return
@@ -150,7 +158,11 @@ class ProfileAPI {
 
     // MARK: - Установить фото профиля
     static func requestSetImageProfile(delegate: AppDelegate, data: Data, callback: @escaping (MessageModel) -> Void) {
-        delegate.providerProfile.rx.request(.profilePhoto(photo: data)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
+        delegate.providerProfile.rx.request(
+            .profilePhoto(photo: data))
+            .mapObject(MessageModel.self)
+            .asObservable()
+            .subscribe(onNext: { (responce) in
             if responce.code != nil {
                 callback(responce)
                 return
@@ -180,7 +192,11 @@ class ProfileAPI {
 
     // MARK: - Получить Url фото профиля
     static func requestGetUrlPhotoProfile(delegate: AppDelegate, email: String, callback: @escaping(MessageModel) -> Void) {
-        delegate.providerProfile.rx.request(.profileGetUrlPhoto(email: email)).mapObject(MessageModel.self).asObservable().subscribe(onNext: { (responce) in
+        delegate.providerProfile.rx.request(
+            .profileGetUrlPhoto(email: email))
+            .mapObject(MessageModel.self)
+            .asObservable()
+            .subscribe(onNext: { (responce) in
             if responce.code != nil {
                 callback(responce)
                 return
@@ -638,8 +654,13 @@ class ProfileAPI {
     }
 
     // MARK: - Получить пользователей в кружках
-    static func requestCircles(delegate: AppDelegate, email: String, callback: @escaping (String?, Int, [OwnersModel]) -> Void) {
-        delegate.providerProfile.rx.request(.profileCircles(email: email)).asObservable().subscribe(onNext: { (responce) in
+    static func requestCircles(delegate: AppDelegate,
+                               email: String,
+                               callback: @escaping (String?, Int, [OwnersModel]) -> Void) {
+        delegate.providerProfile.rx.request(
+            .profileCircles(email: email))
+            .asObservable()
+            .subscribe(onNext: { (responce) in
             if responce.statusCode >= 200 && responce.statusCode < 300 {
                 let dataResoponse = responce.data
                 if let strData = String(data: dataResoponse, encoding: String.Encoding.utf8) {
@@ -821,10 +842,11 @@ class ProfileAPI {
     }
 
     static func requestBindingWallet(delegate: AppDelegate,
-                                     address: String,
+                                     address: String, already: Bool,
                                      callback: @escaping(MessageModel) -> Void) {
         delegate.providerProfile.rx.request(
-            .requestBindingWallet(address: address))
+            .requestBindingWallet(address: address,
+                                  already: already))
             .mapObject(MessageModel.self)
             .asObservable()
             .subscribe(onNext: { (responce) in

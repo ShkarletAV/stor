@@ -296,7 +296,7 @@ class PlayerNewLikesViewController: UIViewController {
             let wasSee = UserDefaults.standard.bool(forKey: key)
             if wasSee == true {
                 //            запрос на сервер для получения списка лайков
-                VideoAPI.requestGetSympathy(delegate: delegate, hash: hashVideo) { [weak self] (sympaty) in
+                VideoAPI.requestGetLikes(delegate: delegate, hash: hashVideo) { [weak self] (sympaty) in
                     if let countLike = sympaty.count {
                         if let ss = self {
                             ss.countLikeLabel.text = String(countLike)

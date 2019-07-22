@@ -296,7 +296,7 @@ class PlayerStorysViewController: UIViewController {
     private func getSympathy() {
         if let hashVideo = getHashVideo() {
 //            запрос на сервер для получения списка лайков
-            VideoAPI.requestGetSympathy(delegate: delegate, hash: hashVideo) { [weak self] (sympaty) in
+            VideoAPI.requestGetLikes(delegate: delegate, hash: hashVideo) { [weak self] (sympaty) in
                 if let countLike = sympaty.count {
                     if let ss = self {
                         ss.countLikeLabel.text = String(countLike)
@@ -564,7 +564,7 @@ class PlayerStorysViewController: UIViewController {
                             self?.showAlertView(text: message.msg)
 
 //                            при успешной отправки запрашиваем заново все лайки с сервера
-                            VideoAPI.requestGetSympathy(delegate: (self?.delegate)!, hash: hashImage, callback: { [weak self] (sympathy) in
+                            VideoAPI.requestGetLikes(delegate: (self?.delegate)!, hash: hashImage, callback: { [weak self] (sympathy) in
                                 self?.sympathyData = sympathy
                                 if let countLike = sympathy.count {
                                     self?.countLikeLabel.text = String(countLike)

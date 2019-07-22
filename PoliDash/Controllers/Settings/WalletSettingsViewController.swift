@@ -16,6 +16,8 @@ class WalletSettingsViewController: UIViewController {
     let companyEMail = "unitedStories@gmail.com"
     let companyWallet = "0xeEC45871c22C63dED0E723A71f2b408e6A9A9709"
     
+    var isAlreadyBinding: Bool = false
+    
     enum WalletStatus {
         case none
         case waiting
@@ -105,7 +107,7 @@ class WalletSettingsViewController: UIViewController {
             self.requestBalance()
         } else {
             self.walletStatus = .waiting
-            self.companyInfoLabel.text = "код \(model.orderId)\n\(companyEMail)"
+            self.companyInfoLabel.text = "код \(model.orderId), наш адрес: \(companyEMail)"
         }
         self.addressTextField.text = model.address
     }
@@ -123,6 +125,7 @@ class WalletSettingsViewController: UIViewController {
             waitStatusView.isHidden = false
             companyWalletInfoView.isHidden = false
         case .bound:
+            isAlreadyBinding = true
             setTextFieldEditable(false)
             addWalletButton.setTitle("заменить",
                                      for: .normal)
@@ -130,6 +133,7 @@ class WalletSettingsViewController: UIViewController {
             addWalletButton.isHidden = false
             companyInfoLabel.text = ""
         case .none:
+            isAlreadyBinding = false
             setTextFieldEditable(true)
             addressTextField.text = ""
             cancelButton.isHidden = true
@@ -217,7 +221,7 @@ class WalletSettingsViewController: UIViewController {
         self.showWaitView(isWait: true)
         ProfileAPI.requestBindingWallet(
             delegate: delegate,
-            address: address) { [weak self] (response) in
+            address: address, already: isAlreadyBinding) { [weak self] (response) in
                 self?.showWaitView(isWait: false)
                 self?.showAlertView(text: response.msg)
                 switch response.code {

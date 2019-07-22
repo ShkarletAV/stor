@@ -38,7 +38,7 @@ enum ProfileServerAPI {
     //wallet requests
     case bindingWallet(email: String, address: String)
     case сancelBindingWallet(email: String, address: String)
-    case requestBindingWallet(address: String)
+    case requestBindingWallet(address: String, already: Bool)
 }
 
 extension ProfileServerAPI: TargetType {
@@ -98,7 +98,7 @@ extension ProfileServerAPI: TargetType {
             return "wallet/binding"
         case .сancelBindingWallet(email: _, address: _):
             return "wallet/cancel"
-        case .requestBindingWallet(address: _):
+        case .requestBindingWallet(address: _, already: _):
             return "wallet/request_binding"
         }
     }
@@ -165,11 +165,10 @@ extension ProfileServerAPI: TargetType {
 
     var task: Task {
         switch self {
-        case .profileSignUp(let nickname, let password, let regemail):
-//            return .requestParameters(parameters: ["nickname".uppercased() : nickname,
-//                                                   "password".uppercased(): password,
-//                                                   "regemail".uppercased(): regemail],
-//                                      encoding: JSONEncoding.default)
+            //у бэкенда возникли сложности с тем, чтобы передавать параметры в POST, поэтому они передатся именно для этого запроса через header
+        case .profileSignUp(nickname: _,
+                            password: _,
+                            regemail: _):
             return .requestPlain
         case .profileLogin(let email, let password):
             return .requestParameters(parameters: ["email": email, "password": password], encoding: URLEncoding.default)
@@ -229,8 +228,10 @@ extension ProfileServerAPI: TargetType {
             return .requestParameters(parameters: ["email": email,
                                                    "address": address],
                                       encoding: URLEncoding.queryString)
-        case .requestBindingWallet(let address):
-            return .requestParameters(parameters: ["address": address],
+        case .requestBindingWallet(let address, let already):
+            return .requestParameters(parameters: ["address": address,
+                                                   "already": already
+                                                   ],
                                       encoding: URLEncoding.queryString)
         }
     }

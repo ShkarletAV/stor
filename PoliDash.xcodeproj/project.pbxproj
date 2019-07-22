@@ -51,6 +51,7 @@
 		36EEFBCE2101F5A200E02872 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EEFBCD2101F5A200E02872 /* UserInfoModel.swift */; };
 		36EEFBD021020AD900E02872 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EEFBCF21020AD900E02872 /* CameraViewController.swift */; };
 		44850A9722E03AD900971302 /* WalletStatusResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44850A9622E03AD900971302 /* WalletStatusResponseModel.swift */; };
+		44B557A122E4619300ADF112 /* VideoCyrcleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B557A022E4619300ADF112 /* VideoCyrcleModel.swift */; };
 		44DDDBAD22DE7A3C009DF691 /* DowloadPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DDDBAC22DE7A3C009DF691 /* DowloadPreviewView.swift */; };
 		78010C33224EBB93000983D9 /* PlayerNewLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78010C32224EBB93000983D9 /* PlayerNewLikesViewController.swift */; };
 		784432B12248CD4B008357E7 /* LikesNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784432B02248CD4B008357E7 /* LikesNotification.swift */; };
@@ -117,6 +118,7 @@
 		36EEFBCD2101F5A200E02872 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		36EEFBCF21020AD900E02872 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		44850A9622E03AD900971302 /* WalletStatusResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletStatusResponseModel.swift; sourceTree = "<group>"; };
+		44B557A022E4619300ADF112 /* VideoCyrcleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCyrcleModel.swift; sourceTree = "<group>"; };
 		44DDDBAC22DE7A3C009DF691 /* DowloadPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DowloadPreviewView.swift; sourceTree = "<group>"; };
 		78010C32224EBB93000983D9 /* PlayerNewLikesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNewLikesViewController.swift; sourceTree = "<group>"; };
 		784432B02248CD4B008357E7 /* LikesNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesNotification.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				363296E421162307006F9717 /* SympathyModel.swift */,
 				784432B02248CD4B008357E7 /* LikesNotification.swift */,
 				44850A9622E03AD900971302 /* WalletStatusResponseModel.swift */,
+				44B557A022E4619300ADF112 /* VideoCyrcleModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				36ACB474210F34EA00F073D9 /* MainNavigationViewController.swift in Sources */,
 				36ACB46C210B486400F073D9 /* PlayerStorysViewController.swift in Sources */,
 				78010C33224EBB93000983D9 /* PlayerNewLikesViewController.swift in Sources */,
+				44B557A122E4619300ADF112 /* VideoCyrcleModel.swift in Sources */,
 				786EC67922281DED00454D37 /* TipsController.swift in Sources */,
 				44DDDBAD22DE7A3C009DF691 /* DowloadPreviewView.swift in Sources */,
 				36EEFBCC2101E84900E02872 /* MainViewController.swift in Sources */,
