@@ -9,16 +9,16 @@
 import ObjectMapper
 
 class VideoCircleModel: Mappable {
-    
+
     var circle: [VideoCircleItem]?
 
     init() {
-        
+
     }
-    
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         circle <- map["circle"]
     }
@@ -29,15 +29,15 @@ class VideoCircleItem: Mappable {
     var code: Int?
     //    var error : String?
     init() {
-        
+
     }
-    
+
     required init?(map: Map) {
     }
-    
+
     func mapping(map: Map) {
         msg <- map["msg"]
         code <- map["code"]
     }
-    
+
 }

@@ -15,9 +15,9 @@ class WalletSettingsViewController: UIViewController {
 
     let companyEMail = "unitedStories@gmail.com"
     let companyWallet = "0xeEC45871c22C63dED0E723A71f2b408e6A9A9709"
-    
+
     var isAlreadyBinding: Bool = false
-    
+
     enum WalletStatus {
         case none
         case waiting
@@ -33,7 +33,7 @@ class WalletSettingsViewController: UIViewController {
     }
 
     @IBOutlet weak var companyWalletInfoView: UIImageView! {
-        didSet{
+        didSet {
             let tapRecognizer = UIGestureRecognizer(
                 target: self,
                 action: #selector(copyCompanyAddress))
@@ -41,7 +41,7 @@ class WalletSettingsViewController: UIViewController {
             companyWalletInfoView.addGestureRecognizer(tapRecognizer)
         }
     }
-    
+
     @IBOutlet weak var addWalletButton: UIButton! {
         didSet {
             addWalletButton.layer.cornerRadius = addWalletButton.frame.height/2
