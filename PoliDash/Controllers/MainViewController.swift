@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import SDWebImage
 import KafkaRefresh
+import MYPassthrough
 
 enum ListType: Int {
     case owners
@@ -155,6 +156,57 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         settingsKeyboard()
         subscribe()
         dataSourceUser()
+        
+        showTutorialIfNeeeded()
+    }
+    
+    func showTutorialIfNeeeded() {
+        
+        
+        //верхняя панель
+        let holeViewDescriptor = HoleViewDescriptor(
+            view: headerPanel,
+            type: .rect(cornerRadius: headerPanel.layer.cornerRadius,
+                        margin: 0))
+        let labelDescriptor = LabelDescriptor(
+            for: "Ваша фото информация")
+        holeViewDescriptor.labelDescriptor = labelDescriptor
+        
+    
+        var views: [HoleViewDescriptor] = [holeViewDescriptor]
+//        if let cell = tableView.dequeueReusableCell(
+//            withIdentifier: "cell3",
+//            for: IndexPath(row: 2, section: 0)) as? MainViewHorizontalCollectionCell {
+//            cell.isSaveVideo = self.isSaveVideo
+//
+//            let userStoriesViewDescriptor = HoleViewDescriptor(
+//                view: cell,
+//                type: .rect(cornerRadius: 0.0,
+//                            margin: 0))
+//
+//            let userStoriesDescriptor = LabelDescriptor(
+//                for: "Вашs истории")
+//            userStoriesViewDescriptor.labelDescriptor = labelDescriptor
+//
+//            views.append(userStoriesViewDescriptor)
+//        }
+        
+//        let cameraViewDescriptor = HoleViewDescriptor(
+//            view: cell,
+//            type: .rect(cornerRadius: 0.0,
+//                        margin: 0))
+//
+//        let userStoriesDescriptor = LabelDescriptor(
+//            for: "Вашs истории")
+//        cameraViewDescriptor.labelDescriptor = labelDescriptor
+//
+//        views.append(cameraViewDescriptor)
+
+        
+        let task = PassthroughTask(with: views)
+
+        PassthroughManager.shared.closeButton.setTitle("Пропустить", for: .normal)
+        PassthroughManager.shared.display(tasks: [task])
     }
 
     func setupPullToRefresh() {
