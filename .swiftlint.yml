@@ -28,7 +28,7 @@ type_body_length:
 # or they can set both explicitly
 file_length:
   warning: 500
-  error: 1200
+  error: 1400
 # naming rules can set warnings/errors for min_length and max_length
 # additionally they can set excluded names
 type_name:

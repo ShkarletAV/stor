@@ -748,11 +748,11 @@ class PlayerNewLikesViewController: UIViewController {
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleNavigation(rec:)))
         self.overlayView.addGestureRecognizer(tapRecognizer!)
 
-        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(rec:)))
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(recognizer:)))
         swipeRecognizer?.direction = .up
         self.overlayView.addGestureRecognizer(swipeRecognizer!)
 
-        closeSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(rec:)))
+        closeSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(recognizer:)))
         closeSwipeRecognizer?.direction = .down
         self.overlayView.addGestureRecognizer(closeSwipeRecognizer!)
 

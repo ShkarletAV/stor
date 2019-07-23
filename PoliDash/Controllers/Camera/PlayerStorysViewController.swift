@@ -293,7 +293,7 @@ class PlayerStorysViewController: UIViewController {
     }
 
     // MARK: - Получаем список лайков
-    private func getSympathy() {
+    private func getLikes() {
         if let hashVideo = getHashVideo() {
 //            запрос на сервер для получения списка лайков
             VideoAPI.requestGetLikes(delegate: delegate, hash: hashVideo) { [weak self] (sympaty) in
@@ -316,18 +316,17 @@ class PlayerStorysViewController: UIViewController {
 //    Отправляем координаты поставленного лайка
     private func putSympathyVideo() {
         if let hashVideo = getHashVideo() {
-            VideoAPI.requestPutSympathy(delegate: delegate, hash: hashVideo, action: .like, cx: "0", cy: "0") { [weak self] (messageModel) in
+            VideoAPI.requestPutSympathy(delegate: delegate,
+                                        hash: hashVideo, action: .like,
+                                        cx: "0",
+                                        cy: "0") { [weak self] (messageModel) in
                 if let code = messageModel.code, code >= 200, code < 300, let msg = messageModel.msg {
-                    if let ss = self {
-                        ss.showAlertView(text: msg, callback: {})
-                        ss.getSympathy()
-                    }
-                } else {
-                    if let code = messageModel.code, code < 200 || code >= 300, let msg = messageModel.msg {
-                        if let ss = self {
-                            ss.showAlertView(text: msg, callback: {})
-                        }
-                    }
+                    self?.showAlertView(text: msg, callback: {})
+                    self?.getLikes()
+                } else if let code = messageModel.code, code < 200 || code >= 300,
+                    let message = messageModel.msg {
+                    
+                    self?.showAlertView(text: message)
                 }
             }
         }
@@ -363,7 +362,7 @@ class PlayerStorysViewController: UIViewController {
 //                если воспроизводимый контент является видео
                 if let urlVideo = sVideo[numberPlayVideo].video, urlVideo != "", let duration = sVideo[numberPlayVideo].duration {
                     //получаем координаты лайков для теущего воспроизведения
-                    getSympathy()
+                    getLikes()
                     DispatchQueue.main.async {
 //                        показываем контейнер с видео проигрывателем
                         self.containerView.isHidden = false
@@ -379,7 +378,7 @@ class PlayerStorysViewController: UIViewController {
                 } else {
 //                    если воспроизводимый контент является фото
                      //получаем координаты лайков для теущего воспроизведения
-                    getSympathy()
+                    getLikes()
                     DispatchQueue.main.async {
 //                      скрываем контейнер с видео проигрывателем
                         self.containerView.isHidden = true
@@ -615,19 +614,17 @@ class PlayerStorysViewController: UIViewController {
         }
     }
 
-    @objc func swipe (rec: UISwipeGestureRecognizer) {
-        if rec.direction == .down {
+    @objc func swipe (recognizer: UISwipeGestureRecognizer) {
+        if recognizer.direction == .down {
 //            закрываем активность
             closeViewContoller(isSaveVideo: false, hashVideo: "")
-        } else {
-//            если вверх и текущим воспроизведением является видео то отправляем свой лайк на сервер
-            if rec.direction == .up {
-                //отправляем лайк на сервер
-                if isPlayVideo {
-                    putSympathyVideo()
-                } else {
-                    Toast(text: "Не видео").show()
-                }
+        } else if recognizer.direction == .up {
+// если вверх и текущим воспроизведением является видео то отправляем свой лайк на сервер
+//отправляем лайк на сервер
+            if isPlayVideo {
+                putSympathyVideo()
+            } else {
+                Toast(text: "Не видео").show()
             }
         }
     }
@@ -782,11 +779,11 @@ class PlayerStorysViewController: UIViewController {
         )
         self.overlayView.addGestureRecognizer(tapRecognizer!)
 
-        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(rec:)))
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(recognizer:)))
         swipeRecognizer?.direction = .up
         self.overlayView.addGestureRecognizer(swipeRecognizer!)
 
-        closeSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(rec:)))
+        closeSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(recognizer:)))
         closeSwipeRecognizer?.direction = .down
         self.overlayView.addGestureRecognizer(closeSwipeRecognizer!)
 

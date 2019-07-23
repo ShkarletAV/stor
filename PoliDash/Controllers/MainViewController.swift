@@ -161,36 +161,36 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     func showTutorialIfNeeeded() {
-        
+
+        if AllUserDefaults.mainTutorialWasShow { return }
         
         //верхняя панель
-        let holeViewDescriptor = HoleViewDescriptor(
+        let headerPanelDescriptor = HoleViewDescriptor(
             view: headerPanel,
             type: .rect(cornerRadius: headerPanel.layer.cornerRadius,
                         margin: 0))
         let labelDescriptor = LabelDescriptor(
             for: "Ваша фото информация")
-        holeViewDescriptor.labelDescriptor = labelDescriptor
-        
-    
-        var views: [HoleViewDescriptor] = [holeViewDescriptor]
-//        if let cell = tableView.dequeueReusableCell(
-//            withIdentifier: "cell3",
-//            for: IndexPath(row: 2, section: 0)) as? MainViewHorizontalCollectionCell {
-//            cell.isSaveVideo = self.isSaveVideo
-//
-//            let userStoriesViewDescriptor = HoleViewDescriptor(
-//                view: cell,
-//                type: .rect(cornerRadius: 0.0,
-//                            margin: 0))
-//
-//            let userStoriesDescriptor = LabelDescriptor(
-//                for: "Вашs истории")
-//            userStoriesViewDescriptor.labelDescriptor = labelDescriptor
-//
-//            views.append(userStoriesViewDescriptor)
-//        }
-        
+        headerPanelDescriptor.labelDescriptor = labelDescriptor
+
+        var views: [HoleViewDescriptor] = []
+        if let cell = tableView.dequeueReusableCell(
+            withIdentifier: "cell3",
+            for: IndexPath(row: 2, section: 0)) as? MainViewHorizontalCollectionCell {
+            cell.isSaveVideo = self.isSaveVideo
+
+            let userStoriesViewDescriptor = HoleViewDescriptor(
+                view: cell,
+                type: .rect(cornerRadius: 0.0,
+                            margin: 20))
+
+            let userStoriesDescriptor = LabelDescriptor(
+                for: "Ваши истории")
+            userStoriesViewDescriptor.labelDescriptor = userStoriesDescriptor
+
+            views.append(userStoriesViewDescriptor)
+        }
+
 //        let cameraViewDescriptor = HoleViewDescriptor(
 //            view: cell,
 //            type: .rect(cornerRadius: 0.0,
@@ -202,11 +202,13 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
 //
 //        views.append(cameraViewDescriptor)
 
-        
-        let task = PassthroughTask(with: views)
+        let task = PassthroughTask(with: [headerPanelDescriptor])
+        let task2 = PassthroughTask(with: views)
 
         PassthroughManager.shared.closeButton.setTitle("Пропустить", for: .normal)
-        PassthroughManager.shared.display(tasks: [task])
+        PassthroughManager.shared.display(tasks: [task, task2])
+        
+        AllUserDefaults.mainTutorialWasShow = true
     }
 
     func setupPullToRefresh() {

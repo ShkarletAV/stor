@@ -269,6 +269,30 @@ class VideoAPI {
         delegate.providerVideo.rx.request(.hearts(hash: hash)).asObservable().subscribe(onNext: { (_) in
 
         }, onError: { (error) in
+            let message = MessageModel()
+            message.code = 400
+            if let e = error as? MoyaError {
+                message.msg = e.localizedDescription
+            } else {
+                message.msg = error.localizedDescription
+            }
+            callback(message)
+            return
+        }, onCompleted: {
+            print("onCompleted requestLikesVideo")
+        }) {
+            print("onDisposed requestLikesVideo")
+        }.disposed(by: delegate.disposeBag)
+    }
+
+    //установить лайки
+    
+    static func setForbiddenLikeArea(delegate: AppDelegate,
+                                     circle: VideoCircleModel,
+                                     callback: @escaping (MessageModel) -> Void) {
+        delegate.providerVideo.rx.request(.circleLike(circle: circle)).asObservable().subscribe(onNext: { (_) in
+            print("correct!")
+        }, onError: { (error) in
             let msg = MessageModel()
             msg.code = 400
             if let e = error as? MoyaError {
@@ -279,11 +303,10 @@ class VideoAPI {
             callback(msg)
             return
         }, onCompleted: {
-            print("onCompleted requestDeleteVideo")
+            print("onCompleted setForbiddenLikeArea")
         }) {
-            print("onDisposed requestDeleteVideo")
+            print("onDisposed setForbiddenLikeArea")
             }.disposed(by: delegate.disposeBag)
     }
 
-    //получить скрытые лайки
 }

@@ -31,10 +31,11 @@ enum StoryboardName: String {
     case videoPlayerStoryboard = "VideoPlayer"
 }
 
-enum KeysUD: String {
-    case keyLogin = "KEY_Login"
-    case keyPass = "KEY_Pass"
-    case keyOpened = "KEY_Opened"
+enum UserDefaultKeys: String {
+    case login = "KEY_Login"
+    case password = "KEY_Pass"
+    case opened = "KEY_Opened"
+    case showMainTutorial = "showMainTutorial"
 }
 
 enum CellID: String {

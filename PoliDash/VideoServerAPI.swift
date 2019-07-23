@@ -68,7 +68,7 @@ extension VideoServerAPI: TargetType {
             return .delete
         case .hearts(hash: _):
             return .get
-        case .circleLike(let circle):
+        case .circleLike(circle: _):
             return .post
         }
     }

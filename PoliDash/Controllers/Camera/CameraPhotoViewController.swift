@@ -30,7 +30,7 @@ class CameraPhotoViewController: UIViewController {
         photoImage.image = img //отображение полученной ранее фотографии
 
 //        возвращаемся назад при свайпе вправо
-        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(rec:)))
+        swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipe(recognizer:)))
         swipeRecognizer?.direction = .right
         self.view.addGestureRecognizer(swipeRecognizer!)
     }

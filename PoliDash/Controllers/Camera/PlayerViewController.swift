@@ -54,12 +54,12 @@ class PlayerViewController: UIViewController {
         subscribe()
 
 //        возвращаемся назад при свайпе вправо
-        swipeRecognizerRight = UISwipeGestureRecognizer(target: self, action: #selector(swipe(rec:)))
+        swipeRecognizerRight = UISwipeGestureRecognizer(target: self, action: #selector(swipe(recognizer:)))
         swipeRecognizerRight?.direction = .right
         self.view.addGestureRecognizer(swipeRecognizerRight!)
 
    //        возвращаемся назад при свайпе вниз
-        swipeRecognizerDown = UISwipeGestureRecognizer(target: self, action: #selector(swipe(rec:)))
+        swipeRecognizerDown = UISwipeGestureRecognizer(target: self, action: #selector(swipe(recognizer:)))
         swipeRecognizerDown?.direction = .down
         self.view.addGestureRecognizer(swipeRecognizerDown!)
     }
