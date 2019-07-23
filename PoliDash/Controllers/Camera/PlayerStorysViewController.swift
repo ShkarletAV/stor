@@ -325,7 +325,7 @@ class PlayerStorysViewController: UIViewController {
                     self?.getLikes()
                 } else if let code = messageModel.code, code < 200 || code >= 300,
                     let message = messageModel.msg {
-                    
+
                     self?.showAlertView(text: message)
                 }
             }

@@ -156,14 +156,14 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         settingsKeyboard()
         subscribe()
         dataSourceUser()
-        
+
         showTutorialIfNeeeded()
     }
-    
+
     func showTutorialIfNeeeded() {
 
         if AllUserDefaults.mainTutorialWasShow { return }
-        
+
         //верхняя панель
         let headerPanelDescriptor = HoleViewDescriptor(
             view: headerPanel,
@@ -207,7 +207,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
 
         PassthroughManager.shared.closeButton.setTitle("Пропустить", for: .normal)
         PassthroughManager.shared.display(tasks: [task, task2])
-        
+
         AllUserDefaults.mainTutorialWasShow = true
     }
 

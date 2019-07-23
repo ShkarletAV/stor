@@ -557,13 +557,13 @@ class PlayerNewLikesViewController: UIViewController {
         }
     }
 
-    @objc func swipe (rec: UISwipeGestureRecognizer) {
-        if rec.direction == .down {
+    @objc func swipe (recognizer: UISwipeGestureRecognizer) {
+        if recognizer.direction == .down {
 //            закрываем активность
             closeViewContoller(isSaveVideo: false, hashVideo: "")
         } else {
 //            если вверх и текущим воспроизведением является видео то отправляем свой лайк на сервер
-            if rec.direction == .up {
+            if recognizer.direction == .up {
                 //отправляем лайк на сервер
                 if isPlayVideo {
                 } else {

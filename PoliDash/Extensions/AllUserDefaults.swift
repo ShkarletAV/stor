@@ -17,7 +17,7 @@ class AllUserDefaults {
             return nil
         }
     }
-    
+
     static var mainTutorialWasShow: Bool {
         get {
             return UserDefaults.standard.bool(forKey: UserDefaultKeys.showMainTutorial.rawValue)

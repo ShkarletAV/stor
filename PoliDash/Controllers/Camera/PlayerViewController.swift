@@ -198,8 +198,8 @@ class PlayerViewController: UIViewController {
     }
 
     // MARK: - back if swipe right
-    @objc func swipe (rec: UISwipeGestureRecognizer) {
-        if rec.direction == .right || rec.direction == .down {
+    @objc func swipe (recognizer: UISwipeGestureRecognizer) {
+        if recognizer.direction == .right || recognizer.direction == .down {
             UIView.transition(with: (self.navigationController?.view)!, duration: 0.75, options: .transitionCrossDissolve, animations: {
                 self.navigationController?.popViewController(animated: true)
             })

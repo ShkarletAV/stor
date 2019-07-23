@@ -286,7 +286,7 @@ class VideoAPI {
     }
 
     //установить лайки
-    
+
     static func setForbiddenLikeArea(delegate: AppDelegate,
                                      circle: VideoCircleModel,
                                      callback: @escaping (MessageModel) -> Void) {
