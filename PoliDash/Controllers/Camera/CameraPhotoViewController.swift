@@ -58,8 +58,8 @@ class CameraPhotoViewController: UIViewController {
     }
 
     // MARK: - back if swipe right
-    @objc func swipe (rec: UISwipeGestureRecognizer) {
-        if rec.direction == .right {
+    @objc func swipe (recognizer: UISwipeGestureRecognizer) {
+        if recognizer.direction == .right {
             UIView.transition(with: (self.navigationController?.view)!, duration: 0.75, options: .curveEaseInOut, animations: {
                 self.navigationController?.popViewController(animated: true)
             })
