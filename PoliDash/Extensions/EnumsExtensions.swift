@@ -36,6 +36,7 @@ enum UserDefaultKeys: String {
     case password = "KEY_Pass"
     case opened = "KEY_Opened"
     case showMainTutorial = "showMainTutorial"
+    case userBalance = "userBalance"
 }
 
 enum CellID: String {

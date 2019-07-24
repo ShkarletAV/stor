@@ -104,7 +104,11 @@ class WalletSettingsViewController: UIViewController {
     func setWalletStatus(model: WalletStatusResponseModel) {
         if model.status == 1 {
             self.walletStatus = .bound
-            self.requestBalance()
+            if let balance = AllUserDefaults.userBalance, balance == 0 {
+                self.requestBalance()
+            } else if let balance = AllUserDefaults.userBalance {
+                setBalance(amount: balance)
+            }
         } else {
             self.walletStatus = .waiting
             self.companyInfoLabel.text = "код \(model.orderId), наш адрес: \(companyEMail)"
@@ -169,10 +173,14 @@ class WalletSettingsViewController: UIViewController {
     func requestBalance() {
         guard let delegate = delegate else { return }
 
-        ProfileAPI.requestBalance(delegate: delegate) { (response) in
-            self.balanceLabel.text = "Баланс \(response.balance) upishek"
-            self.balanceView.isHidden = false
+        ProfileAPI.requestBalance(delegate: delegate) { [weak self] (response) in
+            self?.setBalance(amount: response.balance)
         }
+    }
+    
+    func setBalance(amount: Int) {
+        self.balanceLabel.text = "Баланс \(amount) upishek"
+        self.balanceView.isHidden = false
     }
 
     @IBAction func cancelBindingWallet(_ sender: UIButton) {
@@ -188,6 +196,7 @@ class WalletSettingsViewController: UIViewController {
                 switch response.code {
                 case 200:
                     self?.walletStatus = .none
+                    AllUserDefaults.userBalance = 0
                 default: break
                 }
         }

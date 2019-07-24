@@ -26,6 +26,16 @@ class AllUserDefaults {
             UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.showMainTutorial.rawValue)
         }
     }
+    
+    static var userBalance: Int? {
+        get {
+            return UserDefaults.standard.integer(forKey: UserDefaultKeys.showMainTutorial.rawValue)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.showMainTutorial.rawValue)
+        }
+    }
+
 
     static func getPasswordUD() -> String? {
         if let val = UserDefaults.standard.value(forKey: UserDefaultKeys.password.rawValue) as? String {

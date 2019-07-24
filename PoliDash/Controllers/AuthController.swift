@@ -130,6 +130,12 @@ class AuthController: UIViewController {
             }
         })
     }
+    
+    func requestBalance() {        
+        ProfileAPI.requestBalance(delegate: delegate) { (response) in
+            AllUserDefaults.userBalance = response.balance
+        }
+    }
 
     // MARK: - Actions
 
@@ -221,6 +227,7 @@ extension AuthController {
                         AllUserDefaults.savePasswordInUD(password: pass)
                     }
                     self?.requiredRequests()
+                    self?.requestBalance()
                 } else {
                     //обработка ошибок
                     if msg.code != nil || msg.msg != nil {

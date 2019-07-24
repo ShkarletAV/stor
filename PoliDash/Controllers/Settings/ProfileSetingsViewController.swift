@@ -36,9 +36,8 @@ class ProfileSetingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        ProfileAPI.requestBalance(delegate: delegate) { (response) in
-            self.userBalance = response.balance
+        if let balance = AllUserDefaults.userBalance {
+            self.userBalance = balance
             self.balanceBtn.setTitle("Баланс \(self.userBalance) ups инфо", for: .normal)
             let circles = self.userBalance/40 > 5 ? 5 : self.userBalance/40
             self.upSettingsButton.setTitle("Настройки UP \(circles)", for: .normal)
