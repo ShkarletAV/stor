@@ -59,9 +59,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
 
     func failed() {
-        let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        let alertController = UIAlertController(
+            title: "Не удалось завершить сканирование",
+            message: "Не удалось получить доступ с камере и сканированию на устройстве. Возможно, устройство не поддерживате камеру",
+            preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
         captureSession = nil
     }
 
@@ -81,7 +84,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
 
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    func metadataOutput(_ output: AVCaptureMetadataOutput,
+                        didOutput metadataObjects: [AVMetadataObject],
+                        from connection: AVCaptureConnection) {
         captureSession.stopRunning()
 
         if let metadataObject = metadataObjects.first {
@@ -90,13 +95,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             found(code: stringValue)
         }
-
-        dismiss(animated: true)
     }
 
     func found(code: String) {
-        completion?(code)
         navigationController?.popViewController(animated: true)
+        completion?(code)
     }
 
     override var prefersStatusBarHidden: Bool {
