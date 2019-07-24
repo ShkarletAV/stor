@@ -91,9 +91,9 @@ extension ProfileServerAPI: TargetType {
         case .profileCircles(email: _):
             return "profile/circles/get"
         case .profilePutCircle(email: _):
-            return "/profile/circles"
+            return "/profile/circles/add"
         case .profileDeleteCircle(ownerEmail: _, displayedEmail: _):
-            return "/circles/delete"
+            return "profile/circles/delete"
         case .bindingWallet(email: _, address: _):
             return "wallet/binding"
         case .сancelBindingWallet(email: _, address: _):
