@@ -2,7 +2,7 @@
 //  ScannerViewController.swift
 //  PoliDash
 //
-//  Created by olya on 11/07/2019.
+//  Created by XXXX on 11/07/2019.
 //  Copyright © 2019 Sergey Nazarov. All rights reserved.
 //
 

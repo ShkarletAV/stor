@@ -2,7 +2,7 @@
 //  VideoCyrcleModel.swift
 //  PoliDash
 //
-//  Created by olya on 21/07/2019.
+//  Created by XXXX on 21/07/2019.
 //  Copyright © 2019 Sergey Nazarov. All rights reserved.
 //
 

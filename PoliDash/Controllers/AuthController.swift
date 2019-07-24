@@ -142,10 +142,8 @@ class AuthController: UIViewController {
     @IBAction func loginAction(_ sender: UIButton) {
 
         #if DEBUG
-//        emailCodeTField.text = "lfc2515@gmail.com"
-//        passwordTField.text = "12345678"
-        emailCodeTField.text = "aravika08@mail.ru"
-        passwordTField.text = "qwerty123"
+        emailCodeTField.text = "lfc2515@mail.ru"
+        passwordTField.text = "12345678"
 
         #endif
         // проверяем корректность введенного мейла
