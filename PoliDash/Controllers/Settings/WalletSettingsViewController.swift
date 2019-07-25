@@ -151,8 +151,8 @@ class WalletSettingsViewController: UIViewController {
     }
 
     func setTextFieldEditable(_ state: Bool) {
-        addressTextField.isEnabled = state
-        qrButton.isEnabled = state
+        //addressTextField.isEnabled = state
+        //qrButton.isEnabled = state
         let imgName = state ? "qrcode": "accepted"
 
         self.qrButton.setImage(UIImage(named: imgName), for: .normal)
