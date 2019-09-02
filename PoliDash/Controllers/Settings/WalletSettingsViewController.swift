@@ -52,6 +52,7 @@ class WalletSettingsViewController: UIViewController {
     var walletStatus: WalletStatus = .none {
         didSet {
             self.updateViewInfo(with: walletStatus)
+            checkWalletStatus()
         }
     }
 
@@ -237,6 +238,7 @@ class WalletSettingsViewController: UIViewController {
                 case 400: break
                 case 200:
                     self?.walletStatus = .waiting
+                    
                 default: break
                 }
         }

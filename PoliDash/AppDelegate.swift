@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if !DEBUG
             Fabric.with([Crashlytics.self])
         #endif
+        
+        AllUserDefaults.userBalance = 0
 
         return true
     }

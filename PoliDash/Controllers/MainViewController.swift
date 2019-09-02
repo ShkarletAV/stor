@@ -637,7 +637,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         guard let data = UIImageJPEGRepresentation(image, 0.3) else { return }
         VideoAPI.downloadVideoWithProgress(delegate: self.delegate,
                                             video: video,
-                                            image: data,
+                                            image: data, upduration: String(10000),
                                             callback: {[weak self] callback in
             DispatchQueue.main.async {
                 if let ss = self {

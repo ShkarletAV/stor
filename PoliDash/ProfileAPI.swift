@@ -735,8 +735,8 @@ class ProfileAPI {
                                     callback:  @escaping(MessageModel) -> Void) {
         delegate.providerProfile.rx.request(
             .profileDeleteCircle(
-                ownerEmail: ownerEmail,
-                displayedEmail:displayiedEmail))
+                owner_email: ownerEmail,
+                displayed_email:displayiedEmail))
             .mapObject(MessageModel.self)
             .asObservable()
             .subscribe(onNext: { (responce) in

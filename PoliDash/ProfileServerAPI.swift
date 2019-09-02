@@ -33,7 +33,7 @@ enum ProfileServerAPI {
     case profileActuals
     case profileCircles(email: String)
     case profilePutCircle(email: String)
-    case profileDeleteCircle(ownerEmail: String, displayedEmail: String)
+    case profileDeleteCircle(owner_email: String, displayed_email: String)
 
     //wallet requests
     case bindingWallet(email: String, address: String)
@@ -43,23 +43,23 @@ enum ProfileServerAPI {
 
 extension ProfileServerAPI: TargetType {
     var baseURL: URL {
-        return URL(string: "http://212.92.98.212:8081")!
+        return URL(string: "http://82.202.212.125/api/v1")!
     }
 
     var path: String {
         switch self {
         case .profileSignUp(nickname: _, password: _, regemail: _):
-            return "/profile/"
+            return "/profile"
         case .profileLogin(email: _, password: _):
             return "/profile/login"
-        case .profileInfo(email: _):
-            return "/profile"
+        case .profileInfo(let email):
+            return "/profile/\(email)"
         case .profileLogout:
             return "/profile/logout"
         case .profilePhoto(photo: _):
-            return "/profile/imagechange"
-        case .profileGetUrlPhoto(email: _):
             return "/profile/image"
+        case .profileGetUrlPhoto(let email):
+            return "/profile/image/\(email)"
         case .profileChangeUserName(nickname: _, pwd: _):
             return "/profile"
         case  .profileChangePassword(pwd: _, newPwd: _):
@@ -89,17 +89,17 @@ extension ProfileServerAPI: TargetType {
         case .profileActuals:
             return "activity"
         case .profileCircles(email: _):
-            return "profile/circles/get"
+            return "/profile/circles"
         case .profilePutCircle(email: _):
-            return "/profile/circles/add"
-        case .profileDeleteCircle(ownerEmail: _, displayedEmail: _):
-            return "profile/circles/delete"
+            return "/profile/circles"
+        case .profileDeleteCircle(owner_email: _, displayed_email: _):
+            return "/profile/circles"
         case .bindingWallet(email: _, address: _):
-            return "wallet/binding"
+            return "wallet"
         case .сancelBindingWallet(email: _, address: _):
-            return "wallet/cancel"
+            return "wallet/unbind"
         case .requestBindingWallet(address: _, already: _):
-            return "wallet/request_binding"
+            return "wallet/bind"
         }
     }
     var method: Moya.Method {
@@ -148,14 +148,14 @@ extension ProfileServerAPI: TargetType {
             return .get
         case .profilePutCircle(email: _):
             return .put
-        case .profileDeleteCircle(ownerEmail: _, displayedEmail: _):
+        case .profileDeleteCircle(owner_email: _, displayed_email: _):
             return .delete
         case .bindingWallet(email: _, address: _):
             return .get
         case .сancelBindingWallet(email: _, address: _):
-            return .get
+            return .delete
         case .requestBindingWallet:
-            return .get
+            return .put
         }
     }
 
@@ -166,21 +166,19 @@ extension ProfileServerAPI: TargetType {
     var task: Task {
         switch self {
             //у бэкенда возникли сложности с тем, чтобы передавать параметры в POST, поэтому они передатся именно для этого запроса через header
-        case .profileSignUp(nickname: _,
-                            password: _,
-                            regemail: _):
-            return .requestPlain
+        case .profileSignUp(let nickname, let password, let regemail):
+            return .requestParameters(parameters: ["nickname" : nickname, "password": password,  "regemail": regemail], encoding: JSONEncoding.default)
         case .profileLogin(let email, let password):
             return .requestParameters(parameters: ["email": email, "password": password], encoding: URLEncoding.default)
-        case .profileInfo(let email):
-            return .requestParameters(parameters: ["email": email], encoding: URLEncoding.default)
+        case .profileInfo(email: _):
+            return .requestPlain
         case .profileLogout:
             return .requestPlain
         case .profilePhoto(let data):
             let multipart = MultipartFormData.init(provider: .data(data), name: "upimage", fileName: "image.jpg", mimeType: "image/jpeg")
             return .uploadCompositeMultipart([multipart], urlParameters: [:])
-        case .profileGetUrlPhoto(let email):
-            return .requestParameters(parameters: ["email": email], encoding: URLEncoding.default)
+        case .profileGetUrlPhoto(email: _):
+            return .requestPlain
         case .profileChangeUserName(let nickname, let pwd):
             return .requestParameters(parameters: ["nickname": nickname, "pwd": pwd], encoding: JSONEncoding.default)
         case .profileChangePassword(let pwd, let newPwd):
@@ -204,46 +202,32 @@ extension ProfileServerAPI: TargetType {
         case .profileBalance:
             return .requestPlain
         case .profileSetUnfollow(let email):
-            return .requestParameters(parameters: ["email": email],
-                                      encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["email" : email], encoding: URLEncoding.default)
         case .profileNotify:
             return .requestPlain
         case .profileActuals:
             return .requestPlain
         case .profileCircles(let email):
-            return .requestParameters(parameters: ["email": email],
-                                      encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["email": email], encoding: URLEncoding.default)
         case .profilePutCircle(let email):
-            return .requestParameters(parameters: ["email": email],
-                                      encoding: URLEncoding.queryString)
-        case .profileDeleteCircle(let ownerEmail, let displayedEmail):
-            return .requestParameters(parameters: ["owner_email": ownerEmail,
-                                                   "displayed_email": displayedEmail],
-                                      encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["email": email], encoding: URLEncoding.queryString)
+        case .profileDeleteCircle(let owner_email, let displayed_email):
+            return .requestParameters(parameters: ["owner_email": owner_email, "displayed_email": displayed_email], encoding: URLEncoding.queryString)
         case .bindingWallet(let email, let address):
             return .requestParameters(parameters: ["email": email,
                                                    "address": address],
                                       encoding: URLEncoding.queryString)
-        case .сancelBindingWallet(let email, let address):
-            return .requestParameters(parameters: ["email": email,
-                                                   "address": address],
-                                      encoding: URLEncoding.queryString)
-        case .requestBindingWallet(let address, let already):
-            return .requestParameters(parameters: ["address": address,
-                                                   "already": already
+        case .сancelBindingWallet(_,_):
+            return .requestPlain
+        case .requestBindingWallet(let address, _):
+            return .requestParameters(parameters: ["wallet_addr": address
                                                    ],
                                       encoding: URLEncoding.queryString)
         }
     }
 
     var headers: [String: String]? {
-        switch self {
-        case .profileSignUp(let nickname, let password, let regemail):
-            return ["nickname".uppercased(): nickname,
-                    "password".uppercased(): password,
-                    "regemail".uppercased(): regemail]
-        default: return nil
-        }
+        return nil
     }
 
 }

@@ -11,7 +11,7 @@ import Moya
 import Alamofire
 
 enum VideoServerAPI {
-    case downloadVideo(upvideo: Data?, upimage: Data)
+    case downloadVideo(upvideo: Data?, upimage: Data, upduration: String)
     case historyVideo(email: String)
     case confirmToSave(hash: String, circle: String)
     case getLikes(hash: String)
@@ -24,13 +24,13 @@ enum VideoServerAPI {
 
 extension VideoServerAPI: TargetType {
     var baseURL: URL {
-        return URL(string: "http://212.92.98.212:8081")!
+        return URL(string: "http://82.202.212.125/api/v1")!
     }
 
     var path: String {
         switch self {
-        case .downloadVideo(upvideo: _, upimage: _):
-            return "/video/videochange"
+        case .downloadVideo(upvideo: _, upimage: _, upduration: _): //upload
+            return "/video"
         case .historyVideo(email: _):
             return "/video/history"
         case .confirmToSave:
@@ -52,7 +52,7 @@ extension VideoServerAPI: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .downloadVideo(upvideo: _, upimage: _):
+        case .downloadVideo(upvideo: _, upimage: _, upduration: _):
             return .post
         case .historyVideo(email: _):
             return .get
@@ -79,13 +79,13 @@ extension VideoServerAPI: TargetType {
 
     var task: Task {
         switch self {
-        case .downloadVideo(let upvideo, let upimage):
+        case .downloadVideo(let upvideo, let upimage, let upduration):
             let multipartImagePrew = MultipartFormData.init(provider: .data(upimage), name: "upimage", fileName: "upimage.jpg", mimeType: "upimage/jpeg")
             if let video = upvideo {
                 let multipartVideo = MultipartFormData.init(provider: .data(video), name: "upvideo", fileName: "upvideo.mp4", mimeType: "upvideo/mp4")
-                 return .uploadCompositeMultipart([multipartVideo, multipartImagePrew], urlParameters: [:])
+                 return .uploadCompositeMultipart([multipartVideo, multipartImagePrew], urlParameters: ["upduration": upduration])
             } else {
-                 return .uploadCompositeMultipart([multipartImagePrew], urlParameters: [:])
+                 return .uploadCompositeMultipart([multipartImagePrew], urlParameters: ["upduration": upduration])
             }
         case .historyVideo(let email):
             return .requestParameters(parameters: ["email": email], encoding: URLEncoding.default)

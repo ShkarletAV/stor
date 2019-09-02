@@ -16,9 +16,9 @@ import Alamofire
 class VideoAPI {
     // MARK: - Загрузка видео истории
 
-    static func downloadVideoWithProgress(delegate: AppDelegate, video: Data?, image: Data, callback: @escaping (MessageVideoProgress) -> Void) {
+    static func downloadVideoWithProgress(delegate: AppDelegate, video: Data?, image: Data, upduration: String, callback: @escaping (MessageVideoProgress) -> Void) {
 
-        delegate.providerVideo.rx.requestWithProgress(.downloadVideo(upvideo: video, upimage: image)).asObservable().subscribe(onNext: { (responce) in
+        delegate.providerVideo.rx.requestWithProgress(.downloadVideo(upvideo: video, upimage: image, upduration: upduration)).asObservable().subscribe(onNext: { (responce) in
             if responce.progressObject != nil {
                 let msg = MessageVideoProgress()
                 msg.progress = responce.progressObject
@@ -47,9 +47,9 @@ class VideoAPI {
             }.disposed(by: delegate.disposeBag)
     }
 
-    static func downloadVideo(delegate: AppDelegate, video: Data?, image: Data, callback: @escaping (MessageVideoModel) -> Void) {
+    static func downloadVideo(delegate: AppDelegate, video: Data?, image: Data, upduration: String, callback: @escaping (MessageVideoModel) -> Void) {
 
-        delegate.providerVideo.rx.request(.downloadVideo(upvideo: video, upimage: image)).mapObject(MessageVideoModel.self).asObservable().subscribe(onNext: { (responce) in
+        delegate.providerVideo.rx.request(.downloadVideo(upvideo: video, upimage: image, upduration: upduration)).mapObject(MessageVideoModel.self).asObservable().subscribe(onNext: { (responce) in
             if responce.code != nil {
                 callback(responce)
                 return

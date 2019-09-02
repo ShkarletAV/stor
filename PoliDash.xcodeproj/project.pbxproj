@@ -492,7 +492,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" a63683c34f86e97cd1f5c7f2c0b4e8dad6719fa6 0726bf025e6b1269f40965fef1f333ce66e8b977a90f0bc6ad47adc1fac1e855\n";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" e08b76e2a083118d0504d286e1082dcf6f81c649 33b6a4b5443055400f4cc92e07aa859cd5ad48159f80de537c7869ab45d26b58\n";
 		};
 		20969973B29084A72A3837D9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -755,8 +755,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92EENQNCWS;
 				INFOPLIST_FILE = PoliDash/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -781,8 +781,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92EENQNCWS;
 				INFOPLIST_FILE = PoliDash/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
