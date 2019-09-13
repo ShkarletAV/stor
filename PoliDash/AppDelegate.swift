@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         AllUserDefaults.userBalance = 0
+        
+        window?.makeKeyAndVisible()
+        window?.frame = UIScreen.main.bounds
 
         return true
     }

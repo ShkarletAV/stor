@@ -32,7 +32,7 @@ class WalletSettingsViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var companyWalletInfoView: UIImageView! {
+    @IBOutlet weak var companyWalletInfoView: UIView! {
         didSet {
             let tapRecognizer = UIGestureRecognizer(
                 target: self,
@@ -50,9 +50,8 @@ class WalletSettingsViewController: UIViewController {
     }
 
     var walletStatus: WalletStatus = .none {
-        didSet {
-            self.updateViewInfo(with: walletStatus)
-            checkWalletStatus()
+        willSet {
+            self.updateViewInfo(with: newValue)
         }
     }
 
@@ -78,18 +77,51 @@ class WalletSettingsViewController: UIViewController {
         }
     }
     @IBOutlet weak var balanceView: UIView!
+    @IBOutlet weak var ourAdressField: UITextField! {
+        didSet {
+            self.ourAdressField.delegate = self
+            self.ourAdressField.inputView = UIView()
+            self.ourAdressField.tintColor = .clear
+        }
+    }
 
     // MARK: - functions -
 
+    var skipCheck: Bool = true
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        skipCheckF()
+    }
+    
+    // MARK : - если приложение ушло в бэкграунд, то прячем БалансВью
+    @objc func appDidEnterBackground() {
+      //  balanceView.isHidden = true
+    }
+    
+    // MARK : - через этот метод проверяется статус кошелька, если приложение до этого момента было в бэкграунде и было переведено в foreground
+    @objc func appWillEnterForeground() {
+        skipCheckF()
+    }
+    
+    func skipCheckF() {
+        if !skipCheck {
+            checkWalletStatus()
+        }
+        
+        skipCheck = false
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViewInfo(with: walletStatus)
         checkWalletStatus()
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(appWillEnterForeground), name:
+            NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(appDidEnterBackground), name:
+            NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
 
     // MARK: actions
@@ -103,7 +135,7 @@ class WalletSettingsViewController: UIViewController {
     }
 
     func setWalletStatus(model: WalletStatusResponseModel) {
-        if model.status == 1 {
+        if model.statusState == WalletStatusResponseModel.StatusStates.Accepted {
             self.walletStatus = .bound
             if let balance = AllUserDefaults.userBalance, balance == 0 {
                 self.requestBalance()
@@ -112,6 +144,7 @@ class WalletSettingsViewController: UIViewController {
             }
         } else {
             self.walletStatus = .waiting
+            self.ourAdressField.text = companyWallet
             self.companyInfoLabel.text = "код \(model.orderId), наш адрес: \(companyEMail)"
         }
         self.addressTextField.text = model.address
@@ -119,7 +152,7 @@ class WalletSettingsViewController: UIViewController {
 
     func updateViewInfo(with status: WalletStatus) {
 
-        balanceView.isHidden = true
+    //    balanceView.isHidden = true
         waitStatusView.isHidden = true
         companyWalletInfoView.isHidden = true
 
@@ -243,10 +276,19 @@ class WalletSettingsViewController: UIViewController {
                 }
         }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+    }
 }
 
 extension WalletSettingsViewController: UITextFieldDelegate {
 
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text?.count == 0 {
             self.addWalletButton.isHidden = true
@@ -273,6 +315,10 @@ extension WalletSettingsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
+        if textField.isEqual(self.ourAdressField) {
+            return false
+        }
+        
         return true
     }
 

@@ -99,7 +99,7 @@ extension ProfileServerAPI: TargetType {
         case .сancelBindingWallet(email: _, address: _):
             return "wallet/unbind"
         case .requestBindingWallet(address: _, already: _):
-            return "wallet/bind"
+            return "wallet/rebind"
         }
     }
     var method: Moya.Method {

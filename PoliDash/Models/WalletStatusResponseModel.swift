@@ -9,9 +9,27 @@
 import ObjectMapper
 
 class WalletStatusResponseModel: Mappable {
+    enum StatusStates {
+        case Declined
+        case Accepted
+    }
+    
     var msg: String?
     var code: Int?
-    var status: Int?
+    var status: String?
+    var statusState: StatusStates? {
+        get {
+            var temp:StatusStates?
+            if status == "accepted" {
+                temp = .Accepted
+            } else if status == "declined" {
+                temp = .Declined
+            }
+            
+            return temp
+        }
+    }
+    
     var address: String?
     var orderId: Int = 0
     //    var error : String?
@@ -20,6 +38,7 @@ class WalletStatusResponseModel: Mappable {
     }
 
     required init?(map: Map) {
+        
     }
 
     func mapping(map: Map) {

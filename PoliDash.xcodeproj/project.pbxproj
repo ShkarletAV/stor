@@ -67,6 +67,11 @@
 		78A93505222024F0002F4822 /* MainViewHorizontalCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A93504222024F0002F4822 /* MainViewHorizontalCollectionCell.swift */; };
 		78A9350722202506002F4822 /* MainViewVerticalCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A9350622202506002F4822 /* MainViewVerticalCollectionCell.swift */; };
 		78A9350C22203DD9002F4822 /* MozaikCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A9350B22203DD9002F4822 /* MozaikCell.swift */; };
+		BCF2AF14231D604000B55F3F /* LeelaUIb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78A9350822203A00002F4822 /* LeelaUIb.ttf */; };
+		BCF2AF15231D604500B55F3F /* LeelawUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78A733622228398B006B80B4 /* LeelawUI.ttf */; };
+		BCF2AF16231D604A00B55F3F /* Leelawadeeui.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 789043A4222F137700447B5A /* Leelawadeeui.ttf */; };
+		BCF2AF17231D605000B55F3F /* LeelUIsl.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78A9350A22203A1A002F4822 /* LeelUIsl.ttf */; };
+		BCF2AF18231D605600B55F3F /* 10732.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78A9350922203A0A002F4822 /* 10732.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -448,6 +453,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCF2AF18231D605600B55F3F /* 10732.otf in Resources */,
+				BCF2AF17231D605000B55F3F /* LeelUIsl.ttf in Resources */,
+				BCF2AF16231D604A00B55F3F /* Leelawadeeui.ttf in Resources */,
+				BCF2AF15231D604500B55F3F /* LeelawUI.ttf in Resources */,
+				BCF2AF14231D604000B55F3F /* LeelaUIb.ttf in Resources */,
 				364C617D21008F3200AA7AB3 /* LaunchScreen.storyboard in Resources */,
 				36ACB46A210B478800F073D9 /* VideoPlayer.storyboard in Resources */,
 				364C617A21008F3200AA7AB3 /* Assets.xcassets in Resources */,

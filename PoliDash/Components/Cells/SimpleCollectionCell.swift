@@ -30,6 +30,8 @@ class SCCell: UICollectionViewCell {
         circleView = DowloadPreviewView.init(frame: self.preview.frame)
         guard let circleView = circleView else { return }
         self.preview.addSubview(circleView)
+        self.backgroundColor = UIColor.clear
+        self.preview.backgroundColor = UIColor.clear
 
         NotificationCenter.default.addObserver(
             self,
@@ -39,8 +41,10 @@ class SCCell: UICollectionViewCell {
     }
 
     @objc func updateProgress(notification: Notification) {
-        if let dict = notification.userInfo as? [String: Double], let progress = dict["progress"] {
-            circleView?.changeProgress(progress: progress)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
+            if let dict = notification.userInfo as? [String: Double], let progress = dict["progress"] {
+                self.circleView?.changeProgress(progress: progress)
+            }
         }
     }
 }
@@ -147,10 +151,13 @@ extension SimpleCollectionCell: UICollectionViewDelegate, UICollectionViewDataSo
             if history.preview == "placeholder"{
                 cell.preview.image = self.delegate?.uploadingVideo?.0
                 cell.addCircleView()
+                
             } else {
                 if cell.circleView?.superview != nil {
                     cell.circleView?.removeFromSuperview()
                     cell.circleView = nil
+                    cell.circleBorder?.removeFromSuperlayer()
+                    cell.circleBorder = nil
                 }
             cell.preview.sd_setImage(with: URL(string: history.preview!), placeholderImage: #imageLiteral(resourceName: "User_placeholder.png"), options: [], completed: nil)
             }

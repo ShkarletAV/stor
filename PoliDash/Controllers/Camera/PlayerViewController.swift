@@ -137,6 +137,7 @@ class PlayerViewController: UIViewController {
         ]
 
         sdav.exportAsynchronously(completionHandler: {
+            self.showWaitView(isWait: false)
             if sdav.status == AVAssetExportSessionStatus.completed {
                 print("complite")
 

@@ -641,7 +641,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
                                             callback: {[weak self] callback in
             DispatchQueue.main.async {
                 if let ss = self {
-                        self?.firstList?.collection.reloadData()
+         //               self?.firstList?.collection.reloadData() <- Зачем здесь был этот бред???
                         let progress = callback.progress
                         if progress?.isFinished == true || progress?.isCancelled == true || progress?.fractionCompleted == 1.0 {
                             ss.videoDidDownload()

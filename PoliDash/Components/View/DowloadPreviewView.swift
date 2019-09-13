@@ -37,7 +37,7 @@ class DowloadPreviewView: UIView {
 
         let circleBorder = CALayer()
         circleBorder.backgroundColor = UIColor.clear.cgColor
-        circleBorder.borderWidth = 2.0
+        circleBorder.borderWidth = 0.0
         circleBorder.borderColor = UIColor.white.cgColor
         circleBorder.bounds = CGRect(
             x: 0.0,
@@ -59,6 +59,7 @@ class DowloadPreviewView: UIView {
         circleView?.center = circleBorder.position
 
         self.addSubview(cancelButton)
+        self.insertSubview(circleView!, aboveSubview: cancelButton)
         cancelButton.frame.size = CGSize(
             width: buttonSize.width,
             height: buttonSize.height)
